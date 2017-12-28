@@ -1,0 +1,364 @@
+.title{
+    height:60rpx;
+    padding-left: 24rpx;
+    display: flex;
+    align-items: center;
+
+}
+.common_wrap{
+    height:88rpx;
+    padding: 0 24rpx;
+    display: flex;
+    align-items: center;
+}
+
+.common_title{
+    height: 56rpx;
+    padding-left: 24rpx;
+    display: flex;
+    align-items: center;
+}
+.common_message{
+    padding: 30rpx 24rpx;
+    height:152rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.flex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bar_details{
+    height:88rpx;
+    padding: 0 24rpx;
+    display: flex;
+    align-items: center;
+}
+.arrow_image{
+    width:14rpx;
+    height:25rpx;
+}
+.card_image{
+    width:50rpx;
+    height:46rpx;
+}
+.card_message{
+    height:198rpx;
+    display: flex;
+    align-items: center;
+    padding: 0 24rpx;
+}
+.card_message_left {
+    width: 148rpx;
+    height: 108rpx;
+    border-radius: 3rpx;
+    background-color: #ff9933;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20rpx 0;
+    justify-content: space-between;
+}
+.card_message_right{
+    display: flex;
+    flex-direction: column;
+
+}
+.mb15{
+    margin-bottom: 15rpx;
+}
+.flex_row{
+    display: flex;
+}
+.card_bottom{
+    padding: 12rpx 24rpx;
+    display: flex;
+    flex-direction: column;
+
+}
+.common_item{
+    height:64rpx;
+    display: flex;
+    align-items: center;
+}
+.beizhu{
+    display: flex;
+    align-items: center;
+}
+.flex_wrap{
+    padding: 15rpx 0;
+    width:510rpx;
+    display: flex;
+    flex-wrap: wrap-reverse;
+    align-items: center;
+
+}
+.text1{
+    line-height: 38rpx;
+}
+
+.yuan{
+    width:60rpx;
+    height:60rpx;
+    border: 2rpx solid #fff;
+    border-radius: 50%;
+}
+.price{
+    height:88rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24rpx;
+}
+.flex_col1{
+    display: flex;
+    flex-direction: column;
+}
+.katao{
+    height:198rpx;
+    padding: 0 24rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.katao_image{
+    width:148rpx;
+    height:148rpx;
+}
+.dingdan{
+    width: 100%;
+    height:100rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.tijiao{
+    width:200rpx;
+    height:75rpx;
+    border-radius: 6rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5912c;
+    margin-right: 20rpx;
+    color: #fff;
+}
+.tianchong{
+    height:100rpx;
+}
+.between{
+    justify-content: space-between;
+}
+.packages{
+    height:198rpx;
+    padding: 0 24rpx;
+    display: flex;
+    align-items: center;
+}
+.price{
+    height:88rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24rpx;
+}
+.col{
+    display: flex;
+    flex-direction: column;
+}
+.lh30{
+    line-height: 30rpx;
+}
+.flex_col{
+    display: flex;
+    width:534rpx;
+    flex-direction: column;
+    justify-content: space-between;
+    height:156rpx;
+}
+.item{
+    align-self:stretch ;
+}
+.katao{
+    height:198rpx;
+    padding: 0 24rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.katao_image{
+    width:148rpx;
+    height:148rpx;
+}
+
+.picker{
+    width:500rpx;
+    height:88rpx;
+    display: flex;
+    align-items: center;
+    font-size: 28rpx;
+}
+.dete_wrap{
+    display: flex;
+    align-items: center;
+}
+
+/*支付方式*/
+.top_wrap{
+    height:228rpx;
+    padding: 0 32rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.lh32{
+    line-height: 32rpx;
+    text-align: center;
+}
+.money{
+    height:88rpx;
+    display: flex;
+    align-items: center;
+    padding: 0 24rpx;
+}
+.title_wrap{
+    height:60rpx;
+    display: flex;
+    align-items: center;
+    padding: 0 24rpx;
+}
+.common_wrap1{
+    height:98rpx;
+    padding: 0 24rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.flex_row{
+    display: flex;
+    align-items: center;
+}
+.flex_col1{
+    display: flex;
+    flex-direction: column;
+}
+.logo_image{
+    width:62rpx;
+    height:62rpx;
+}
+.icon_image{
+    width:30rpx;
+    height:30rpx;
+}
+.dingwei{
+    position:absolute;
+    bottom: 20rpx;
+    left:27rpx;
+}
+/*.disabled{
+    background-color: #444;
+}*/
+
+/*支付方式*/
+page .wallets-password {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
+page .wallets-password .input-content-wrap {
+    position: absolute;
+    top: 200rpx;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    width: 600rpx;
+    margin-left: -300rpx;
+    background: #fff;
+    border-radius: 20rpx;
+}
+page .wallets-password .input-content-wrap .top {
+    display: flex;
+    align-items: center;
+    height: 90rpx;
+    border-bottom: 2rpx solid #ddd;
+}
+.txt{
+    margin-left: 120rpx;
+}
+page .wallets-password .input-content-wrap .top .close {
+    font-size: 44rpx;
+    color: #999;
+    font-weight: 100;
+}
+page .wallets-password .input-content-wrap .top .forget {
+    color: #00a2ff;
+    font-size: 22rpx;
+}
+page .wallets-password .input-content-wrap .actual_fee {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    height: 100rpx;
+    margin: 0 23rpx;
+    border-bottom: 2rpx solid #ddd;
+}
+page .wallets-password .input-content-wrap .actual_fee span {
+    font-size: 24rpx;
+}
+page .wallets-password .input-content-wrap .actual_fee text {
+    font-size: 36rpx;
+}
+page .wallets-password .input-content-wrap .input-password-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150rpx;
+}
+page .wallets-password .input-content-wrap .input-password-wrap .password_dot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #000;
+    box-sizing: border-box;
+    width: 90rpx;
+    height: 90rpx;
+    border: 2rpx solid #ddd;
+    border-left: none 0;
+}
+page .wallets-password .input-content-wrap .input-password-wrap .password_dot:nth-child(1) {
+    border-left: 2rpx solid #ddd;
+}
+page .wallets-password .input-content-wrap .input-password-wrap .password_dot i {
+    background: #000;
+    border-radius: 50%;
+    width: 20rpx;
+    height: 20rpx;
+}
+page .wallets-password .input-content {
+    position: absolute;
+    opacity: 0;
+    left: -100%;
+    top: 600rpx;
+    background: #f56;
+    z-index: -999;
+}
+page .wallets-password .input-content.active {
+    z-index: -99;
+}
+
+.shuoming{
+    padding: 20rpx;
+    display: flex;
+    flex-direction: column;
+}
+.shuoming text{
+    line-height: 32rpx;
+}

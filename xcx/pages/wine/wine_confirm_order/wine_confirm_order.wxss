@@ -1,0 +1,74 @@
+.title{
+    height:60rpx;
+    padding-left: 24rpx;
+    display: flex;
+    align-items: center;
+
+}
+.common_wrap{
+    height:88rpx;
+    padding: 0 24rpx;
+    display: flex;
+    align-items: center;
+}
+.between{
+    justify-content: space-between;
+}
+.list_item{
+    padding:25rpx 24rpx;
+    display: flex;
+    justify-content: space-between;
+}
+.list_item_left{
+    display: flex;
+
+}
+.list_item_left> image{
+    width:148rpx;
+    height:148rpx;
+    margin-right: 20rpx;
+}
+.message{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width:370rpx;
+}
+.message .c5c5c5{
+    line-height: 31rpx;
+}
+
+.del_line{
+    text-decoration:line-through;
+}
+.price{
+    height:88rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24rpx;
+}
+
+.dingdan{
+    width: 100%;
+    height:100rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+}
+.tianchong{
+    height:100rpx;
+}
+.tijiao{
+    width:200rpx;
+    height:75rpx;
+    border-radius: 6rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5912c;
+    margin-right: 20rpx;
+    color: #fff;
+}

@@ -1,0 +1,24 @@
+.top_wrap{
+    height:210rpx;
+    padding: 0 30rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.success_text{
+    color: #46d680;
+    font-weight: bold;
+    margin: 44rpx 0;
+}
+.text_align{
+    text-align: center;
+    line-height: 30rpx;
+}
+.bottom_wrap{
+    height:88rpx;
+    padding: 0 24rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}

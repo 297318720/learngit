@@ -1,0 +1,5 @@
+/* pages/mine/userguide/userguide.wxss */
+.img{
+    width:750rpx;
+
+}

@@ -1,0 +1,226 @@
+<!--确认订单页面-->
+<view wx:if="{{flag == 1}}">
+ <!--卡座信息-->
+<view wx:if="{{order_type == 1}}">
+        <view>
+            <view class="title"><text class="fs24 c5c5c5">客人信息</text></view>
+            <!--<view class="common_wrap bgc bb"><text class="fs30 mr30">姓　　名</text><text class="fs28">{{contact.realname}}</text></view>-->
+            <!--<view class="common_wrap bgc bb"><text class="fs30 mr30">性　　别</text><text class="fs28">{{contact.sex ==1?'先生':'女士'}}</text></view>-->
+            <!--<view class="common_wrap bgc"><text class="fs30 mr30">电　　话</text><text class="fs28">{{contact.tel}}</text></view>-->
+            <view class="common_wrap bgc between" >
+                <view>
+                    <text class="fs30 mr60">联系人</text>
+                    <text class="fs28 mr30">{{contact.realname}}</text>
+                    <text class="fs28 mr30" wx:if="{{contact.sex == 1}}">男</text>
+                    <text class="fs28 mr30" wx:elif="{{contact.sex == 2}}">女</text>
+                    <text class="fs28 mr30" wx:else></text>
+                    <text class="fs28 ">{{contact.tel}}</text>
+                </view>
+                <!--<image src="/assets/index_image/bar_arrow@2x.png" class="bar_arrow"></image>-->
+            </view>
+        </view>
+ <view class="common_title"><text class="fs24 c5c5c5">商品信息</text></view>
+ <view class="bar_details bgc bb">
+     <text class="fs30">{{title}}</text>
+ </view>
+ <view class="" >
+     <view class="bb card_message bgc">
+         <view class="card_message_left  mr20">
+             <image src="/assets/order_image/order_booth@2x.png" class="card_image"></image>
+             <text class="fs24">{{message.title}}{{message.seat_number}}</text>
+             <text class="fs24">1-{{message.max_people}}人</text>
+         </view>
+         <view class="card_message_right">
+             <view class="flex_col1">
+                 <text class="fs24 c5c5c5 mb30">最低消费{{message.floor_price}}元</text> <text class="fs24 c5c5c5">预定金{{message.set_price}}元</text>
+             </view>
+         </view>
+     </view>
+     <view class="card_bottom bb bgc">
+         <view class="common_item " wx:if="{{is_offer == 1}}">
+             <text class="fs30 mr55">客户经理</text>
+             <image src="{{avatar}}" class="yuan"></image>
+         </view>
+         <view class="common_item ">
+             <text class="fs30 mr30">到店日期：</text>
+             <text class="fs28">{{date}} {{begin_time_time}}</text>
+         </view>
+         <view class="common_item ">
+             <text class="fs30 mr30">人　　数：</text>
+             <text class="fs28">{{number_of_people}}</text>
+         </view>
+         <view class=" beizhu">
+             <text class="fs30 mr30">备　　注：</text>
+             <view class="flex_wrap">
+                 <text class="fs28 fff text1">{{value}}</text>
+             </view>
+         </view>
+     </view>
+     <!--<view class="flex_l1r1 bgc bb">-->
+         <!--<text class="fs30">优惠券</text>-->
+         <!--<text class="fs28">￥0</text>-->
+     <!--</view>-->
+     <view class="price bgc">
+         <view><text class="fs30 mr20">总计：￥{{message.set_price}}</text><text class="fs30">优惠：￥{{discount_money}}</text></view>
+         <view><text class="fs30">实付金额</text><text class="fs28 ff9933">￥{{pay_price}}</text></view>
+     </view>
+     <view class="shuoming" >
+         <text class="fs30 ff9933 mb20">说明</text>
+         <text class="fs24 c5c5c5 ">1、须在{{begin_time_time}}到店消费，逾期作废将不退还预定金。</text>
+         <text class="fs24 c5c5c5 ">2、如果该商家有显示客户经理，您可以选择一位为您服务；如果该商家没有显示，提交订单后商家会分配一位客户经理为您服务。</text>
+         <text class="fs24 c5c5c5 ">2、成功预定卡座后因个人原因未到店消费，定金不予退还。</text>
+     </view>
+ </view>
+</view>
+
+<!--套餐信息-->
+<view  wx:if="{{order_type != 1}}">
+    <view class="common_title"><text class="fs30 c5c5c5">客人信息</text></view>
+    <view class="common_wrap bgc between" bindtap="into_contacts_message">
+        <view>
+            <text class="fs30 mr60">{{contact.realname?'联系人':'添加姓名'}}</text>
+            <text class="fs28 mr30">{{contact.realname}}</text>
+            <text class="fs28 mr30" wx:if="{{contact.sex == 1}}">男</text>
+            <text class="fs28 mr30" wx:elif="{{contact.sex == 2}}">女</text>
+            <text class="fs28 mr30" wx:else></text>
+            <text class="fs28 ">{{contact.tel}}</text>
+        </view>
+        <image src="/assets/index_image/bar_arrow@2x.png" class="bar_arrow"></image>
+    </view>
+     <!--商品信息-->
+    <view class="common_title"><text class="fs30 c5c5c5">商品信息</text></view>
+    <view class="bar_details bgc bb">
+        <text class="fs30">{{title}}</text>
+    </view>
+
+    <view class="packages bb">
+        <image class="katao_image mr20 no_img" src="{{goodspack.image}}" ></image>
+        <view class="flex_col">
+            <view class="col">
+                <text class="fs30 mb20">{{goodspack.title}}</text>
+                <text class="fs24 c5c5c5 lh30">{{goodspack.description}}</text>
+            </view>
+            <text class="fs24 ff9933">￥{{goodspack.price}}</text>
+        </view>
+    </view>
+    <view class="price bgc bb">
+        <view><text class="fs30 mr35">到店时间</text><text class="fs24">{{date}} {{begin_time_time}}</text></view>
+    </view>
+    <!--<view class="flex_l1r1 bgc bb">-->
+        <!--<text class="fs30">优惠券</text>-->
+        <!--<text class="fs28">￥0</text>-->
+    <!--</view>-->
+    <view class="price bgc">
+        <view><text class="fs30 mr20">总计：￥{{goodspack.price}}</text><text class="fs30">优惠：￥{{discount_money}}</text></view>
+        <view><text class="fs30">实付金额</text><text class="fs28 ff9933">￥{{pay_price}}</text></view>
+    </view>
+</view>
+    <!--说明文字-->
+    <view class="shuoming" wx:if="{{order_type == 3}}">
+       <text class="fs30 ff9933 mb20">说明</text>
+        <text class="fs24 c5c5c5 ">1、本套餐必须在{{begin_time_time}}前到店消费，逾期作废将不退还费用。</text>
+        <text class="fs24 c5c5c5 ">2、成功购买优惠套餐后因个人原因未到店消费，该套餐逾期自动作废。</text>
+        <text class="fs24 c5c5c5 ">3、套餐内包含指定酒水和一张小圆桌。</text>
+    </view>
+
+    <view class="shuoming" wx:if="{{order_type == 2}}">
+        <text class="fs30 ff9933 mb20">说明</text>
+        <text class="fs24 c5c5c5 ">1、套餐内包含指定酒水和卡座，成功购买卡座套餐后，系统会为您自动分配一个卡座，您可以直接到店消费。</text>
+        <text class="fs24 c5c5c5 ">2、成功购买优惠套餐后因个人原因未到店消费，自付款日起，套餐内酒水我们将根据您的会员等级为您保留{{delayed}}日，请重新订座后到店消费。</text>
+    </view>
+
+
+<!--提交订单-->
+<view class="dingdan bgc">
+   <view class="ml24">
+       <text class="fs30">支付金额：</text>
+       <text class="fs30 ff9933">￥{{pay_price}}</text>
+   </view>
+    <!--disabled="{{disabled1}}"-->  <!--class属性里有一个tijiao-->
+    <button class="tijiao fs30" bindtap="into_payment">提交订单</button>
+</view>
+
+</view>
+
+<!--支付方式页面-->
+<view wx:if="{{flag == 2}}">
+<!--倒计时-->
+<view class="top_wrap bgc">
+    <text class="fs36 mt40">{{clock}}</text>
+    <text class="mt20 mb20 ff9933 fs24">支付剩余时间</text>
+    <text class="fs24 lh32 c5c5c5">请在{{countdown_min}}分钟内完成支付，超时将自动取消订单</text>
+</view>
+
+<view class="money bgc mt20">
+    <text class="fs30">支付金额：</text>
+    <text class="fs28 ff9933">￥{{pay_price}}</text>
+</view>
+
+<view>
+    <view class="title_wrap"><text class="fs24 c5c5c5">选择支付方式</text></view>
+    <!--空瓶子余额-->
+    <view class="common_wrap1 bgc bb" catchtap="wallet_pay">
+        <view class="flex_row">
+            <image src="/assets/images/pay_kpz@2x.png" class="logo_image mr20"></image>
+            <view class="flex_col1">
+                <text class="fs28 mb10">空瓶子余额支付</text>
+                <text class="fs24 c5c5c5">可用余额￥{{balance}}</text>
+            </view>
+        </view>
+        <image src="{{payment_mode == 1?'/assets/index_image/bar_choose_click@2x.png':'/assets/index_image/bar_choose@2x.png'}}" class="icon_image"></image>
+    </view>
+    <!--微信支付-->
+    <view class="common_wrap1 bgc " catchtap="wx_pay">
+        <view class="flex_row">
+            <image src="/assets/images/pay_weixin@2x.png" class="logo_image mr20"></image>
+            <text class="fs28">微信支付</text>
+        </view>
+        <image src="{{payment_mode == 2?'/assets/index_image/bar_choose_click@2x.png':'/assets/index_image/bar_choose@2x.png'}}" class="icon_image"></image>
+    </view>
+</view>
+
+<button class="submit dingwei" bindtap="pay" disabled="{{disabled}}">立即支付</button>
+
+<!--输入钱包密码-->
+<view wx:if="{{wallets_password_flag}}" class="wallets-password">
+    <view class="input-content-wrap">
+        <view class="top">
+            <view catchtap="close_wallets_password" class="close ml20">×</view>
+            <view class="txt">请输入支付密码</view>
+        </view>
+        <view class="actual_fee">
+            <span>￥</span>
+            <text class="ff9933">{{pay_price}}</text>
+        </view>
+        <view catchtap="set_Focus" class="input-password-wrap">
+            <view class="password_dot">
+                <i wx:if="{{wallets_password.length>=1}}"></i>
+            </view>
+            <view class="password_dot">
+                <i wx:if="{{wallets_password.length>=2}}"></i>
+            </view>
+            <view class="password_dot">
+                <i wx:if="{{wallets_password.length>=3}}"></i>
+            </view>
+            <view class="password_dot">
+                <i wx:if="{{wallets_password.length>=4}}"></i>
+            </view>
+            <view class="password_dot">
+                <i wx:if="{{wallets_password.length>=5}}"></i>
+            </view>
+            <view class="password_dot">
+                <i wx:if="{{wallets_password.length>=6}}"></i>
+            </view>
+        </view>
+    </view>
+    <input bindinput="set_wallets_password" class="input-content" value="{{inputvalue}}" password type="number" focus="{{isFocus}}" maxlength="6" />
+</view>
+</view>
+
+        <!-- 自定义Toast -->
+<import src="/component/toast/toast.wxml"/>
+<template is="toast" data="{{ ..._toast_ }}"/>
+
+        <!-- 自定义showModal -->
+<import src="/component/showModal/showModal.wxml"/>
+<template is="showModal" data="{{ ..._showModal_ }}"/>

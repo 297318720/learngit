@@ -1,0 +1,37 @@
+.content_wrap{
+    padding: 24rpx 11rpx 0 24rpx;
+    display: flex;
+    flex-direction: column;
+}
+.flex{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.item{
+    width:220rpx;
+    height:94rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3rpx;
+}
+.mbt{
+    margin: 50rpx auto 20rpx;
+}
+
+.is_choose{
+    background-color: #ff9933;
+    border: 2rpx solid #ff9933;
+}
+.no_choose{
+    border: 2rpx solid #697785;
+}
+.no_choose > text:last-child{
+    color: #c5c5c5;
+}
+.flex_center{
+    display: flex;
+    justify-content: center;
+}

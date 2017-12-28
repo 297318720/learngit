@@ -1,0 +1,49 @@
+.showModal_content_box {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 99999;
+    top:0;
+    /*background: rgba(255, 255, 255, 0.1);*/
+}
+.showModal_content {
+    width: 562rpx;
+    background: #fff;
+    border-radius: 10rpx;
+}
+.showModal_message{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 50rpx;
+
+}
+.showModal_message .lh42{
+    line-height: 42rpx;
+}
+.double_button{
+    display: flex;
+
+}
+.double_button view{
+    width:50%;
+    height:100rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.one_button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:100rpx;
+}
+.showModal_bb{
+    border-bottom: 1rpx solid #d2d3d5;
+}
+.showModal_br{
+    border-right: 1rpx solid #d2d3d5;
+}

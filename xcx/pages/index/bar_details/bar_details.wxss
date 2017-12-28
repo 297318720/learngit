@@ -1,0 +1,344 @@
+.top_wrap{
+    padding:32rpx 24rpx;
+    display: flex;
+    justify-content: space-between;
+    background-color: #3d5162;
+}
+.huise_star{
+    position: absolute;
+    top:0.5rpx;
+}
+.top_wrap_left{
+    display: flex;
+    height:116rpx;
+    align-items: center;
+
+}
+.top_wrap_left > image{
+    width:144rpx;
+    height:116rpx;
+    margin-right: 20rpx;
+}
+.list_item_message{
+    display: flex;
+    flex-direction: column;
+    height:106rpx;
+    justify-content: space-between;
+}
+
+
+.item_right{
+    width:136rpx;
+    height: 23rpx;
+    position: relative;
+}
+.item_right image{
+    width:136rpx;
+    height:23rpx;
+    display: block;
+}
+.pr10{
+    padding-right: 10rpx;
+}
+.pr20{
+    padding-right: 20rpx;
+}
+.mr10{
+    margin-right: 10rpx;
+}
+.mr20{
+    margin-right: 20rpx;
+}
+.show_star{
+    width:100%;
+    overflow: hidden;
+    z-index: 99;
+    position: absolute;
+    top:0rpx;
+}
+.flex{
+    display: flex;
+}
+.distance{
+    display: flex;
+    align-items: center;
+    height:116rpx;
+
+}
+.distance image{
+    width:44rpx;
+    height:44rpx;
+}
+
+.show{
+    display: flex;
+    justify-content:space-around;
+    text-align: center;
+    line-height: 80rpx;
+    height:80rpx;
+    background-color: #3d5162;
+}
+.show > view{
+    width: 133rpx;
+    font-size:28rpx;
+    color: #fff;
+
+}
+
+.show .btnShow{
+    border-bottom: 3rpx solid #f5912c;
+
+}
+.btnShow >text{
+    color: #ff9933;
+}
+
+.attention_wrap{
+    height:60rpx;
+    padding:0 24rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.pr14{
+    padding-right: 14px;
+}
+.zhuyi_icon{
+    width:30rpx;
+    height:30rpx;
+}
+
+.attention_wrap > text{
+
+    width:600rpx;
+    height:24rpx;
+    padding-top: 4rpx;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.list_item{
+    padding:25rpx 24rpx;
+    display: flex;
+    justify-content: space-between;
+}
+.list_item_left{
+    display: flex;
+
+}
+.list_item_left> image{
+    width:148rpx;
+    height:148rpx;
+    margin-right: 20rpx;
+}
+.message{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width:390rpx;
+}
+.message .c5c5c5{
+    line-height: 31rpx;
+}
+.list_item_right{
+    display: flex;
+    align-items: center;
+}
+.buy{
+   padding: 18rpx 34rpx;
+    background-color: #f5912c;
+    color: #fff;
+    border-radius: 6rpx;
+    font-size: 24rpx;
+}
+.list_item_right .fs24{
+    padding-right: 24rpx;
+}
+.manager{
+    background-color: #3d5162;
+}
+.manager_title{
+    padding:20rpx 24rpx 14rpx;
+    line-height:16rpx;
+
+}
+.manager_list_item{
+    margin-top: 10rpx;
+    position: relative;
+    margin-right: 30rpx;
+    margin-bottom: 20rpx;
+    width:110rpx;
+    height:110rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.manager_list_item > image{
+    width:100rpx;
+    height:100rpx;
+    border: 2rpx solid #ff9933;
+    border-radius: 50%;
+}
+.manager_list_item > text{
+    display: block;
+    width:60rpx;
+    height:26rpx;
+    line-height: 26rpx;
+    text-align: center;
+    font-size: 18rpx;
+    color: #fff;
+    background-color: #ff9933;
+    position: absolute;
+    top:85rpx;
+    left:28rpx;
+    border-radius: 6rpx;
+}
+
+.manager_head .curchoose_manager > image{
+    box-shadow: 0 0 5rpx 5rpx rgba(255,255,255,.6);
+    border: 2rpx solid white;
+
+}
+.manager_head .curchoose_manager > text{
+    box-shadow: 0 0 5rpx 5rpx rgba(255,255,255,.6);
+}
+.curchoose_manager > text{
+    background-color: #fff;
+    color: #ff9933;
+}
+
+.manager_head{
+    display: flex;
+    padding-left:30rpx ;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+.choose_date{
+    height:88rpx;
+    padding:0 24rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    background-color: #3d5162;
+
+}
+.choose_date .fs28{
+    padding-right: 20rpx;
+}
+.choose_date image{
+    width:44rpx;
+    height:44rpx;
+}
+.choose_date_right{
+    display: flex;
+    align-items: center;
+}
+.big_attention_wrap{
+    position: absolute;
+    top:300rpx;
+    left:45rpx;
+    border-radius: 6rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.big_attention{
+    padding:24rpx 20rpx ;
+    background-color: #fff;
+    width:620rpx;
+    display: flex;
+}
+.del{
+    width:72rpx;
+    height:72rpx;
+    border-radius: 50%;
+    margin-top: 30rpx;
+}
+.big_attention_right{
+    width:580rpx;
+    display: flex;
+    flex-direction: column;
+}
+.zhu_ziti{
+    font-size: 24rpx;
+    color: #333;
+    line-height: 30rpx;
+}
+.zhu_icon{
+    width:30rpx;
+    height:30rpx;
+    padding-top: 3rpx;
+}
+.wxapp-modal{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(0,0,0,0.5);
+    top: 0px;
+    left: 0px;
+    z-index:999;
+}
+/*添加的日期样式*/
+.common_title{
+    height: 56rpx;
+    padding-left: 24rpx;
+    display: flex;
+    align-items: center;
+}
+.common_wrap{
+    height:88rpx;
+    padding: 0 24rpx;
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+.between{
+    justify-content: space-between;
+}
+.dete_wrap{
+    display: flex;
+    align-items: center;
+}
+.picker_wrap{
+    width:100%;
+    position: absolute;
+    left:0;
+    top:0;
+    z-index: 10;
+    height:88rpx;
+}
+.picker{
+    /*width:100%;*/
+    height:88rpx;
+    display: flex;
+    align-items: center;
+    font-size: 28rpx;
+    padding-left: 130rpx;
+}
+.picker1{
+    width:550rpx;
+    height:88rpx;
+    display: flex;
+    align-items: center;
+    font-size: 28rpx;
+}
+
+
+.flex_wrap{
+    display: flex;
+    justify-content: space-between;
+    height:88rpx;
+    width:100%;
+    align-items: center;
+}
+.flex{
+    display: flex;
+    align-items: center;
+}
+.del_line{
+    text-decoration:line-through;
+}

@@ -1,0 +1,65 @@
+<block wx:for="{{list}}" wx:key="{{list}}">
+    <view class="list_item mb20" wx:if="{{whether_login != 0}}">
+        <view class="list_item_top" data-merchant_id="{{item.merchant_id}}" bindtap="into_business_details">
+            <view class="flex"><text class="fs24 mr20">{{item.merchant_title}}</text><image class="img_size" src="/assets/order_image/order_arrow@2x.png"></image></view>
+            <text class="fs24 c5c5c5" wx:if="{{item.status == 0}}">已取消</text>
+            <text class="fs24 f5912c" wx:elif="{{item.status == 1}}">未支付</text>
+            <text class="fs24 f5912c" wx:elif="{{item.status == 2}}">支付完成，等待商家接单</text>
+            <text class="fs24 c5c5c5" wx:elif="{{item.status == 3}}">已逾期</text>
+            <text class="fs24 g46d680" wx:elif="{{item.status == 4}}">已完成</text>
+            <text class="fs24 c5c5c5" wx:elif="{{item.status == 5}}">已作废</text>
+            <text class="fs24 f5912c" wx:elif="{{item.status == 6}}">商家已拒单</text>
+            <text class="fs24 f5912c" wx:elif="{{item.incr_time == 0}}">商家已接单</text>
+            <text class="fs24 dc5946" wx:else>为您延时{{item.incr_time}}分钟请尽快到店</text>
+        </view>
+        <view class="list_item_message bgc" data-index="{{index}}" bindtap="into_order_details" data-order_no="{{item.order_no}}">
+            <view class="col">
+                <view class="mb20 row">
+                    <text wx:if="{{item.order_type == 1}}" class="mr30 fs30">卡座预定</text>
+                    <text wx:elif="{{item.order_type == 2}}" class="mr30 fs30">卡座套餐</text>
+                    <text wx:elif="{{item.order_type == 3}}" class="mr30 fs30">优惠套餐</text>
+                    <text class="fs30">总金额：</text><text class="fs28 ff9933">￥{{item.pay_price}}</text>
+                </view>
+                <text class="fs24 c5c5c5">到店时间：{{item.arrives_time}} {{item.begin_time}}</text>
+            </view>
+        </view>
+
+        <view class="list_item_bottom" wx:if="{{item.status == 1}}">
+            <text class="fs26 btn" bindtap="pay" data-date="{{item.arrives_time}}" data-begin_time_time="{{item.begin_time}}" data-order_no="{{item.order_no}}" data-pay_price="{{item.pay_price}}" data-created_time="{{item.created_time}}">去支付</text>
+        </view>
+        <view class="list_item_bottom" wx:elif="{{item.status == 3}}">
+            <text class="fs26 btn" data-merchant_id="{{item.merchant_id}}" bindtap="reserve_card">去预定卡座</text>
+        </view>
+        <view class="list_item_bottom1" wx:elif="{{item.seat_number != undefined}}">
+            <text class="fs26">您的卡座</text><text class="fs22 f5912c">{{item.seat_number}}</text>
+        </view>
+        <!--<view class="list_item_bottom1" wx:elif="{{item.employee_id}}">-->
+            <!--<text class="fs26 mr30">客户经理</text><image data-employee_id="{{item.employee_id}}" bindtap="into_waiter_details" src="{{item.employee_avatar}}" class="avatar_img"></image>-->
+        <!--</view>-->
+        <view class="list_item_bottom" wx:elif="{{item.is_comment == 0}}">
+            <text class="fs26 btn mr20" wx:if="{{item.is_xujiu == 1}}">查看续酒</text>
+            <text class="fs26 btn_xujiu mr20">续酒</text>
+            <text class="fs26 btn" bindtap="evaluated"  data-order_no="{{item.order_no}}" data-type="1" data-index="{{index}}">去评价</text>
+        </view>
+    </view>
+</block>
+
+<view class="empty_order" wx:if="{{is_order}}">
+   <image src="/assets/order_image/order_picture@2x.png" class="order_image mb30"></image>
+    <text class="fs22 c5c5c5">您当前还没有订单噢~</text>
+</view>
+
+<view wx:if="{{whether_login == 0}}" class="no_login_wrap">
+    <image src="/assets/order_image/notloggedin@2x.png" class="icon_tou"></image>
+    <text class="c5c5c5 fs22 mt36 mb24">您还没有登录，请登录后查看订单</text>
+    <text class="login fs32" bindtap="login">登录</text>
+</view>
+
+        <!--上拉加载列表过渡效果-->
+<view  class="bottom_loading" hidden="{{isHiddenBottom_loading}}">
+<text class="fs24">加载中...</text>
+</view>
+
+        <!-- 自定义showModal -->
+<import src="/component/showModal/showModal.wxml"/>
+<template is="showModal" data="{{ ..._showModal_ }}"/>

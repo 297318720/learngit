@@ -1,0 +1,152 @@
+<view class="top bgc">
+    <text class="top_1 {{title_color}}">{{status_message_title}}</text>
+    <view class="flex mb30">
+        <text class="fs24 c5c5c5 center">{{status_message}}</text>
+        <text class="fs24 c5c5c5 mt12" wx:if="{{cur_message.status == 1}}">订单倒计时：{{clock}} </text>
+    </view>
+</view>
+<view>
+  <view class="common_title"><text class="fs24 c5c5c5">商品信息</text></view>
+  <view class="bar_details justify bgc bb" >
+      <view class="common_item" bindtap="into_business_details">
+          <text class="fs30 mr20">{{cur_message.merchant_title}}</text><image src="/assets/order_image/order_arrow@2x.png" class="arrow_image"></image>
+      </view>
+      <view class="common_item">
+            <text class="fs26 mr30">联系商家</text>
+           <image src="/assets/index_image/bar_phone@2x.png" class="call" data-tel="{{cur_message.merchant_tel}}" bindtap="call"></image>
+      </view>
+  </view>
+  <!--卡座信息-->
+   <view class="" wx:if="{{cur_message.order_type == 1}}">
+       <view class="bb card_message bgc">
+           <view class="card_message_left mr20">
+               <image src="/assets/order_image/order_booth@2x.png" class="card_image"></image>
+               <text class="fs24">{{card_data.title}}{{card_data.seat_number}}</text>
+               <text class="fs24">1-{{card_data.max_people}}人</text>
+           </view>
+           <view class="card_message_right">
+              <view class="flex_col">
+                  <text class="fs24 c5c5c5 mb30">最低消费{{card_data.floor_price}}元</text> <text class="fs24 c5c5c5">预定金{{card_data.set_price}}元</text>
+              </view>
+           </view>
+       </view>
+
+       <view class="card_bottom bb bgc">
+           <view class="common_item justify " wx:if="{{card_data.employee_id != 0}}">
+               <view class="common_item">
+                   <text class="fs30 mr55">客户经理</text>
+                       <image src="{{card_data.employee_avatar}}" data-employee_id="{{card_data.employee_id}}" bindtap="into_waiter_details" class="yuan mr10 no_avatarimg"></image>
+                   <text class="fs28">{{card_data.employee_realname}}</text>
+               </view>
+               <image src="/assets/index_image/bar_phone@2x.png" data-tel="{{card_data.employee_tel}}" class="call" bindtap="call"></image>
+           </view>
+           <view class="common_item ">
+               <text class="fs30 mr30">到店日期：</text>
+               <text class="fs28">{{card_data.arrives_time}} {{card_data.begin_time}}</text>
+           </view>
+           <view class="common_item ">
+               <text class="fs30 mr30">人　　数：</text>
+               <text class="fs28">{{card_data.total_people}}</text>
+           </view>
+           <view class="common_item ">
+               <text class="fs30 mr30">备　　注：</text>
+               <text class="fs28">{{card_data.description}}</text>
+           </view>
+       </view>
+       <view class="price bgc">
+           <view><text class="fs30 mr20">总计：￥{{card_data.total_price}}</text><text class="fs30">优惠：￥{{card_data.discount_money}}</text></view>
+           <view><text class="fs30">实付金额</text><text class="fs28 ff9933">￥{{card_data.pay_price}}</text></view>
+       </view>
+       <!--卡套信息-->
+       <view class="katao bgc mt20" wx:if="{{card_data.overdue_order}}">
+           <view class="flex_row">
+               <image class="katao_image mr20 no_img" src="{{card_data.overdue_order.pack_image}}"></image>
+               <view class="flex_col">
+                   <text class="fs30 mb50">{{card_data.overdue_order.pack_title}}</text>
+                   <text class="fs24 ff9933">￥{{card_data.overdue_order.pack_price}}</text>
+               </view>
+           </view>
+           <button class="btn bgc mt20" bindtap="look_order" data-order_no="{{card_data.overdue_order.order_no}}">查看订单</button>
+       </view>
+   </view>
+    <!--卡套或者优惠套餐的页面-->
+   <view class="bgc" wx:if="{{cur_message.order_type != 1}}">
+       <view class="packages bb">
+           <image class="katao_image mr20 no_img" src="{{packages.logo}}"></image>
+           <view class="flex_col">
+               <text class="fs30 mb20">{{packages.title}}</text>
+               <text class="fs24 c5c5c5 mb54">{{packages.description}}</text>
+               <text class="fs24 ff9933">￥{{packages.goods_price}}</text>
+           </view>
+       </view>
+       <view class="price bgc">
+           <view><text class="fs30 mr20">总计￥{{packages.total_price}}</text><text class="fs30">优惠￥{{packages.discount_money}}</text></view>
+           <view><text class="fs30">实付金额</text><text class="fs28 ff9933">￥{{packages.pay_price}}</text></view>
+       </view>
+       <view wx:if="{{packages.seat_number != underfined}}">
+           <view class="katao_card" wx:if="{{packages.seat_number !=''}}">
+               <view class="flex_center"><text class="fs30 ff9933 mr30">您的卡座：</text><text class="fs24">{{packages.seat_number}}</text></view>
+           </view>
+       </view>
+       <view class="common_item justify fenpei pr24 pl24 bt" wx:if="{{packages.employee_id != underfined}}">
+           <view class="common_item">
+               <text class="fs30 mr30 ff9933">客户经理：</text>
+               <image src="{{packages.employee_avatar}}" data-employee_id="{{packages.employee_id}}" bindtap="into_waiter_details" class="yuan mr10 no_avatarimg"></image>
+               <text class="fs28">{{packages.employee_realname}}</text>
+           </view>
+           <image src="/assets/index_image/bar_phone@2x.png" data-tel="{{packages.employee_tel}}" class="call" bindtap="call"></image>
+       </view>
+   </view>
+</view>
+
+
+<!--客人信息-->
+<view>
+  <view class="common_title"><text class="fs24 c5c5c5">客人信息</text></view>
+  <view class="common_message bgc ">
+      <view ><text class="fs30 mr55">姓</text><text class="fs30 mr30">名：</text><text class="fs28">{{order_message.contacts_realname}}</text></view>
+      <view><text class="fs30 mr55">性</text><text class="fs30 mr30">别：</text><text class="fs28">{{order_message.contacts_sex ==1?'先生':'女士'}}</text></view>
+      <view><text class="fs30 mr55">电</text><text class="fs30 mr30">话：</text><text class="fs28">{{order_message.contacts_tel}}</text></view>
+  </view>
+  <view class="date bgc" wx:if="{{cur_message.order_type !== 1}}">
+      <text class="fs30 mr20">到店日期：</text>
+      <text class="fs28">{{order_message.arrives_time}} {{order_message.begin_time}}</text>
+  </view>
+  <view class="bar_details bgc bt" wx:if="{{cur_message.is_comment == 1}}" bindtap="into_evaluated">
+      <text class="fs30">我的评价</text><image src="/assets/order_image/order_arrow@2x.png" class="arrow_image"></image>
+  </view>
+</view>
+
+<!--订单信息-->
+<view>
+<view class="common_title"><text class="fs24 c5c5c5">订单信息</text></view>
+<view class="common_message bgc">
+    <view ><text class="fs30 mr20">订单编号：</text><text class="fs28">{{order_message.order_no}}</text></view>
+    <view ><text class="fs30 mr20">下单时间：</text><text class="fs28">{{order_message.format_time}}</text></view>
+    <view ><text class="fs30 mr20">支付方式：</text><text class="fs28">{{order_message.payment}}</text></view>
+</view>
+
+</view>
+<!--去评价去支付什么的-->
+<view wx:if="{{cur_message.status == 1}}">
+   <view class="btn_wrap bgc" >
+       <text class="btn_more fs30 {{disabled?'disabled':''}}" bindtap="pay" data-pay_price="{{cur_message.pay_price}}"
+             data-date="{{order_message.arrives_time}}" data-begin_time_time="{{order_message.begin_time}}"
+             data-order_no="{{cur_message.order_no}}"  data-created_time="{{cur_message.created_time}}" disabled="{{disabled}}">去支付</text>
+   </view>
+   <view class="chenggao"></view>
+</view>
+
+<view wx:elif="{{cur_message.is_comment == 0}}">
+<view class="btn_wrap bgc" >
+    <text class="btn_more fs30" data-type="2" bindtap="evaluated">去评价</text>
+</view>
+<view class="chenggao"></view>
+</view>
+
+<view wx:elif="{{cur_message.status == 3}}">
+<view class="btn_wrap bgc" >
+    <text class="btn_more fs30" bindtap="into_bar_details">去预定卡座</text>
+</view>
+<view class="chenggao"></view>
+</view>

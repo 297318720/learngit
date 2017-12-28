@@ -1,0 +1,110 @@
+.top_wrap{
+    height:275rpx;
+    background: linear-gradient(to bottom, #373d59, #070c1a);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding:26rpx 24rpx;
+    justify-content: space-between;
+}
+.top1{
+    position: relative;
+    width:128rpx;
+
+}
+.head_portrait{
+    width:128rpx;
+    height:128rpx;
+    border-radius: 50%;
+}
+.sex{
+    width:34rpx;
+    height:34rpx;
+    position: absolute;
+    top:9rpx;
+    left:105rpx;
+}
+.introduce{
+    font-size: 24rpx;
+    color: #a1a5b2;
+    line-height: 36rpx;
+    text-align: center;
+}
+.tel{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 24rpx;
+    align-items: center;
+    height:88rpx;
+}
+.tel > image{
+    width:38rpx;
+    height:48rpx;
+}
+.tel_left{
+    display: flex;
+    align-items: center;
+}
+
+.pingfen{
+    display: flex;
+    align-items: center;
+    height:88rpx;
+    padding:0 24rpx;
+}
+.photo_title{
+    padding: 24rpx;
+
+}
+.photo_list{
+    padding: 0 0rpx 24rpx 24rpx;
+    display: flex;
+    flex-wrap: wrap;
+}
+.photo_list > image{
+    width:220rpx;
+    height:220rpx;
+    margin-right: 20rpx;
+    margin-bottom: 20rpx;
+}
+.choose_it_wrap{
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width:100%;
+    height:100rpx;
+    background-color: #37495a;
+
+}
+.chenggao{
+    height:100rpx;
+
+}
+.choose_it{
+     width:688rpx;
+     height:86rpx;
+     border: 2rpx solid #ff9933;
+     border-radius: 6rpx;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+ }
+.choose_it > text{
+    font-size: 30rpx;
+    color: #ff9933;
+}
+.choose_it_close{
+    width:688rpx;
+    height:86rpx;
+    border-radius: 6rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff9933;
+}
+.choose_it_close > text{
+    font-size: 30rpx;
+    color: #fff;
+}

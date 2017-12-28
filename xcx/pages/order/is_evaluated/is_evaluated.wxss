@@ -1,0 +1,77 @@
+.logo_image{
+    width:74rpx;
+    height:74rpx;
+    border: 2rpx solid #fff;
+    border-radius: 50%;
+}
+.logo{
+    height:120rpx;
+    padding: 0 24rpx;
+    display: flex;
+    align-items: center;
+}
+.dafen{
+    height:202rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24rpx 24rpx 31rpx;
+}
+.staritem{
+    display:flex;
+}
+.star_image{
+    width:319rpx;
+    height:38rpx;
+}
+.item_right{
+    width:319rpx;
+    height: 38rpx;
+    position: relative;
+
+}
+.show_star{
+    width:100%;
+    overflow: hidden;
+    z-index: 99;
+    position: absolute;
+    top:-1rpx;
+}
+
+.dafen_item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.flex{
+    display: flex;
+    align-items: center;
+}
+.fuwu{
+    height:90rpx;
+    padding: 40rpx 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item{
+    align-self:flex-end;
+}
+.mt80{
+    margin-top:80rpx;
+}
+.title{
+    height:88rpx;
+    display: flex;
+    padding: 0 24rpx;
+    align-items: center;
+}
+.miaosu{
+    padding: 24rpx;
+
+}
+.miaosu >text{
+    line-height: 40rpx;
+}

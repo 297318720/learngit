@@ -1,0 +1,157 @@
+<!--选座页面-->
+<view wx:if="{{flag == 1}}">
+
+    <!--展示图-->
+    <view class="top_wrap">
+        <view class="left" bindtap="left" hidden="{{image_list.length == 1}}">
+            <image src="/assets/index_image/left@2x.png" class="qiehuan" ></image>
+        </view>
+       <view class="right" bindtap="right" hidden="{{image_list.length == 1}}">
+           <image src="/assets/index_image/right@2x.png" class="qiehuan " ></image>
+       </view>
+        <scroll-view scroll-y="true" scroll-x="true" style="height:540rpx;" class="scroll_card" scroll-into-view="{{imgid}}" >
+            <view class="show_wrap">
+                <block wx:for="{{image_list}}" wx:key="{{image_list}}">
+                    <image id = "SFimg" bindtouchstart="starttap" bindtouchend="endtap" bindtouchmove="movetap" bindload = "imgload"
+                           style="width:{{ baseWidth*newScale }}px;height:{{ baseHeight*newScale }}px"
+                           mode="aspectFit"
+                           src="{{item.image_client}}"  hidden="{{!item.flag}}"></image>
+                    <!--左上角显示楼层标识-->
+                    <view class="label" hidden="{{!item.flag}}">
+                        <text class="fs24 fw fff ml16">{{index+1}}层</text>
+                    </view>
+                </block>
+                <!--一楼数据-->
+                <block wx:for="{{list}}" wx:key="{{list}}">
+                    <image src="{{item.is_lock==0?item.curchoose?item.compartment==1?'/assets/index_image/rooms_click@2x.png':'/assets/index_image/booth_click@2x.png':item.compartment==1?'/assets/index_image/rooms@2x.png':'/assets/index_image/booth@2x.png':item.compartment==1?'/assets/index_image/rooms_not_click@2x.png':'/assets/index_image/booth_not_click@2x.png'}}" class="showimg" bindtap="choose_it"
+                           data-id="{{item.id}}" data-item="{{item}}" data-type="1" data-is_lock="{{item.is_lock}}"
+                           hidden="{{!image_list[0].flag}}" id="{{item.imgid}}"
+                     style="width:{{ item.compartment==1?42*(baseWidth/890)*newScale:90*(baseWidth/1300)*newScale }}px;height:{{ item.compartment==1?42*(baseWidth/890)*newScale:34*(baseHeight/890)*newScale }}px;position:absolute;top:{{item.axis_y*(baseHeight/890)*newScale}}px;left:{{item.axis_x/(1300/baseWidth)*newScale}}px;transform:rotate({{item.rotate}}deg)"></image>
+                </block>
+                <!--二楼数据-->
+                <block wx:for="{{list_two}}" wx:key="{{list_two}}" hidden="{{image_list.length == 1}}">
+                    <image src="{{item.is_lock==0?item.curchoose?item.compartment==1?'/assets/index_image/rooms_click@2x.png':'/assets/index_image/booth_click@2x.png':item.compartment==1?'/assets/index_image/rooms@2x.png':'/assets/index_image/booth@2x.png':item.compartment==1?'/assets/index_image/rooms_not_click@2x.png':'/assets/index_image/booth_not_click@2x.png'}}" class="showimg" bindtap="choose_it"
+                           data-id="{{item.id}}" data-item="{{item}}" data-type="1" data-is_lock="{{item.is_lock}}"
+                           hidden="{{!image_list[1].flag}}" id="{{item.imgid}}"
+                           style="width:{{ item.compartment==1?42*(baseWidth/890)*newScale:90*(baseWidth/1300)*newScale }}px;height:{{ item.compartment==1?42*(baseWidth/890)*newScale:34*(baseHeight/890)*newScale }}px;position:absolute;top:{{item.axis_y*(baseHeight/890)*newScale}}px;left:{{item.axis_x/(1300/baseWidth)*newScale}}px;transform:rotate({{item.rotate}}deg)"></image>
+                </block>
+            </view>
+        </scroll-view>
+    </view>
+
+
+
+    <!--选择日期-->
+    <view class="date_wrap bgc" bindtap="select_date">
+      <text class="fs24 mr30">您预定的日期</text>
+       <text class="fs24 ff9933">{{date}}</text>
+    </view>
+    <!--选卡座-->
+    <scroll-view scroll-y="true" scroll-x="true" style="height:490rpx;" class="scroll_card1" hidden="{{list_length == 0}}" scroll-into-view="{{imgid}}" scroll-with-animation="true">
+    <view class="{{mb?'choose_card_android':'choose_card'}}" >
+       <view class="choose_card_item bb mb10" hidden="{{list1.length == 0}}">
+           <text class="fs28">最低消费2000元内</text>
+           <view class="item_list bb">
+               <block wx:for="{{list1}}" wx:key="{{list1}}">
+                      <view class="item  {{item.curchoose?'curchoose':'nochoose'}}"   data-id="{{item.id}}" id="{{item.imgid}}" data-type="2"
+                            data-item="{{item}}" bindtap="choose_it">
+                          <view class="tiao"><text class="fs24" >{{item.seat_number}}</text></view>
+                          <text class="fs24">1-{{item.max_people}}人</text>
+                      </view>
+               </block>
+           </view>
+       </view>
+        <view class="choose_card_item bb " hidden="{{list2.length == 0}}">
+            <text class="fs28">最低消费2000元起</text>
+            <view class="item_list ">
+                <block wx:for="{{list2}}" wx:key="{{list2}}">
+                    <view class="item {{item.curchoose?'curchoose':'nochoose'}}"  data-id="{{item.id}}" data-item="{{item}}" data-type="2" bindtap="choose_it" data-name="list2" data-index="{{index}}" id="{{item.imgid}}">
+                        <view class="tiao"><text class="fs24" >{{item.seat_number}}</text></view>
+                        <text class="fs24">1-{{item.max_people}}人</text>
+                    </view>
+                </block>
+            </view>
+        </view>
+        <view class="choose_card_item bb {{huawei}}" hidden="{{list3.length == 0}}">
+        <text class="fs28">最低消费4000元起</text>
+        <view class="item_list ">
+            <block wx:for="{{list3}}" wx:key="{{list3}}">
+                <view class="item {{item.curchoose?'curchoose':'nochoose'}}"  data-id="{{item.id}}" data-item="{{item}}" data-type="2" bindtap="choose_it" data-name="list3" data-index="{{index}}" id="{{item.imgid}}">
+                    <view class="tiao"><text class="fs24" >{{item.seat_number}}</text></view>
+                    <text class="fs24">1-{{item.max_people}}人</text>
+                </view>
+            </block>
+        </view>
+        </view>
+    </view>
+    </scroll-view>
+
+    <!--确认提交-->
+    <view class="submit_wrap mr20" hidden="{{list_length == 0}}">
+        <view class="ml20">
+           <view class="mb12"><text class="fs26">预定金:￥{{choose_it_message.set_price}}</text><text class="fs22 c5c5c5">(最低消费￥{{choose_it_message.floor_price}})</text></view>
+           <view class="tiao"><text class="fs22 c5c5c5 mr13">已选卡座：{{choose_it_message.seat_number}}</text><text class="fs22 c5c5c5">1-{{choose_it_message.max_people}}人</text></view>
+        </view>
+         <button class="btn mr20" bindtap="submit">确定</button>
+    </view>
+    <!--<view class="chenggao" hidden="{{list_length == 0}}"></vi ew>-->
+
+
+            <!--无座位的页面-->
+    <view class="no_card" hidden="{{list_length != 0}}">
+    <image src="/assets/index_image/bar_picture@2x.png"></image>
+    <text class="fs24 cohui">很抱歉！当前已无可预订的卡座</text>
+    </view>
+</view>
+
+
+<!--卡座预定页面-->
+<view wx:if="{{flag == 2}}">
+    <view>
+        <view class="title"><text class="fs24 c5c5c5">卡座预定信息</text></view>
+        <view class="common_wrap bgc bb"><text class="fs30 mr60">日期</text><text class="fs28">{{date}}</text></view>
+        <view class="common_wrap bgc bb"><text class="fs30 mr60">卡座</text><text class="fs28 mr30">{{choose_it_message.seat_number}}</text><text class="fs28">1-{{choose_it_message.max_people}}人</text></view>
+        <view class="common_wrap bgc"><text class="fs30 mr30">预定金</text><text class="fs28 f5912c">￥{{choose_it_message.set_price}}</text></view>
+    </view>
+
+    <!--客人信息-->
+    <view>
+        <view class="title"><text class="fs24 c5c5c5">客人信息</text></view>
+        <view class="common_wrap bgc bb">
+            <text class="fs30 mr60">到店人数</text>
+            <input placeholder="请输入到店的人数" bindinput="person_number" value="{{number_of_people}}"
+                   style="width:500rpx" placeholder-style="color:#c5c5c5;font-size:28rpx" type="number"/>
+        </view>
+        <view class="common_wrap bgc between" bindtap="into_contacts_message">
+            <view>
+                <text class="fs30 mr60">联系人</text>
+                <text class="fs28 mr30">{{contact.realname}}</text>
+                <text class="fs28 mr30" wx:if="{{contact.sex == 1}}">男</text>
+                <text class="fs28 mr30" wx:elif="{{contact.sex == 2}}">女</text>
+                <text class="fs28 mr30" wx:else></text>
+                <text class="fs28">{{contact.tel}}</text>
+            </view>
+            <image src="/assets/index_image/bar_arrow@2x.png" class="bar_arrow"></image>
+        </view>
+    </view>
+
+    <!--备注信息-->
+    <view>
+        <view class="title"><text class="fs24 c5c5c5">备注信息</text></view>
+        <view class="input_wrap bgc">
+            <textarea placeholder="备注选填，最多填写60个字符；填写您的额外需求或要求" cursor-spacing="100"  bindinput="input"
+                      placeholder-style="color:#c5c5c5;font-size:28rpx" maxlength="60" class="input_beizhu"/>
+            <text class="item1 fs24 c5c5c5">{{sum}}/60</text>
+        </view>
+    </view>
+
+    <button class="submit" hover-class="button-hover" bindtap="into_confirm_order">立即预定</button>
+</view>
+
+        <!-- 自定义Toast -->
+<import src="/component/toast/toast.wxml"/>
+<template is="toast" data="{{ ..._toast_ }}"/>
+
+        <!-- 自定义showModal -->
+<import src="/component/showModal/showModal.wxml"/>
+<template is="showModal" data="{{ ..._showModal_ }}"/>

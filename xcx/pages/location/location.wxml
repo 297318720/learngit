@@ -1,0 +1,10 @@
+<view class="location_wrap">
+    <image src="/assets/index_image/home_picture@2x.png"></image>
+    <text class="title">无法获取地址，请打开定位权限</text>
+    <text class="open" bindtap="openSetting">打开定位</text>
+    <!--<text>{{tishi}}</text>-->
+    <!--<text>{{tishi1}}</text>-->
+    <!--<text>{{tishi2}}</text>-->
+</view>
+
+

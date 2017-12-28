@@ -1,0 +1,53 @@
+.item_wrap{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20rpx;
+}
+
+.item_message{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 88rpx;
+    padding: 0 24rpx;
+
+}
+.image_size{
+    width: 36rpx;
+    height:36rpx;
+}
+
+.left{
+    display: flex;
+    align-items: center;
+    height:88rpx;
+
+}
+.add_contact_wrap{
+    height:88rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24rpx;
+    margin-top: 20rpx;
+}
+.add_contact{
+    display: flex;
+    align-items: center;
+}
+
+.common_wrap{
+    display: flex;
+    align-items: center;
+    height:88rpx;
+    padding: 0 24rpx;
+}
+.sex_wrap{
+    display: flex;
+    height:88rpx;
+    align-items: center;
+}
+.mt62{
+    margin-top: 62rpx;
+
+}

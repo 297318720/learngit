@@ -1,0 +1,51 @@
+<view class="mb20">
+    <view class="title"><text class="fs24 c5c5c5">客人信息</text></view>
+    <!--<view class="common_wrap bgc bb"><text class="fs30 mr30">姓　　名</text><text class="fs28">{{contact.realname}}</text></view>-->
+    <!--<view class="common_wrap bgc bb"><text class="fs30 mr30">性　　别</text><text class="fs28">{{contact.sex ==1?'先生':'女士'}}</text></view>-->
+    <!--<view class="common_wrap bgc"><text class="fs30 mr30">电　　话</text><text class="fs28">{{contact.tel}}</text></view>-->
+    <view class="common_wrap bgc between" >
+        <view>
+            <text class="fs30 mr60">联系人</text>
+            <text class="fs28 mr30">{{contact.realname}}</text>
+            <text class="fs28 mr30" wx:if="{{contact.sex == 1}}">男</text>
+            <text class="fs28 mr30" wx:elif="{{contact.sex == 2}}">女</text>
+            <text class="fs28 mr30" wx:else></text>
+            <text class="fs28 ">{{contact.tel}}</text>
+        </view>
+        <!--<image src="/assets/index_image/bar_arrow@2x.png" class="bar_arrow"></image>-->
+    </view>
+</view>
+
+<view class="list_item bgc bb">
+    <view class="list_item_left">
+        <image src="{{item.image}}" class="no_img"></image>
+        <view class="message">
+            <text class="fs30">{{goods.title}}</text>
+            <text class="fs24 c5c5c5">{{goods.description}}</text>
+            <view>
+                <text class="fs20 c5c5c5 mr10 del_line">￥{{goods.market_price}}</text>
+                <text class="fs28 ff9933">￥{{goods.price}}</text>
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="price bgc">
+<view>
+    <text class="fs30 mr20">总计：￥{{goods.price}}</text>
+    <!--<text class="fs30">优惠：￥{{discount_money}}</text>-->
+</view>
+<view><text class="fs30">实付金额</text><text class="fs28 ff9933">￥{{goods.price}}</text></view>
+</view>
+
+        <!--提交订单-->
+<view class="dingdan bgc">
+<view class="ml24">
+    <text class="fs30">支付金额：</text>
+    <text class="fs30 ff9933">￥{{goods.price}}</text>
+</view>
+<!--disabled="{{disabled1}}"-->  <!--class属性里有一个tijiao-->
+<button class="tijiao fs30"  bindtap="pay">提交订单</button>
+</view>
+
+<view class="tianchong"></view>

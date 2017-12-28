@@ -1,0 +1,78 @@
+.title{
+    height:60rpx;
+    background-color: #3a4e5f;
+    padding-left: 24rpx;
+    line-height: 60rpx;
+}
+.phone{
+    height:88rpx;
+    display: flex;
+    align-items: center;
+    padding:0 24rpx;
+    background-color: #3d5162;
+}
+.yanzheng{
+    height:88rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:0  24rpx;
+    background-color: #3d5162;
+
+}
+.input{
+    width:500rpx;
+     margin-left: 30rpx;
+     color: #fff;
+     font-size: 28rpx;
+ }
+.input1{
+    width:300rpx;
+    margin-left: 60rpx;
+    color: #fff;
+    font-size: 28rpx;
+}
+.phone_left{
+   display: flex;
+    align-items: center;
+
+}
+.get_yz{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:190rpx;
+    height:58rpx;
+    background-color: #ff9933;
+    border-radius: 6rpx;
+    font-size: 22rpx;
+
+}
+.again_yz{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:190rpx;
+    height:58rpx;
+    background-color: #606b75;
+    border-radius: 6rpx;
+    font-size: 22rpx;
+}
+.submit{
+    margin-top: 60rpx;
+    display: flex;
+    justify-content: center;
+}
+.submit > text{
+    width:690rpx;
+    height:88rpx;
+    background-color: #ff9933;
+    border-radius: 6rpx;
+    font-size: 36rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.submit .hui{
+    background-color: #606b75;
+}

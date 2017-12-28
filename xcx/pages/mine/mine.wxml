@@ -1,0 +1,86 @@
+<!--已登陆-->
+<view class="top_wrap" wx:if="{{whether_login == 1}}">
+<image src="{{member.avatar}}" class="tou_image"></image>
+<text class="fs24 mt18">{{member.nickname}}</text>
+</view>
+<!--未登录-->
+<view class="top_wrap" wx:else>
+    <text class="fs36 mb30">您还没有登录哟！</text>
+    <text class="login_btn fs36 dfe4f3" bindtap="login">登录</text>
+</view>
+<!--已登录的会员显示-->
+<view class="vip_car" wx:if="{{whether_login == 1}}">
+    <view class="card vip" bindtap="into_member_center">
+       <image src="/assets/mine_image/my_ordinary@2x.png" class="card" wx:if="{{asset.level == 1}}"></image>
+       <image src="/assets/mine_image/my_silver@2x.png" class="card" wx:elif="{{asset.level == 2}}"></image>
+       <image src="/assets/mine_image/my_gold@2x.png" class="card" wx:elif="{{asset.level == 3}}"></image>
+       <image src="/assets/mine_image/my_wh@2x.png" class="card" wx:elif="{{asset.level == 4}}"></image>
+       <image src="/assets/mine_image/my_diamond@2x.png" class="card" wx:elif="{{asset.level == 5}}"></image>
+       <image src="/assets/mine_image/my_bl@2x.png" class="card" wx:elif="{{asset.level == 6}}"></image>
+        <view class="message">
+            <text class="fs36" wx:if="{{asset.level == 1}}">普通会员</text>
+            <text class="fs36" wx:elif="{{asset.level == 2}}">银卡会员</text>
+            <text class="fs36" wx:elif="{{asset.level == 3}}">金卡会员</text>
+            <text class="fs36" wx:elif="{{asset.level == 4}}">白金会员</text>
+            <text class="fs36" wx:elif="{{asset.level == 5}}">钻石会员</text>
+            <text class="fs36" wx:elif="{{asset.level == 6}}">黑金会员</text>
+            <view class="flex mb135 mt20"><text class="fs20 mr8">查看更多</text><image src="/assets/mine_image/my_arrow@2x.png" class="right_image"></image></view>
+            <text class="fs24">当前会员级别</text>
+        </view>
+    </view>
+</view>
+
+<view class="money bgc">
+   <view class="common_money br" bindtap="into_my_purse">
+       <text class="fs24">￥{{asset.money}}</text>
+       <text class="fs28 c5c5c5">余额</text>
+   </view>
+   <view class="common_money br" bindtap="into_kb">
+       <text class="fs24">{{asset.member_coin}}</text>
+       <text class="fs28 c5c5c5">K币</text>
+   </view>
+   <view class="common_money"  bindtap="into_card_coupons">
+       <text class="fs24">{{asset.overdue_card}}</text>
+       <text class="fs28 c5c5c5">卡券</text>
+   </view>
+</view>
+
+<view class="common_list bb bgc mt20" bindtap="into_recharge">
+    <view class="common_list_left">
+        <image src="/assets/mine_image/my_topup@2x.png" class="common_image mr20"></image>
+        <text class="fs30">在线充值</text>
+    </view>
+    <image src="/assets/index_image/bar_arrow@2x.png" class="bar_arrow"></image>
+</view>
+
+<view class="common_list bb bgc" bindtap="into_contacts_message">
+<view class="common_list_left">
+    <image src="/assets/mine_image/my_contact@2x.png" class="common_image mr20"></image>
+    <text class="fs30">联系人信息</text>
+</view>
+<image src="/assets/index_image/bar_arrow@2x.png" class="bar_arrow"></image>
+</view>
+
+<view class="common_list bgc bb" bindtap="into_member_center">
+    <view class="common_list_left">
+        <image src="/assets/mine_image/my_members@2x.png" class="common_image mr20"></image>
+        <text class="fs30">会员中心</text>
+    </view>
+    <image src="/assets/index_image/bar_arrow@2x.png" class="bar_arrow"></image>
+</view>
+
+<view class="common_list bgc"  bindtap="into_operating_guide">
+<view class="common_list_left">
+    <image src="/assets/mine_image/my_guide.png" class="common_image mr20"></image>
+    <text class="fs30">使用指南</text>
+</view>
+<image src="/assets/index_image/bar_arrow@2x.png" class="bar_arrow"></image>
+</view>
+
+        <!-- 自定义Toast -->
+<import src="/component/toast/toast.wxml"/>
+<template is="toast" data="{{ ..._toast_ }}"/>
+
+        <!-- 自定义showModal -->
+<import src="/component/showModal/showModal.wxml"/>
+<template is="showModal" data="{{ ..._showModal_ }}"/>

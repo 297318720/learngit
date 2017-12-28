@@ -1,0 +1,89 @@
+.top_wrap{
+    height:225rpx;
+    background: linear-gradient(to bottom, #373d59, #070c1a);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding:26rpx 24rpx;
+}
+.tou_image{
+    width:92rpx;
+    height:92rpx;
+    border-radius: 50%;
+    border:2rpx solid #4b5a6a;
+}
+.login_btn{
+    width:354rpx;
+    height:88rpx;
+    border: 2rpx solid #363c58;
+    border-radius: 3rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.vip_car{
+    height:242rpx;
+    position: relative;
+
+}
+.card{
+    width:670rpx;
+    height:334rpx;
+}
+.vip{
+    position: absolute;
+    left:40rpx;
+    top: -100rpx;
+    z-index: 999;
+    /*display: flex;*/
+}
+.vip > image{
+    position: absolute;
+    z-index: -1;
+
+}
+.flex{
+    display: flex;
+    align-items: center;
+}
+.message{
+    margin-top: 50rpx;
+    margin-left: 50rpx;
+}
+.right_image{
+    width:8rpx;
+    height:12rpx;
+}
+.mb135{
+    margin-bottom: 135rpx;
+}
+.money{
+    display: flex;
+}
+.common_money{
+    width:249rpx;
+    height:72rpx;
+    padding: 28rpx 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.br{
+    border-right: 1rpx solid #4d5d72;
+}
+.common_list{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 24rpx;
+    align-items: center;
+    height:88rpx;
+}
+.common_list_left{
+    display: flex;
+    align-items: center;
+}
+.common_image{
+    width:44rpx;
+    height:44rpx;
+}

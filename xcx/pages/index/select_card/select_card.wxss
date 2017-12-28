@@ -1,0 +1,201 @@
+.top_wrap{
+    height:540rpx;
+    position: relative;
+}
+.qiehuan{
+    width:60rpx;
+    height:60rpx;
+}
+.left{
+        width:70rpx;
+        height:70rpx;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top:220rpx;
+        left: 20rpx;
+        z-index: 999;
+        transform: rotate('45deg');
+    }
+
+.right{
+    width:70rpx;
+    height:70rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top:220rpx;
+    left: 660rpx;
+    z-index: 999;
+}
+.show_wrap{
+    position: relative;
+}
+.scroll_card{
+    height:540rpx !important;
+}
+.scroll_card1{
+    height:490rpx !important;
+}
+.showimg{
+    z-index: 10;
+}
+.date_wrap{
+    height:68rpx;
+    padding-left: 24rpx;
+    display: flex;
+    align-items: center;
+}
+.choose_card{
+    padding: 0rpx 0 20rpx 24rpx;
+}
+.choose_card_android{
+    padding: 0rpx 0 60rpx 24rpx;
+}
+.choose_card_item{
+   display: flex;
+    flex-direction: column;
+    padding-top: 20rpx;
+
+
+}
+.pb100{
+    padding-bottom: 100rpx;
+}
+.item_list{
+    padding-top: 20rpx;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.item{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20rpx;
+    margin-bottom: 20rpx;
+    width:124rpx;
+    height:76rpx;
+
+
+}
+.nochoose{
+    background-color: #4c576e;
+}
+.curchoose{
+    background-color: #f5912c;
+}
+.submit_wrap{
+    display: flex;
+    width:100%;
+    justify-content: space-between;
+    align-items: center;
+    height:100rpx;
+    background-color: #3d5162;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+}
+.chenggao{
+    height:100rpx;
+}
+.btn{
+    width:200rpx;
+    height:76rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5912c;
+    color: #fff;
+}
+.choose_card> view:last-child{
+    border-bottom: none;
+}
+
+
+.tiao{
+    display: flex;
+    margin-bottom: 5rpx;
+}
+.no_card{
+    padding-top: 178rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.no_card > image{
+    width:170rpx;
+    height:160rpx;
+    padding-bottom: 30rpx;
+}
+
+/*卡座预定页面的*/
+.title{
+    height:60rpx;
+    padding-left: 24rpx;
+    display: flex;
+    align-items: center;
+
+}
+.common_wrap{
+    height:88rpx;
+    padding: 0 24rpx;
+    display: flex;
+    align-items: center;
+}
+.bar_arrow{
+    width:44rpx;
+    height:44rpx;
+}
+.between{
+    justify-content: space-between;
+}
+.input_wrap{
+    padding: 24rpx;
+    height:222rpx;
+    display: flex;
+    flex-direction: column;
+
+}
+.input_beizhu{
+    width:702rpx;
+    height:212rpx;
+    color: #fff;
+    font-size: 28rpx;
+}
+.submit{
+    width:690rpx;
+    height:88rpx;
+    font-size:36rpx;
+    border-radius: 6rpx;
+    color:#fff;
+    background-color: #ff9933;
+    margin:200rpx auto 0;
+}
+
+.item1{
+    align-self:flex-end;
+}
+page .mb60{
+    padding-bottom: 60rpx;
+}
+.label{
+   width:86rpx;
+    height:44rpx;
+    background: rgb(255,153,51);
+    opacity: 0.7;
+    filter:alpha(opacity=0.7);
+    border-radius:0 30rpx 30rpx 0; /* 左上、右上、右下、左下 */
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+
+}

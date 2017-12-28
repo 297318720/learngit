@@ -1,0 +1,150 @@
+.search_bar_wrap{
+    padding:24rpx;
+    background-color: #2a3b4d;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search_bar{
+    width:614rpx;
+    height:56rpx;
+    border-radius: 30rpx;
+    background-color: #222f3d;
+    display: flex;
+    align-items: center;
+}
+.search_bar >image{
+    width:25rpx;
+    height:25rpx;
+    margin-right: 12rpx;
+    margin-left: 20rpx;
+}
+.search_bar input{
+    height:36rpx;
+    width:500rpx
+}
+.search_bar_wrap button{
+    background-color: #2a3b4d;
+    width:60rpx;
+}
+.hot_search_wrap{
+    padding:20rpx 0rpx 0rpx 24rpx;
+    background-color: #3d5162;
+}
+.hot_title{
+    padding-bottom: 20rpx;
+    border-bottom: 1rpx solid #4d5d72;
+}
+.hot_title>text{
+    color: #c5c5c5;
+}
+.hot_record{
+    padding-top: 20rpx;
+    display: flex;
+    flex-wrap:wrap;
+}
+.hot_record text{
+    padding:16rpx 24rpx;
+    border: 1rpx solid #697785;
+    border-radius: 2rpx;
+    margin-right: 24rpx;
+    margin-bottom: 28rpx;
+    font-size: 26rpx;
+}
+.mb{
+    margin-bottom: 20rpx;
+}
+
+.flex{
+    display: flex;
+    justify-content: space-between;
+}
+.flex image{
+    width:29rpx;
+    height:29rpx;
+    margin-right: 24rpx;
+}
+
+.list_item{
+    padding:20rpx 24rpx;
+    display: flex;
+    justify-content: space-between;
+}
+.list_item_left{
+    display: flex;
+    height:148rpx;
+    align-items: center;
+}
+.list_item_left > image{
+    width:148rpx;
+    height:148rpx;
+    padding-right: 20rpx;
+}
+.list_item_message{
+    display: flex;
+    flex-direction: column;
+    height:124rpx;
+    justify-content: space-between;
+}
+
+.cohuang{
+    color: #fcc63b;
+}
+.cohui{
+    color: #7f8290;
+}
+.item_right{
+    width:136rpx;
+    height: 23rpx;
+    position: relative;
+}
+.item_right  image{
+    width:136rpx;
+    height:23rpx;
+    display: block;
+}
+.pr10{
+    padding-right: 10rpx;
+}
+.pr20{
+    padding-right: 20rpx;
+}
+.mr10{
+    margin-right: 10rpx;
+}
+.mr20{
+    margin-right: 20rpx;
+}
+.show_star{
+    width:100%;
+    overflow: hidden;
+    z-index: 99;
+    position: absolute;
+    top:0rpx;
+}
+.flex{
+    display: flex;
+}
+.distance{
+    display: flex;
+    align-items: flex-end;
+    height:124rpx;
+
+}
+
+.no_result{
+    display: flex;
+    flex-direction: column;
+    padding-top: 250rpx;
+    align-items: center;
+
+}
+.no_result >image{
+    width:259rpx;
+    height:159rpx;
+    padding-bottom: 30rpx;
+}
+.no_result > text{
+    color: #7f8290;
+}

@@ -1,0 +1,38 @@
+<view class="top bgc">
+    <image src="/assets/mine_image/purse@2x.png" class="purse_image mb30"></image>
+    <text class="fs22 mb20">可用余额</text>
+    <text class="fs48 ff9933 mb40 mlfu">￥{{my_purse.money}}</text>
+    <text class="balance fs24" bindtap="instruction">余额说明</text>
+</view>
+
+<button class="submit mtb" bindtap="recharge">充值</button>
+
+<view class="flex_l1r1 bgc bb" bindtap="into_consumer_details">
+  <text class="fs30">交易明细</text>
+  <image src="/assets/index_image/bar_arrow@2x.png" class="bar_arrow"></image>
+</view>
+
+<view class="flex_l1r1 bgc"  wx:if="{{my_purse.is_password == 0}}" bindtap="into_setpassword">
+<text class="fs30">设置支付密码</text>
+<image src="/assets/index_image/bar_arrow@2x.png" class="bar_arrow"></image>
+</view>
+
+<view class="flex_l1r1 bgc" wx:else bindtap="into_update_password">
+<text class="fs30" >修改支付密码</text>
+<image src="/assets/index_image/bar_arrow@2x.png" class="bar_arrow"></image>
+</view>
+
+
+        <!--弹出注意框-->
+<view class="wxapp-modal" wx:if="{{show}}">
+    <view class="big_attention_wrap">
+        <text class="fs30 hei fw mb10">余额组成：</text>
+        <text class="fs28 hei mb34">充值的金额+充值赠送的金额</text>
+        <text class="fs30 hei fw mb10">余额说明：</text>
+        <text class="fs28 hei lh41">1、在空瓶子平台上消费可直接使用余额支付；</text>
+        <text class="fs28 hei mb40 lh41">2、充值一旦成功不可退款，也不能提现，只能用于空瓶子平台的消费。</text>
+        <text class="btn fs36" bindtap="quxiao">我知道了</text>
+    </view>
+</view>
+
+

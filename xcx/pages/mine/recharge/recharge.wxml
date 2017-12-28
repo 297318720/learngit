@@ -1,0 +1,25 @@
+<view class="content_wrap bgc">
+    <text class="fs24 mb20">充值金额</text>
+    <view class="flex">
+        <block wx:for="{{list}}" wx:key="{{list}}">
+            <view class="item mb20 mr13 {{item.flag?'is_choose':'no_choose'}}" bindtap="cur_choose" data-index="{{index}}">
+                <text class="fs30 mb10">￥{{item.recharge_money}}</text>
+                <text class="fs24">送￥{{item.give_money}}</text>
+            </view>
+        </block>
+    </view>
+</view>
+
+<button class="submit mbt" bindtap="recharge">去充值</button>
+<view class="flex_center mt20">
+  <text class="fs24 c5c5c5">请您在充值前仔细阅读</text>
+  <text class="fs24 ff9933" bindtap="into_recharge_agreement">《空瓶子充值协议》</text>
+</view>
+
+        <!-- 自定义Toast -->
+<import src="/component/toast/toast.wxml"/>
+<template is="toast" data="{{ ..._toast_ }}"/>
+
+        <!-- 自定义showModal -->
+<import src="/component/showModal/showModal.wxml"/>
+<template is="showModal" data="{{ ..._showModal_ }}"/>

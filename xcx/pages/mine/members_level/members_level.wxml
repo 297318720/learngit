@@ -1,0 +1,52 @@
+
+<swiper indicator-dots="{{true}}" class="swiper_wrap" current="{{index}}" indicator-active-color="#fff" indicator-color="rgba(255, 255, 255, .7)"
+        duration="500" bindchange="change">
+    <block wx:for="{{imgUrls}}" wx:key="{{imgUrls}}">
+        <swiper-item class="item_wrap">
+            <view class="vip_message_wrap">
+                <image src="{{item}}" class="vip_image"></image>
+                <view class="message">
+                    <view class="flex_col mt40">
+                        <text class="fs36 fw  mb20" wx:if="{{index == 0}}">普通用户</text>
+                        <text class="fs36 fw  mb20" wx:elif="{{index == 1}}">银卡会员</text>
+                        <text class="fs36 fw  mb20" wx:elif="{{index == 2}}">金卡会员</text>
+                        <text class="fs36 fw  mb20" wx:elif="{{index == 3}}">白金会员</text>
+                        <text class="fs36 fw  mb20" wx:elif="{{index == 4}}">钻石会员</text>
+                        <text class="fs36 fw  mb20" wx:elif="{{index == 5}}">黑金会员</text>
+                        <text class="fs20" wx:if="{{index != 0}}">累计消费￥{{cur_data[index].quota}}开启</text>
+                    </view>
+                    <text class="fs24 mb36" wx:if="{{index == cur_lever -1}}">当前级别</text>
+                    <text class="fs24 mb36" wx:if="{{index == cur_lever}}">下一级别</text>
+                </view>
+            </view>
+        </swiper-item>
+    </block>
+</swiper>
+
+<view class="mt30 privilege">
+<text class="fs30 mb30">您尊享的会员权利</text>
+<view class="privilege_list {{cur_data[index].level == 1?'justify-center':'justify-between'}}">
+    <view class="item_wrap1" wx:if="{{cur_data[index].birthday == 1}}">
+        <text class="mt20 mb10 fs30 c5c5c5">生日特权</text>
+        <text class="fs24 ff9933">{{cur_data[index].birthday_content}}</text>
+    </view>
+    <view class="item_wrap1" wx:if="{{cur_data[index].coin != 0}}">
+        <text class="mt20 mb10 fs30 c5c5c5">K币回赠</text>
+        <text class="fs24 ff9933">单笔消费赠送{{cur_data[index].coin}}K币</text>
+    </view>
+    <view class="item_wrap1" wx:if="{{cur_data[index].overdue != 0}}">
+        <text class="mt20 mb10 fs30 c5c5c5" >逾期保护</text>
+        <text class="fs24 ff9933">可使用逾期卡{{cur_data[index].overdue}}次</text>
+    </view>
+    <view class="item_wrap1" wx:if="{{cur_data[index].delayed != 0}}">
+        <text class="mt20 mb10 fs30 c5c5c5" >订单延期</text>
+        <text class="fs24 ff9933">{{cur_data[index].delayed}}天</text>
+    </view>
+    <view class="item_wrap1 justify-center" wx:if="{{cur_data[index].free_seat == 1}}">
+        <text class="mt20 mb10 fs30 c5c5c5">免预定金</text>
+    </view>
+</view>
+</view>
+
+
+

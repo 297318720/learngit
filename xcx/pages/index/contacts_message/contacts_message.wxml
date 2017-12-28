@@ -1,0 +1,83 @@
+<!--联系人列表-->
+<view wx:if="{{show.flag1}}">
+    <view>
+        <block wx:for="{{contacts_list}}" wx:key="{{contacts_list}}">
+            <view class="item_wrap bgc">
+                <view class="item_message bb" bindtap="choose_it" data-item="{{item}}">
+                    <view>
+                        <text class="fs28 mr30">{{item.realname}}</text>
+                        <text class="fs28">{{item.sex == 1?'先生':'女士'}}</text>
+                    </view>
+                    <text class="fs28">{{item.tel}}</text>
+                </view>
+                <view class="item_message">
+                    <view class="left">
+                        <!--非默认状态-->
+                        <view class="left" hidden="{{item.is_default == 1}}" bindtap="setDefaultContact" data-id="{{item.id}}" data-index="{{index}}">
+                            <image src="/assets/index_image/contact_choose@2x.png" class="image_size mr30" ></image>
+                            <text class="fs24 c5c5c5" >设为默认</text>
+                        </view>
+                        <!--默认状态-->
+                        <view class="left" hidden="{{item.is_default != 1}}">
+                            <image src="/assets/index_image/contact_choose_click@2x.png" class="image_size mr30" ></image>
+                            <text class="fs24 ff9933">默认信息</text>
+                        </view>
+                    </view>
+                    <view class="left">
+                        <view class="left mr30" bindtap="update_item" data-item="{{item}}" data-index="{{index}}">
+                            <image src="/assets/index_image/contact_edit@2x.png" class="image_size40 mr16"></image>
+                            <text class="fs24 c5c5c5 ">编辑</text>
+                        </view>
+                        <view class="left" bindtap="del_item" data-id="{{item.id}}" data-index="{{index}}" data-is_default="{{item.is_default}}">
+                            <image src="/assets/index_image/contact_trash@2x.png" class="image_size40 mr16"></image>
+                            <text class="fs24 c5c5c5">删除</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+
+<!--添加联系人的进入按钮-->
+    <view class="add_contact_wrap bgc" bindtap="add_contact">
+      <view class="add_contact">
+          <image src="/assets/index_image/contact_more@2x.png" class="image_size44 mr30"></image>
+          <text class="fs30">添加联系人</text>
+      </view>
+        <image src="/assets/index_image/bar_arrow@2x.png" class="image_size44"></image>
+    </view>
+</view>
+
+<!--添加或者修改页面-->
+<view wx:if="{{show.flag2}}">
+<view class="common_wrap bb mt20 bgc">
+    <text class="fs30 mr30">姓名</text>
+    <input placeholder="请输入您的名字" placeholder-style="font-size:28rpx;color:#c5c5c5"
+           style="width:600rpx"  class="fs28" bindinput="input_realname" maxlength="10" value="{{save.realname}}"/>
+</view>
+<view class="common_wrap bb bgc">
+    <text class="fs30 mr30">性别</text>
+    <view class="sex_wrap mr30" bindtap="choose_boy">
+        <image src="{{save.sex == 1?'/assets/index_image/bar_choose_click@2x.png':'/assets/index_image/bar_choose@2x.png'}}" class="image_size30 mr16"></image>
+        <text class="fs28">先生</text>
+    </view>
+    <view class="sex_wrap" bindtap="choose_girl">
+        <image src="{{save.sex == 2?'/assets/index_image/bar_choose_click@2x.png':'/assets/index_image/bar_choose@2x.png'}}" class="image_size30 mr16"></image>
+        <text class="fs28">女士</text>
+    </view>
+</view>
+<view class="common_wrap bgc">
+    <text class="fs30 mr30">电话</text>
+    <input placeholder="请输入您的电话号码" placeholder-style="font-size:28rpx;color:#c5c5c5"
+           class="fs28" type="number" bindinput="input_tel" value="{{save.tel}}"/>
+</view>
+<button class="submit mt62" hover-class="button-hover" bindtap="save">保存</button>
+</view>
+
+        <!-- 自定义Toast -->
+<import src="/component/toast/toast.wxml"/>
+<template is="toast" data="{{ ..._toast_ }}"/>
+
+        <!-- 自定义showModal -->
+<import src="/component/showModal/showModal.wxml"/>
+<template is="showModal" data="{{ ..._showModal_ }}"/>

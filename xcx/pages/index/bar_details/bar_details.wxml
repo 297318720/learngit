@@ -1,0 +1,208 @@
+<!--酒吧详情入口-->
+<view class="top_wrap bb" bindtap="into_business_details">
+<view class="top_wrap_left pr20">
+    <image src="{{merchantDetail.logo}}"  class="zhu_icon no_img"></image>
+    <view class="list_item_message">
+        <view class="flex">
+            <view class="item_right mr20">
+                <image src="/assets/index_image/staars_h@2x.png" class="huise_star"></image>
+                <view class="show_star" style="width:{{merchantDetail.average*20}}%;">
+                    <image src="/assets/index_image/stars_y@2x.png" ></image>
+                </view>
+            </view>
+            <text class="fs24 cohuang">{{merchantDetail.average}}分</text>
+        </view>
+        <view class="flex">
+            <view class="item_right mr20">
+                <image src="/assets/index_image/sentiment_h@2x.png" ></image>
+                <view class="show_star" style="width:{{merchantDetail.fire*20}}%;">
+                    <image src="/assets/index_image/sentiment_r@2x.png" ></image>
+                </view>
+            </view>
+            <text class="fs24 c5c5c5">人均￥{{merchantDetail.avg_consume}}</text>
+        </view>
+        <text class="fs24 c5c5c5">营业时间 {{merchantDetail.begin_time}}-{{merchantDetail.end_time}}</text>
+    </view>
+</view>
+<view class="distance">
+    <image src="/assets/index_image/bar_arrow@2x.png"></image>
+</view>
+</view>
+
+   <!--优惠套餐，卡座预定，卡座套餐的切换-->
+<view class="show bb">
+<block wx:for="{{show}}" wx:key="{show}}">
+   <view class="{{item.flag ? 'btnShow':''}}" data-index="{{index}}" bindtap="onShowClick"><text>{{item.name}}</text></view>
+</block>
+</view>
+        <!--优惠套餐列表-->
+<view hidden="{{!show[0].flag}}">
+   <view class="attention_wrap bb" bindtap="open0">
+       <image src="/assets/index_image/bar_note@2x.png" class="pr14 zhuyi_icon"></image>
+       <text class="c5c5c5 fs20">1、一次只能购买一个优惠套餐，套餐内包含指定酒水和一张小圆桌；2、成功购买优惠套餐后因个人原因未到店消费，该套餐逾期自动作废。</text>
+       <image src="/assets/index_image/bar_arrow@2x.png"  class="bar_arrow posi_img "></image>
+   </view>
+
+   <!--到店日期-->
+   <view class="common_wrap bgc between" >
+           <text class="fs30 mr30">日期</text>
+           <picker mode="date" class="picker_wrap" value="{{date}}" start="{{start}}" end="{{end}}" data-type="1" bindchange="bindDateChange">
+               <view class="picker c5c5c5" wx:if="{{date == ''}}">
+                   请选择您的到店日期
+               </view>
+               <view class="picker fff" wx:else>
+                   {{date}}
+               </view>
+           </picker>
+            <image src="/assets/index_image/bar_arrow@2x.png"  class="bar_arrow posi_img"></image>
+   </view>
+
+   <view class="list_wrap">
+       <block wx:for="{{favourable_list}}"  wx:key="{{favourable_list}}">
+           <view class="list_item bb">
+               <view class="list_item_left">
+                   <image src="{{item.image}}" class="no_img"></image>
+                   <view class="message">
+                       <text class="fs30">{{item.title}}</text>
+                       <text class="fs24 c5c5c5">{{item.description}}</text>
+                       <view>
+                           <text class="fs20 c5c5c5 mr10 del_line">￥{{item.market_price}}</text>
+                           <text class="fs28 ff9933">￥{{item.price}}</text>
+                       </view>
+                   </view>
+               </view>
+               <view class="list_item_right">
+                    <text class="buy" wx:if="{{item.stock != 0}}" bindtap="into_confirm_order" data-type="3" data-item="{{item}}">购买</text>
+                    <text class="fs24 c5c5c5" wx:else>已售完</text>
+               </view>
+           </view>
+       </block>
+   </view>
+</view>
+<!--卡座预定-->
+<view hidden="{{!show[2].flag}}">
+   <view class="attention_wrap bb" bindtap="open1">
+       <image src="/assets/index_image/bar_note@2x.png" class="pr14 zhuyi_icon"></image>
+       <text class="c5c5c5 fs20">1、请选择一位客户经理或服务员为您服务；2、成功预定卡座后因个人原因未到店消费，定金不予退还。</text>
+       <image src="/assets/index_image/bar_arrow@2x.png"  class="bar_arrow posi_img " ></image>
+   </view>
+   <!--选择日期-->
+   <view class="choose_date" bindtap="into_selectDate">
+       <text class="fs30">预定日期</text>
+       <view class="choose_date_right">
+           <text class="fs28 c5c5c5" wx:if="{{date2 == ''}}">选择预定日期</text>
+           <text class="fs28 fff">{{date2}}</text>
+           <image src="/assets/index_image/bar_arrow@2x.png"></image>
+       </view>
+   </view>
+
+   <!--客户经理列表-->
+    <view class="manager bb mb22 mt18" wx:if="{{is_offer == 1}}">
+        <view class="manager_title">
+            <text class="fs28">客户经理</text>
+        </view>
+        <scroll-view  scroll-y="true" style="width: 750rpx;height:{{height}}rpx" >
+            <view class="manager_head">
+                <block wx:for="{{ manager_list }}" wx:key="{{manager_list}}" >
+                    <view bindtap="choose_manager" data-index="{{index}}"  class="manager_list_item {{item.curchoose?'curchoose_manager':''}}">
+                        <image src="{{item.avatar}}" class="no_avatarimg"></image>
+                        <text>{{item.average}}分</text>
+                    </view>
+                </block>
+            </view>
+        </scroll-view>
+    </view>
+
+   <button class="submit mt60" hover-class="button-hover" bindtap="select">选择卡座</button>
+
+</view>
+<!--卡座套餐-->
+<view hidden="{{!show[1].flag}}" >
+<view class="attention_wrap bb" bindtap="open2">
+    <image src="/assets/index_image/bar_note@2x.png" class="pr14 zhuyi_icon"></image>
+    <text class="c5c5c5 fs20">1.成功购买卡座套餐后，套餐内包含指定酒水和卡座，您可以直接到店消费；2、成功购买卡座套餐后因个人原因未到店消费，自付款日起，套餐内酒水我们将根据您的会员等级为您保留30/40/50/60日，请重新订座后到店消费。</text>
+    <image src="/assets/index_image/bar_arrow@2x.png"  class="bar_arrow posi_img "></image>
+</view>
+<!--到店日期-->
+<view class="common_wrap bgc between" >
+    <text class="fs30 mr30">日期</text>
+    <picker mode="date" class="picker_wrap" value="{{date1}}" start="{{start1}}" end="{{end}}" data-type="2" bindchange="bindDateChange">
+        <view class="picker c5c5c5" wx:if="{{date1 == ''}}">
+            请选择您的到店日期
+        </view>
+        <view class="picker fff" wx:else>
+            {{date1}}
+        </view>
+    </picker>
+    <image src="/assets/index_image/bar_arrow@2x.png"  class="bar_arrow posi_img"></image>
+</view>
+
+<view class="list_wrap">
+    <block wx:for="{{cassette_list}}"  wx:key="{{cassette_list}}">
+        <view class="list_item bb">
+            <view class="list_item_left">
+                <image src="{{item.image}}" class="no_img"></image>
+                <view class="message">
+                    <text class="fs30">{{item.title}}</text>
+                    <text class="fs24 c5c5c5">{{item.description}}</text>
+                    <view>
+                        <text class="fs20 c5c5c5 mr10 del_line">￥{{item.market_price}}</text>
+                        <text class="fs28 ff9933">￥{{item.price}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="list_item_right">
+                <text class="buy" wx:if="{{item.stock != 0}}" bindtap="into_confirm_order" data-type="2" data-item="{{item}}">购买</text>
+                <text class="fs24 c5c5c5" wx:else>已售完</text>
+            </view>
+        </view>
+    </block>
+</view>
+</view>
+<!--弹出注意框-->
+<view class="wxapp-modal" wx:if="{{show[0].zhu}}">
+<view class="big_attention_wrap">
+<view class="big_attention">
+    <image src="/assets/index_image/bar_note@2x.png" class="zhu_icon pr14" ></image>
+    <view class="big_attention_right">
+        <text class="zhu_ziti">1、套餐内包含指定酒水和一张小圆桌；</text>
+        <text class="zhu_ziti">2、成功购买优惠套餐后因个人原因未到店消费，该套餐逾期自动作废。</text>
+    </view>
+</view>
+<image src="/assets/index_image/bar_shutdow@2x.png" class="del" bindtap="close0"></image>
+</view>
+</view>
+
+<view class="wxapp-modal" wx:if="{{show[1].zhu}}">
+   <view class="big_attention_wrap">
+   <view class="big_attention">
+       <image src="/assets/index_image/bar_note@2x.png" class="zhu_icon pr14" ></image>
+       <view class="big_attention_right">
+           <text class="zhu_ziti">1、请选择一位客户经理为您服务；</text>
+           <text class="zhu_ziti">2、成功预定卡座后因个人原因未到店消费，定金不予退还。</text>
+       </view>
+   </view>
+   <image src="/assets/index_image/bar_shutdow@2x.png" class="del" bindtap="close1"></image>
+   </view>
+</view>
+
+<view class="wxapp-modal" wx:if="{{show[2].zhu}}">
+     <view class="big_attention_wrap">
+         <view class="big_attention">
+             <image src="/assets/index_image/bar_note@2x.png" class="zhu_icon pr14"></image>
+             <view class="big_attention_right">
+                 <text class="zhu_ziti">1、成功购买卡座套餐后，套餐内包含指定酒水和卡座，您可以直接到店消费；</text>
+                 <text class="zhu_ziti">2、成功购买卡座套餐后因个人原因未到店消费，自付款日起，套餐内酒水我们将根据您的会员等级为您保留30/40/50/60日，请重新订座后到店消费。</text>
+             </view>
+         </view>
+         <image src="/assets/index_image/bar_shutdow@2x.png" class="del" bindtap="close2"></image>
+     </view>
+</view>
+
+        <!-- 自定义Toast -->
+<import src="/component/toast/toast.wxml"/>
+<template is="toast" data="{{ ..._toast_ }}"/>
+
+        <!-- 自定义showModal -->
+<import src="/component/showModal/showModal.wxml"/>
+<template is="showModal" data="{{ ..._showModal_ }}"/>

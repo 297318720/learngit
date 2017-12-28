@@ -1,0 +1,104 @@
+<!--地址搜索-->
+<view class="index_top">
+    <view class="address" bindtap="chooseLocation">
+        <image src="/assets/index_image/location@2x.png" class="address1"></image>
+        <text class="fs26 adressText">{{showAddress}}</text>
+        <image src="/assets/index_image/jump@2x.png" class="address2"></image>
+    </view>
+    <view class="search" bindtap="chooseAdress">
+        <image src="/assets/index_image/search@2x.png"></image>
+        <text class="fs26">搜索</text>
+    </view>
+</view>
+<!--banner轮播图-->
+<swiper indicator-dots="true" autoplay="true" indicator-active-color="#fff" indicator-color="rgba(255, 255, 255, .7)"
+        interval="3000" style="height:206rpx">
+<block wx:for="{{imgUrls}}" wx:key="{{imgUrls}}">
+    <swiper-item>
+        <image src="{{item.img}}" class="slide-image" width="355" height="150"/>
+    </swiper-item>
+</block>
+</swiper>
+<!--附近酒吧标题-->
+<view class="index_title bb">
+<image src="/assets/index_image/title@2x.png"></image>
+</view>
+<!--根据距离，评分，人气，消费来选择-->
+<!--<view class="choose bb">-->
+      <!--&lt;!&ndash;选择最近的距离&ndash;&gt;-->
+         <!--<view class="choose1" bindtap="distance_choose" >-->
+             <!--<text>距离</text>-->
+             <!--<view class="choose_distance">-->
+                 <!--<image src="{{isDistancechoose?'/assets/index_image/downward_click@2x.png':'/assets/index_image/downward@2x.png'}}"></image>-->
+             <!--</view>-->
+         <!--</view>-->
+      <!--&lt;!&ndash;评分，人气，消费高低来选择&ndash;&gt;-->
+       <!--<block wx:for="{{chooseName}}" wx:key="{{chooseName}}">-->
+         <!--<view class="choose1" bindtap="choose_list" data-index="{{index}}">-->
+           <!--<text>{{item}}</text>-->
+           <!--<view class="choose_icon">-->
+               <!--<image src="{{chooseIcon[index].up?'/assets/index_image/upward_click@2x.png':'/assets/index_image/upward@2x.png'}}"></image>-->
+               <!--<image src="{{chooseIcon[index].down?'/assets/index_image/downward_click@2x.png':'/assets/index_image/downward@2x.png'}}"></image>-->
+           <!--</view>-->
+         <!--</view>-->
+       <!--</block>-->
+<!--</view>-->
+<!--酒吧列表-->
+<view >
+   <block wx:for="{{list}}" wx:key="{{list}}" >
+       <view class="list_item bb" bindtap="in_bar_detail" data-id="{{item.merchant_id}}">
+           <view class="list_item_left">
+               <image src="{{item.logo}}" class="no_img" ></image>
+               <view class="list_item_message">
+                   <text class="fs30">{{item.merchant_name}}</text>
+                   <view class="flex">
+                       <view class="item_right mr10">
+                           <image src="/assets/index_image/staars_h@2x.png" class="huise_star"></image>
+                           <view class="show_star" style="width:{{item.average*20}}%;">
+                               <image src="/assets/index_image/stars_y@2x.png" ></image>
+                           </view>
+                       </view>
+                       <text class="fs24 cohuang">{{item.average}}分</text>
+                   </view>
+                   <view class="flex">
+                       <view class="item_right mr20">
+                           <image src="/assets/index_image/sentiment_h@2x.png" ></image>
+                           <view class="show_star" style="width:{{item.fire *20}}%;">
+                               <image src="/assets/index_image/sentiment_r@2x.png" ></image>
+                           </view>
+                       </view>
+                       <text class="fs24 cohui">人均￥{{item.avg_consume}}</text>
+                   </view>
+               </view>
+           </view>
+           <view class="distance">
+               <text class="cohui fs24" >{{item.distance}}km</text>
+               <!--<text class="cohui fs24" wx:else>{{item.distance/1000}}km</text>-->
+           </view>
+       </view>
+   </block>
+</view>
+
+
+<!--上拉加载列表过渡效果-->
+<view  class="bottom_loading" hidden="{{isHiddenBottom_loading}}">
+   <text class="fs24">加载中...</text>
+</view>
+
+
+        <!-- 自定义Toast -->
+<import src="/component/toast/toast.wxml"/>
+<template is="toast" data="{{ ..._toast_ }}"/>
+
+        <!-- 自定义showModal -->
+<import src="/component/showModal/showModal.wxml"/>
+<template is="showModal" data="{{ ..._showModal_ }}"/>
+
+<!--<view class="test" style="bottom:{{bottom}}rpx">-->
+    <!--<view>-->
+        <!--adfadsffafadf sgasdgafadfasfdsafasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasf-->
+    <!--</view>-->
+<!--</view>-->
+
+<!--<button bindtap="test">test</button>-->
+

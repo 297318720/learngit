@@ -1,0 +1,90 @@
+<view class="top_wrap bb">
+    <view class="top_wrap_left pr20">
+        <image src="{{simpleInfo.logo}}" class="no_img"></image>
+        <view class="list_item_message">
+            <view class="flex">
+                <view class="item_right mr20">
+                    <image src="/assets/index_image/staars_h@2x.png"></image>
+                    <view class="show_star" style="width:{{simpleInfo.average*20}}%;">
+                        <image src="/assets/index_image/stars_y@2x.png" ></image>
+                    </view>
+                </view>
+                <text class="fs24 cohuang">{{simpleInfo.average}}分</text>
+            </view>
+            <view class="flex">
+                <view class="item_right mr20">
+                    <image src="/assets/index_image/sentiment_h@2x.png" ></image>
+                    <view class="show_star" style="width:{{simpleInfo.fire*20}}%;">
+                        <image src="/assets/index_image/sentiment_r@2x.png" ></image>
+                    </view>
+                </view>
+                <text class="fs24 c5c5c5">人均￥{{simpleInfo.avg_consume}}</text>
+            </view>
+            <text class="fs24 c5c5c5">营业时间 {{simpleInfo.begin_time}}-{{simpleInfo.end_time}}</text>
+        </view>
+    </view>
+</view>
+<!--描述-->
+<view class="notice_wrap">
+  <image src="/assets/index_image/bar_volumen@2x.png" class="pr14"></image>
+  <text class="fs24 c5c5c5">{{merchantDetail.notice}}</text>
+</view>
+<!--电话-->
+<view class="tel bb mt20" bindtap="call">
+   <view class="tel_left">
+       <text class="fs30 pr30 block">电话</text>
+       <text class="fs28">{{merchantDetail.tel}}</text>
+   </view>
+   <image src="/assets/index_image/bar_phone@2x.png" bindtap="call"></image>
+</view>
+<!--地址-->
+<view class="address" bindtap="openLocation">
+   <view class="address_left" >
+       <text class="fs30 pr30 block">地址</text>
+       <text class="fs28 addresswidth">{{merchantDetail.address}}</text>
+   </view>
+   <image src="/assets/index_image/bar_location@2x.png" ></image>
+</view>
+<!--标签-->
+<view class="tags_wrap mt20 bb">
+    <text class="fs30 pr30 block">标签</text>
+    <view class="tags">
+        <block wx:for="{{merchantDetail.tags}}" wx:key="{{merchantDetail.tags}}">
+              <text>{{item}}</text>
+        </block>
+    </view>
+</view>
+<!--简介-->
+<view class="description_wrap">
+    <text class="fs30 pr30 mt7 block">简介</text>
+    <text class="description">{{merchantDetail.description}}</text>
+</view>
+<!--商家相册-->
+<view class="business_album_wrap mt20" bindtap="into_album">
+   <view class="album_title bb">
+       <text class="fs30">商家相册</text>
+       <image  src="/assets/index_image/bar_arrow@2x.png"></image>
+   </view>
+   <view class="album_list">
+       <scroll-view scroll-x="true" style="width:726rpx">
+           <view class="album">
+               <block wx:for="{{merchantDetail.image}}" wx:key="{{merchantDetail.image}}">
+                   <view class="mr20">
+                       <image src="{{item}}" mode="aspectFill"></image>
+                   </view>
+               </block>
+           </view>
+       </scroll-view>
+   </view>
+
+
+</view>
+<!--评价-->
+<view class="evaluation_wrap mt20" bindtap="into_user_evaluation">
+    <text class="fs30">评价</text>
+    <view class="evaluation">
+        <text class="fs28 fcc63b">综合评分{{simpleInfo.average}}分</text>
+        <image src="/assets/index_image/bar_arrow@2x.png"></image>
+    </view>
+</view>
+

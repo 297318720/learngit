@@ -1,0 +1,19 @@
+<block wx:for="{{list.overdue}}" wx:key="{{list.overdue}}">
+    <view class="item_wrap mt20">
+        <view class="flex_col">
+            <text class="fs30 ml10">逾期卡</text>
+            <view class="flex">
+                <text class="yuan"></text>
+                <text class="fs26 c5c5c5 lh36">购买卡座套餐逾期后预定卡座使用，可免支付预定金一次。</text>
+            </view>
+        </view>
+        <image src="/assets/mine_image/my_card@2x.png" class="bgc_image"></image>
+        <image src="/assets/mine_image/my_card_use@2x.png" class="is_use_image" wx:if="{{index+1 > list.have_card}}"></image>
+    </view>
+</block>
+
+<view wx:if="{{no_data}}" class="no_data">
+<image src="/assets/mine_image/my_no_card@2x.png" class="no_card_img"></image>
+<text class="c5c5c5 fs22 mt30">暂时还没有卡券哦~</text>
+</view>
+

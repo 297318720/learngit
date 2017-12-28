@@ -1,0 +1,22 @@
+<view class="mt20 list_wrap">
+    <block wx:for="{{list}}" wx:key="{{list}}">
+        <view class="item bgc bb">
+            <view class="flex_col ">
+                <text class="fs28 mb14">{{item.title}}</text>
+                <text class="fs24 c5c5c5">{{item.trade_time}}</text>
+            </view>
+            <text class="fs30 ff9933">{{item.type ==1?'-':'+'}}￥{{item.change_money}}</text>
+        </view>
+    </block>
+</view>
+
+<view wx:if="{{no_data}}" class="no_data">
+<image src="/assets/mine_image/no_deal@2x.png" class="no_consumer_img"></image>
+<text class="c5c5c5 fs22 mt30">暂时还没有交易记录哦~</text>
+</view>
+
+        <!--上拉加载列表过渡效果-->
+<view  class="bottom_loading" hidden="{{isHiddenBottom_loading}}">
+<text class="fs24">加载中...</text>
+</view>
+

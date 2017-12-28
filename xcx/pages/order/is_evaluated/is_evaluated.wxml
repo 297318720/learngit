@@ -1,0 +1,73 @@
+<!--酒吧LOGO-->
+<view class="logo bgc mt20 bb">
+    <image src="{{data_evaluated.logo}}" class="logo_image mr20"></image>
+    <text class="fs30">{{data_evaluated.merchant_title}}</text>
+</view>
+        <!--打分-->
+<view class="dafen bgc mb20">
+<view class="dafen_item">
+    <text class="fs28">酒吧环境</text>
+    <view class="flex">
+        <view class="item_right">
+            <image src="/assets/order_image/order_star@2x.png" class="star_image"></image>
+            <view class="show_star" style="width:{{data_evaluated.environment*20}}%;">
+                <image src="/assets/order_image/order_star_click@2x.png" class="star_image"></image>
+            </view>
+        </view>
+        <text class="fs28 fcc63b">{{data_evaluated.environment}}分</text>
+    </view>
+</view>
+<view class="dafen_item">
+    <text class="fs28">酒吧服务</text>
+    <view class="flex">
+        <view class="item_right">
+            <image src="/assets/order_image/order_star@2x.png" class="star_image"></image>
+            <view class="show_star" style="width:{{data_evaluated.service*20}}%;">
+                <image src="/assets/order_image/order_star_click@2x.png" class="star_image"></image>
+            </view>
+        </view>
+        <text class="fs28 fcc63b">{{data_evaluated.service}}分</text>
+    </view>
+</view>
+<view class="dafen_item">
+    <text class="fs28">音乐演艺</text>
+    <view class="flex">
+        <view class="item_right">
+            <image src="/assets/order_image/order_star@2x.png" class="star_image"></image>
+            <view class="show_star" style="width:{{data_evaluated.atmosphere*20}}%;">
+                <image src="/assets/order_image/order_star_click@2x.png" class="star_image"></image>
+            </view>
+        </view>
+        <text class="fs28 fcc63b">{{data_evaluated.atmosphere}}分</text>
+    </view>
+</view>
+</view>
+
+        <!--服务员打分-->
+<view class="bgc mb20" wx:if="{{data_evaluated.employee_star}}">
+    <view class="logo bb">
+        <image src="{{data_evaluated.employee_avatar}}" class="logo_image mr20"></image>
+        <text class="fs30">{{data_evaluated.employee_realname}}</text>
+    </view>
+    <view class="fuwu">
+        <text class="fs24 c5c5c5">为服务打分</text>
+        <view class="flex">
+            <view class="item_right">
+                <image src="/assets/order_image/order_star@2x.png" class="star_image"></image>
+                <view class="show_star" style="width:{{data_evaluated.employee_star*20}}%;">
+                    <image src="/assets/order_image/order_star_click@2x.png" class="star_image"></image>
+                </view>
+            </view>
+            <text class="fs28 fcc63b">{{data_evaluated.employee_star}}分</text>
+        </view>
+    </view>
+</view>
+        <!--用户描述-->
+<view class="bgc ">
+    <view class="bb title">
+        <text class="fs30">我的感受</text>
+    </view>
+     <view class="miaosu">
+         <text class="fs28 c5c5c5">{{data_evaluated.content}}</text>
+     </view>
+</view>

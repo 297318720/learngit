@@ -1,0 +1,48 @@
+<view class="top_wrap ">
+    <image src="{{avatar}}" class="tou"></image>
+    <text class="fs24 mt20 mb30">{{nickname}}</text>
+    <view class="vip_message_wrap">
+         <image src="{{vip_image}}" class="vip_image"></image>
+         <view class="message">
+            <text class="fs36 fw mt50 mb20">{{title}}</text>
+             <text class="fs20 mb154" wx:if="{{level == 6}}">真正的财富是一种生活方式</text>
+            <text class="fs20 mb154" wx:else>目前已累计消费￥{{consume_money}}</text>
+             <view class="flex" bindtap="into_member_level">
+                 <text class="fs24" wx:if="{{level == 6}}">恭喜您已达到最高会员级别</text>
+                 <text class="fs24" wx:else>再消费￥{{diff_money}} 即可成为{{next_vip_title}}</text>
+                 <image src="/assets/index_image/bar_you.png" class="bar_you mr20"></image>
+             </view>
+
+         </view>
+    </view>
+    <view class="align_self mt10 mr10" bindtap="into_vip_rules">
+        <text class="fs24 mr20">会员规则</text>
+        <image src="/assets/mine_image/my_arrow@2x.png" class="jiantou_image"></image>
+    </view>
+</view>
+
+<view class="mt30 privilege">
+   <text class="fs30 mb30">您尊享的会员权利</text>
+    <view class="privilege_list {{level == 1?'justify-center':'justify-between'}}">
+        <view class="item_wrap" wx:if="{{birthday == 1}}">
+            <text class="mt20 mb10 fs30 c5c5c5">生日特权</text>
+            <text class="fs24 ff9933">{{birthday_content}}</text>
+        </view>
+        <view class="item_wrap" wx:if="{{coin != 0}}">
+            <text class="mt20 mb10 fs30 c5c5c5">K币回赠</text>
+            <text class="fs24 ff9933">单笔消费赠送{{coin}}K币</text>
+        </view>
+        <view class="item_wrap" wx:if="{{overdue != 0}}">
+            <text class="mt20 mb10 fs30 c5c5c5" >逾期保护</text>
+            <text class="fs24 ff9933">可使用逾期卡{{overdue}}次</text>
+        </view>
+        <view class="item_wrap" wx:if="{{delayed != 0}}">
+            <text class="mt20 mb10 fs30 c5c5c5" >订单延期</text>
+            <text class="fs24 ff9933">{{delayed}}天</text>
+        </view>
+        <view class="item_wrap justify-center" wx:if="{{free_seat == 1}}">
+            <text class="mt20 mb10 fs30 c5c5c5">免预定金</text>
+        </view>
+    </view>
+</view>
+

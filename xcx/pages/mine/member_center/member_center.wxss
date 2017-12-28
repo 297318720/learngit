@@ -1,0 +1,83 @@
+.tou{
+    width:90rpx;
+    height:90rpx;
+    border-radius: 50%;
+}
+.top_wrap{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding: 34rpx 40rpx 20rpx;
+    align-items: center;
+    background-color: #445262;
+}
+.vip_message_wrap{
+    position: relative;
+    width:670rpx;
+    height:334rpx;
+}
+.vip_image{
+    width:670rpx;
+    height:334rpx;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /*z-index: -1;*/
+}
+.bar_you{
+    width:24rpx;
+    height:38rpx;
+}
+.message{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:620rpx;
+    height:334rpx;
+    padding-left: 50rpx;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+}
+.mb154{
+    margin-bottom: 140rpx;
+}
+.jiantou_image{
+    width:8rpx;
+    height:12rpx
+}
+.align_self{
+    align-self:flex-end;
+
+}
+.privilege{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.privilege_list{
+    width:600rpx;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.justify-between{
+    justify-content: space-between;
+}
+.justify-center{
+    justify-content: center;
+}
+.item_wrap{
+    width:266rpx;
+    height:110rpx;
+    border: 2rpx solid #556171;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 60rpx;
+}
+.flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

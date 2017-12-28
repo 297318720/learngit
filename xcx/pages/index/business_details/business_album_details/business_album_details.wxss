@@ -1,0 +1,11 @@
+.box_wrap{
+    padding: 20rpx 24rpx 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.box_wrap > image{
+    width:340rpx;
+    height:340rpx;
+    margin-bottom: 20rpx;
+}

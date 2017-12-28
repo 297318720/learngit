@@ -1,0 +1,67 @@
+.balance{
+    width:144rpx;
+    height:58rpx;
+    border: 2rpx solid #697785;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3rpx;
+}
+.purse_image{
+    width:195rpx;
+    height:150rpx;
+
+}
+.top{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height:360rpx;
+    padding: 60rpx 0 20rpx;
+
+}
+.mlfu{
+    margin-left: -18rpx;
+}
+.mtb{
+    margin: 42rpx auto;
+}
+
+
+.big_attention_wrap{
+    position: absolute;
+    top:190rpx;
+    left:95rpx;
+    border-radius: 6rpx;
+    display: flex;
+    flex-direction: column;
+    width:520rpx;
+    height:430rpx;
+    padding: 20rpx;
+    background-color: #fff;
+}
+
+.wxapp-modal{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(0,0,0,0.5);
+    top: 0px;
+    left: 0px;
+    z-index:999;
+}
+.lh41{
+    line-height: 41rpx;
+}
+.btn{
+    width:100%;
+    height:88rpx;
+    border-radius: 6rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ff9933;
+}
+.mb34{
+    margin-bottom: 34rpx;
+}

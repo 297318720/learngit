@@ -1,0 +1,26 @@
+.location_wrap{
+    margin-top: 300rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height:350rpx;
+    justify-content: space-between;
+}
+.location_wrap > image{
+    width:143rpx;
+    height:163rpx;
+}
+.title{
+    font-size: 24rpx;
+    line-height: 24rpx;
+    color: #7f8290;
+}
+.open{
+    width:250rpx;
+    height:80rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30rpx;
+    background-color: #ff9933;
+}

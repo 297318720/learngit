@@ -1,0 +1,69 @@
+<!--酒吧LOGO-->
+<view class="logo bgc mt20 bb">
+    <image src="{{data_evaluated.logo}}" class="logo_image mr20"></image>
+    <text class="fs30">{{data_evaluated.merchant_title}}</text>
+</view>
+<!--打分-->
+<view class="dafen bgc mb20">
+    <view class="dafen_item">
+        <text class="fs28">酒吧环境</text>
+        <view class="staritem">
+            <block wx:key="{{stars}}" wx:for="{{stars}}" wx:for-index="index" wx:for-item="item">
+                <image data-key="{{item+1}}" data-type="1" bindtap="selectstat" class="star_image" src="{{key1>item?stat_on:stat_off}}">
+                </image>
+            </block>
+        </view>
+    </view>
+    <view class="dafen_item">
+        <text class="fs28">酒吧服务</text>
+        <view class="staritem">
+            <block wx:key="{{stars}}" wx:for="{{stars}}" wx:for-index="index" wx:for-item="item">
+                <image data-key="{{item+1}}" data-type="2" bindtap="selectstat" class="star_image" src="{{key2>item?stat_on:stat_off}}">
+                </image>
+            </block>
+        </view>
+    </view>
+    <view class="dafen_item">
+        <text class="fs28">音乐演艺</text>
+        <view class="staritem">
+            <block wx:key="{{stars}}" wx:for="{{stars}}" wx:for-index="index" wx:for-item="item">
+                <image data-key="{{item+1}}" data-type="3" bindtap="selectstat" class="star_image" src="{{key3>item?stat_on:stat_off}}">
+                </image>
+            </block>
+        </view>
+    </view>
+</view>
+
+<!--服务员打分-->
+<view class="bgc mb20" wx:if="{{data_evaluated.employee_realname}}">
+    <view class="logo bb">
+        <image src="{{data_evaluated.employee_avatar}}" class="logo_image mr20"></image>
+        <text class="fs30">{{data_evaluated.employee_realname}}</text>
+    </view>
+    <view class="fuwu">
+        <text class="fs24 c5c5c5">为服务打分</text>
+        <view class="staritem">
+            <block wx:key="{{stars}}" wx:for="{{stars}}" wx:for-index="index" wx:for-item="item">
+                <image data-key="{{item+1}}" data-type="4" bindtap="selectstat" class="star_image" src="{{key4>item?stat_on:stat_off}}">
+                </image>
+            </block>
+        </view>
+    </view>
+</view>
+<!--用户描述-->
+<view class="miaosu bgc">
+    <textarea placeholder="描述您在酒吧的具体感受..." cursor-spacing="90" class="miaosu_message" maxlength="80"
+              placeholder-style="color:#c5c5c5;font-size:28rpx;"  bindinput="input"/>
+    <text class="item fs24 c5c5c5" wx:if="{{num1 > 0}}">至少输入{{num1}}个字</text>
+    <text class="item fs24 c5c5c5" wx:else>{{sum}}/80</text>
+</view>
+<!--提交-->
+<button class="submit mt80" bindtap="submit">提交</button>
+
+        <!-- 自定义Toast -->
+<import src="/component/toast/toast.wxml"/>
+<template is="toast" data="{{ ..._toast_ }}"/>
+
+        <!-- 自定义showModal -->
+<import src="/component/showModal/showModal.wxml"/>
+<template is="showModal" data="{{ ..._showModal_ }}"/>

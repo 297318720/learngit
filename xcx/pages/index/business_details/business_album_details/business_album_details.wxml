@@ -1,0 +1,5 @@
+<view class="box_wrap">
+   <block wx:for="{{image}}" wx:key="{{image}}">
+       <image src="{{item}}" mode="aspectFill" data-image="{{item}}" bindtap="previewImage"></image>
+   </block>
+</view>

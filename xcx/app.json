@@ -1,0 +1,67 @@
+    {
+  "pages":[
+    "pages/index/index",
+    "pages/wine/wine_details/wine_details",
+    "pages/wine/wine_confirm_order/wine_confirm_order",
+    "pages/wine/wine_list/wine_list",
+    "pages/payment/pay_success/pay_success", 
+    "pages/mine/mine",
+    "pages/mine/userguide/userguide",
+    "pages/mine/member_center/member_center",
+    "pages/mine/members_level/members_level",
+    "pages/index/confirm_order/confirm_order", 
+    "pages/order/order", 
+    "pages/mine/vip_rules/vip_rules",
+    "pages/mine/card_coupons/card_coupons",   
+    "pages/mine/update_password/update_password",
+    "pages/index/bind_phone/bind_phone", 
+    "pages/mine/my_purse/my_purse",  
+    "pages/mine/setpassword/setpassword",      
+    "pages/mine/recharge_agreement/recharge_agreement",
+    "pages/mine/consumer_details/consumer_details",
+    "pages/mine/recharge/recharge",
+    "pages/order/no_evaluated/no_evaluated",
+    "pages/order/is_evaluated/is_evaluated",
+    "pages/order/order_details/order_details",
+    "pages/index/contacts_message/contacts_message",
+    "pages/index/select_card/select_card",
+    "pages/index/selectDate/selectDate",
+    "pages/index/business_details/user_evaluation/user_evaluation",
+    "pages/index/business_details/business_details",
+    "pages/index/business_details/business_album_details/business_album_details",
+    "pages/index/bar_details/bar_details",
+    "pages/index/waiter_details/waiter_details",
+    "pages/location/location",
+    "pages/index/search/search"
+
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "backgroundColor":"#37495a",
+    "navigationBarBackgroundColor": "#2a3b4d",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"white"
+  },
+  "tabBar": {
+    "color": "#aeaeae",
+    "selectedColor": "#ff9933",
+    "borderStyle": "white",
+    "backgroundColor": "#2a3b4d",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "iconPath": "./assets/images/home@2x.png",
+      "selectedIconPath": "./assets/images/home_click@2x.png",
+      "text": "首页"
+    },{
+      "pagePath": "pages/order/order",
+      "iconPath": "./assets/order_image/order@2x.png",
+      "selectedIconPath": "./assets/order_image/order_click@2x.png",
+      "text": "订单"
+    },{
+      "pagePath": "pages/mine/mine",
+      "iconPath": "./assets/mine_image/my@2x.png",
+      "selectedIconPath": "./assets/mine_image/my_click@2x.png",
+      "text": "我的"
+    }]
+  }
+}

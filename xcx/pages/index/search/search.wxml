@@ -1,0 +1,86 @@
+
+<view class="search_bar_wrap">
+    <view class="search_bar">
+        <image src="/assets/index_image/search@2x.png"></image>
+        <input placeholder="请输入关键字进行搜索" bindinput="search_input" value="{{sendName}}"
+               confirm-type="search"  bindconfirm="search"
+               placeholder-style="color:#9aa1a8;font-size:26rpx"/>
+        <image src="/assets/index_image/fork@2x.png" hidden="{{isShowdel}}" bindtap="empty"></image>
+    </view>
+    <text class="fs28" bindtap="search">搜索</text>
+</view>
+
+<view hidden="{{isHiddenhot_history}}">
+     <view class="hot_search_wrap mb">
+        <view class="hot_title">
+            <text class="fs28 ">热门搜索</text>
+        </view>
+        <view class="hot_record">
+            <block wx:for="{{hot_search}}" wx:key="{{hot_search}}">
+               <text bindtap="search_item" data-name="{{item.title}}">{{item.title}}</text>
+            </block>
+
+        </view>
+     </view>
+
+     <view class="hot_search_wrap">
+     <view class="hot_title flex">
+         <text class="fs28 ">历史搜索</text>
+         <image src="/assets/index_image/delete@2x.png" bindtap="empty_history"></image>
+     </view>
+     <view class="hot_record">
+         <block wx:for="{{history_search}}" wx:key="{{history_search}}">
+             <text bindtap="search_item" data-name="{{item}}">{{item}}</text>
+         </block>
+
+     </view>
+     </view>
+</view>
+
+        <!--搜索后的酒吧列表-->
+<view >
+<block wx:for="{{search_result}}" wx:key="{{search_result}}" >
+    <view class="list_item bb" bindtap="in_bar_detail" data-id="{{item.merchant_id}}">
+        <view class="list_item_left">
+            <image src="{{item.logo}}"></image>
+            <view class="list_item_message">
+                <text class="fs30">{{item.merchant_name}}</text>
+                <view class="flex">
+                    <view class="item_right mr10">
+                        <image src="/assets/index_image/staars_h@2x.png" class="huise_star"></image>
+                        <view class="show_star" style="width:{{item.average*20}}%;">
+                            <image src="/assets/index_image/stars_y@2x.png" ></image>
+                        </view>
+                    </view>
+                    <text class="fs24 cohuang">{{item.average}}分</text>
+                </view>
+                <view class="flex">
+                    <view class="item_right mr20">
+                        <image src="/assets/index_image/sentiment_h@2x.png" ></image>
+                        <view class="show_star" style="width:{{item.fire *20}}%;">
+                            <image src="/assets/index_image/sentiment_r@2x.png" ></image>
+                        </view>
+                    </view>
+                    <text class="fs24 cohui">人均￥{{item.avg_consume}}</text>
+                </view>
+            </view>
+        </view>
+        <view class="distance">
+            <text class="cohui fs24">{{item.distance}}km</text>
+        </view>
+    </view>
+</block>
+</view>
+
+<view class="no_result" hidden="{{no_resultShow}}">
+   <image src="/assets/index_image/picture@2x.png"></image>
+   <text class="fs24">暂无相关酒吧哦~</text>
+</view>
+
+
+        <!-- 自定义showModal -->
+<import src="/component/showModal/showModal.wxml"/>
+<template is="showModal" data="{{ ..._showModal_ }}"/>
+
+
+

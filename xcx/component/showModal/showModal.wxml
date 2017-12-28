@@ -1,0 +1,19 @@
+<!-- 自定义showModal组件 -->
+
+<template name="showModal">
+    <view class="showModal_content_box" wx:if="{{ isHide }}">
+        <view class="showModal_content">
+            <view class="showModal_message showModal_bb">
+                <text class="fs34 fw hei mt60 mb36">{{title == undefined?"提示":title}}</text>
+                <text class="fs28 co6e6e6e mb40 lh42 hei">{{content}}</text>
+            </view>
+            <view class="double_button" wx:if="{{ showCancel }}">
+                <view class="showModal_br" bindtap="cancel"><text class="fs36 hei">{{cancelText == undefined?"取消":cancelText}}</text></view>
+                <view bindtap="confirm"><text class="fs36" style="color:{{confirmColor == undefined?'#ff8027':confirmColor}}">{{confirmText == undefined?"确认":confirmText}}</text></view>
+            </view>
+            <view class="one_button" wx:if="{{ !showCancel }}" bindtap="confirm">
+               <text class="fs36" style="color:{{confirmColor == undefined?'#ff8027':confirmColor}}">{{confirmText == undefined?"确认":confirmText}}</text>
+            </view>
+        </view>
+    </view>
+</template>

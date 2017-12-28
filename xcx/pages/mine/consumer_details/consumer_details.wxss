@@ -1,0 +1,18 @@
+.item{
+    height:106rpx;
+    padding: 0 24rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.flex_col{
+    display: flex;
+    flex-direction: column;
+}
+.list_wrap > view:last-child{
+    border: none;
+}
+.no_consumer_img{
+    width:260rpx;
+    height:290rpx;
+}

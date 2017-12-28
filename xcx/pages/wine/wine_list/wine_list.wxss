@@ -1,0 +1,47 @@
+.tishi{
+    height:60rpx;
+    display: flex;
+    align-items: center;
+    padding: 0 24rpx;
+}
+
+.list_item{
+    padding:25rpx 24rpx;
+    display: flex;
+    justify-content: space-between;
+}
+.list_item_left{
+    display: flex;
+
+}
+.list_item_left> image{
+    width:148rpx;
+    height:148rpx;
+    margin-right: 20rpx;
+}
+.message{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width:370rpx;
+}
+.message .c5c5c5{
+    line-height: 31rpx;
+}
+.list_item_right{
+    display: flex;
+    align-items: center;
+}
+.buy{
+    padding: 18rpx 34rpx;
+    background-color: #f5912c;
+    color: #fff;
+    border-radius: 6rpx;
+    font-size: 24rpx;
+}
+.list_item_right .fs24{
+    padding-right: 24rpx;
+}
+.del_line{
+    text-decoration:line-through;
+}

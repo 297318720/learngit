@@ -1,0 +1,82 @@
+<view wx:if="{{no_evaluation}}">
+    <view class="top_wrap bgc">
+        <view class="top_left">
+            <text class="fs36 fcc63b">{{evaluate.average}}分</text>
+            <text class="fs24 mt20">综合评价</text>
+        </view>
+        <view>
+            <view class="dafen">
+                <text class="fs24">酒吧环境</text>
+                <view class="flex ml20">
+                    <view class="item_right mr20">
+                        <image src="/assets/index_image/staars_h@2x.png"></image>
+                        <view class="show_star" style="width:{{evaluate.environment_star*20}}%;">
+                            <image src="/assets/index_image/stars_y@2x.png" ></image>
+                        </view>
+                    </view>
+                    <text class="fs24 cohuang">{{evaluate.environment_star}}分</text>
+                </view>
+            </view>
+            <view class="dafen">
+                <text class="fs24">酒吧服务</text>
+                <view class="flex ml20">
+                    <view class="item_right mr20">
+                        <image src="/assets/index_image/staars_h@2x.png"></image>
+                        <view class="show_star" style="width:{{evaluate.service_star*20}}%;">
+                            <image src="/assets/index_image/stars_y@2x.png" ></image>
+                        </view>
+                    </view>
+                    <text class="fs24 cohuang">{{evaluate.service_star}}分</text>
+                </view>
+            </view>
+            <view class="dafen">
+                <text class="fs24">音乐演艺</text>
+                <view class="flex ml20">
+                    <view class="item_right mr20">
+                        <image src="/assets/index_image/staars_h@2x.png"></image>
+                        <view class="show_star" style="width:{{evaluate.atmosphere_star*20}}%;">
+                            <image src="/assets/index_image/stars_y@2x.png" ></image>
+                        </view>
+                    </view>
+                    <text class="fs24 cohuang">{{evaluate.atmosphere_star}}分</text>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="list_wrap bgc">
+       <block wx:for="{{list}}" wx:key="{{list}}">
+           <view class="list_item bb">
+               <image src="{{item.avatar}}"></image>
+               <view class="list_item_right">
+                   <view class="list_item_right_top">
+                       <view class="top">
+                           <text class="fs30">{{item.nickname}}</text>
+                           <view class="flex mt12">
+                               <view class="item_right mr20">
+                                   <image src="/assets/index_image/staars_h@2x.png"></image>
+                                   <view class="show_star" style="width:{{item.average*20}}%;">
+                                       <image src="/assets/index_image/stars_y@2x.png" ></image>
+                                   </view>
+                               </view>
+                               <text class="fs24 cohuang">{{item.average}}分</text>
+                           </view>
+                       </view>
+                       <text class="fs24 c5c5c5">{{item.created_time}}</text>
+                   </view>
+                   <text class="fs28 c5c5c5">{{item.content}}</text>
+               </view>
+           </view>
+       </block>
+    </view>
+</view>
+
+<view wx:if="{{!no_evaluation}}" class="no_data">
+    <image src="/assets/index_image/no_evaluation@2x.png" class="no_evaluation_img"></image>
+    <text class="c5c5c5 fs22 mt30">暂时还没有评价哦~</text>
+</view>
+        <!--上拉加载列表过渡效果-->
+<view  class="bottom_loading" hidden="{{isHiddenBottom_loading}}">
+<text class="fs24">加载中...</text>
+</view>
+
