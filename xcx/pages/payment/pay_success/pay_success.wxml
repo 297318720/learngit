@@ -1,9 +1,10 @@
 <view class="top_wrap bgc">
     <text class="fs36 success_text">支付成功</text>
-    <text class="fs24 c5c5c5 text_align">请于开店营业时间{{date}}准时到店消费，逾期将不会退还费用</text>
+    <text wx:if="{{status != 2}}" class="fs24 c5c5c5 text_align">请于开店营业时间{{date}}准时到店消费，逾期将不会退还费用</text>
+    <text wx:elif="{{status == 2}}" class="fs24 c5c5c5 text_align">恭喜你续酒成功，酒吧工作人员将把酒水呈给你，你也可以主动联系酒吧工作人员。</text>
 </view>
 
 <view class="bottom_wrap mt20 bgc">
   <text class="fs30">支付信息：<text class="fs28">空瓶子余额</text></text>
   <text class="fs28 ff9933">-￥{{pay_price}}</text>
-</view>
+</view>+[

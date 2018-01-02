@@ -260,6 +260,12 @@ Page({
         wx.navigateTo({
             url: `../index/waiter_details/waiter_details?employee_id=${e.currentTarget.dataset.employee_id}&type=1`
         })
+    },
+
+    into_wine_list:function (e) {
+        wx.navigateTo({
+            url: `../wine/wine_list/wine_list?order_id=${e.currentTarget.dataset.order_id}&merchant_id=${e.currentTarget.dataset.merchant_id}&order_type=${e.currentTarget.dataset.order_type}&order_no=${e.currentTarget.dataset.order_no}`
+        })
     }
 
 

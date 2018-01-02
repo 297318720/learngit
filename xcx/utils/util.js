@@ -28,6 +28,9 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 function http(url,data,callback){
+    var version = {version:1}
+    var obj = Object.assign(data, version);
+    console.log(data)
     wx.request({
         url,
         data,
@@ -38,7 +41,7 @@ function http(url,data,callback){
         success: (res) => {
             callback(res.data)
         },
-        fail:(res)=>{
+        fail:(res)=>{q
             wx.hideLoading()
             // callback_fail(res)
             wx.showModal({

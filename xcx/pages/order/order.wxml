@@ -37,8 +37,9 @@
             <!--<text class="fs26 mr30">客户经理</text><image data-employee_id="{{item.employee_id}}" bindtap="into_waiter_details" src="{{item.employee_avatar}}" class="avatar_img"></image>-->
         <!--</view>-->
         <view class="list_item_bottom" wx:elif="{{item.is_comment == 0}}">
-            <text class="fs26 btn mr20" wx:if="{{item.is_xujiu == 1}}">查看续酒</text>
-            <text class="fs26 btn_xujiu mr20">续酒</text>
+            <text wx:if="{{item.winecount > 0}}" class="fs26 btn mr20" >查看续酒</text>
+            <text bindtap="into_wine_list" wx:if="{{item.order_type == 3?item.status ==4?true:false:false}}"  data-order_no="{{item.order_no}}"
+               data-order_id="{{item.id}}" data-merchant_id="{{item.merchant_id}}" data-order_type="{{item.order_type}}" class="fs26 btn_xujiu mr20">续酒</text>
             <text class="fs26 btn" bindtap="evaluated"  data-order_no="{{item.order_no}}" data-type="1" data-index="{{index}}">去评价</text>
         </view>
     </view>

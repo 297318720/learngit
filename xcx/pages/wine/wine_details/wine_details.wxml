@@ -2,27 +2,38 @@
   <view class="mt20">
       <view class="list_item bgc bb">
           <view class="list_item_left">
-              <image src="{{item.image}}" class="no_img"></image>
+              <image src="{{item.pack_image}}" class="no_img"></image>
               <view class="message">
-                  <text class="fs30">{{item.title}}</text>
-                  <text class="fs24 c5c5c5">{{item.description}}</text>
+                  <text class="fs30">{{item.pack_title}}</text>
+                  <text class="fs24 c5c5c5">{{item.pack_description}}</text>
                   <view>
                       <text class="fs20 c5c5c5 mr10 del_line">￥{{item.market_price}}</text>
-                      <text class="fs28 ff9933">￥{{item.price}}</text>
+                      <text class="fs28 ff9933">￥{{item.pack_price}}</text>
                   </view>
               </view>
           </view>
       </view>
+      <view class="common_message1 bgc bb">
+          <view><text class="fs30 mr20">备注信息：</text><view class="fs28 beizhu_view fff">{{item.description}}</view></view>
+      </view>
       <view class="price bgc bb">
           <view>
-              <text class="fs30 mr20">总计：￥{{item.price}}</text>
+              <text class="fs30 mr20">总计：￥{{item.total_price}}</text>
               <!--<text class="fs30">优惠：￥{{discount_money}}</text>-->
           </view>
-          <view><text class="fs30">实付金额</text><text class="fs28 ff9933">￥{{item.price}}</text></view>
+          <view><text class="fs30">实付金额</text><text class="fs28 ff9933">￥{{item.pay_price}}</text></view>
       </view>
       <view class="common_message bgc">
-          <view ><text class="fs30 mr20">续酒时间：</text><text class="fs28">{{item.format_time}}</text></view>
-          <view ><text class="fs30 mr20">支付方式：</text><text class="fs28">{{item.payment}}</text></view>
+          <view ><text class="fs30 mr20">续酒时间：</text><text class="fs28">{{item.created_time}}</text></view>
+          <view ><text class="fs30 mr20">支付方式：</text><text class="fs28">{{item.payment == 1?'余额支付':'微信支付'}}</text></view>
       </view>
   </view>
 </block>
+
+        <!-- 自定义Toast -->
+<import src="/component/toast/toast.wxml"/>
+<template is="toast" data="{{ ..._toast_ }}"/>
+
+        <!-- 自定义showModal -->
+<import src="/component/showModal/showModal.wxml"/>
+<template is="showModal" data="{{ ..._showModal_ }}"/>

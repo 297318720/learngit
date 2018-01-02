@@ -638,6 +638,9 @@ Page({
             success:  (res) =>{
                 wx.getUserInfo({
                     success:  (user)=> {
+                        wx.showLoading({
+                            title: '正在登陆',
+                        })
                         if (res.code) {
                             //发起网络请求
                             var MD5 = md5()

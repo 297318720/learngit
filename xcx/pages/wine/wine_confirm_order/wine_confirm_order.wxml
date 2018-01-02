@@ -18,10 +18,10 @@
 
 <view class="list_item bgc bb">
     <view class="list_item_left">
-        <image src="{{item.image}}" class="no_img"></image>
+        <image src="{{item.pack_image}}" class="no_img"></image>
         <view class="message">
-            <text class="fs30">{{goods.title}}</text>
-            <text class="fs24 c5c5c5">{{goods.description}}</text>
+            <text class="fs30">{{goods.pack_title}}</text>
+            <text class="fs24 c5c5c5">{{goods.pack_description}}</text>
             <view>
                 <text class="fs20 c5c5c5 mr10 del_line">￥{{goods.market_price}}</text>
                 <text class="fs28 ff9933">￥{{goods.price}}</text>
@@ -38,6 +38,16 @@
 <view><text class="fs30">实付金额</text><text class="fs28 ff9933">￥{{goods.price}}</text></view>
 </view>
 
+        <!--备注信息-->
+<view>
+<view class="title"><text class="fs24 c5c5c5">备注信息</text></view>
+<view class="input_wrap bgc">
+    <textarea placeholder="备注选填，最多填写60个字符；填写您的额外需求或要求" cursor-spacing="100"  bindinput="input"
+              placeholder-style="color:#c5c5c5;font-size:28rpx" maxlength="60" class="input_beizhu"/>
+    <text class="item1 fs24 c5c5c5">{{sum}}/60</text>
+</view>
+</view>
+
         <!--提交订单-->
 <view class="dingdan bgc">
 <view class="ml24">
@@ -45,7 +55,7 @@
     <text class="fs30 ff9933">￥{{goods.price}}</text>
 </view>
 <!--disabled="{{disabled1}}"-->  <!--class属性里有一个tijiao-->
-<button class="tijiao fs30"  bindtap="pay">提交订单</button>
+<button class="tijiao fs30"  bindtap="commit_wine_order">提交订单</button>
 </view>
 
 <view class="tianchong"></view>

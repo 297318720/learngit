@@ -168,6 +168,9 @@
     color: #fff;
     font-size: 28rpx;
 }
+.item1{
+    align-self:flex-end;
+}
 .submit{
     width:690rpx;
     height:88rpx;
@@ -178,9 +181,7 @@
     margin:200rpx auto 0;
 }
 
-.item1{
-    align-self:flex-end;
-}
+
 page .mb60{
     padding-bottom: 60rpx;
 }

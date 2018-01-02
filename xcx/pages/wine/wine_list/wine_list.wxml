@@ -6,10 +6,10 @@
 <block wx:for="{{list}}"  wx:key="{{list}}">
     <view class="list_item bgc mb20">
         <view class="list_item_left">
-            <image src="{{item.image}}" class="no_img"></image>
+            <image src="{{item.pack_image}}" class="no_img"></image>
             <view class="message">
-                <text class="fs30">{{item.title}}</text>
-                <text class="fs24 c5c5c5">{{item.description}}</text>
+                <text class="fs30">{{item.pack_title}}</text>
+                <text class="fs24 c5c5c5">{{item.pack_description}}</text>
                 <view>
                     <text class="fs20 c5c5c5 mr10 del_line">￥{{item.market_price}}</text>
                     <text class="fs28 ff9933">￥{{item.price}}</text>
@@ -17,9 +17,17 @@
             </view>
         </view>
         <view class="list_item_right">
-            <text class="buy" wx:if="{{item.stock != 0}}"  >购买</text>
+            <text class="buy" wx:if="{{item.pack_stock != 0}}" data-goods_pack_id="{{item.goods_pack_id}}" data-item="{{item}}" bindtap="buy">购买</text>
             <text class="fs24 c5c5c5" wx:else>已售完</text>
         </view>
     </view>
 </block>
 </view>
+        <!-- 自定义Toast -->
+<import src="/component/toast/toast.wxml"/>
+<template is="toast" data="{{ ..._toast_ }}"/>
+
+
+        <!-- 自定义showModal -->
+<import src="/component/showModal/showModal.wxml"/>
+<template is="showModal" data="{{ ..._showModal_ }}"/>

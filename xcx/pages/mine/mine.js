@@ -88,6 +88,7 @@ Page({
                             var str_md5 = MD5.str_md5
                             http(`${baseUrl}/v1/member/wxlogin`,{code: res.code, iv: user.iv, encryptedData: encodeURIComponent(user.encryptedData),sign:str_md5,timestamp:timestamp},(res)=>{
                                 console.log(res)
+                                wx.hideLoading()
                                 var jsondata = JSON.stringify(res.data)
                                 wx.setStorageSync('member', jsondata)
                                   this.setData({

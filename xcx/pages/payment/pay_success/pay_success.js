@@ -6,7 +6,8 @@ Page({
    */
   data: {
       pay_price:null,
-      date:""
+      date:"",
+      status:''
   },
 
   /**
@@ -16,10 +17,13 @@ Page({
       wx.setNavigationBarTitle({
           title:'支付完成'
       });
+
       this.setData({
           pay_price:options.pay_price,
-          date:options.date
+          date:options.date,
+          status:options.status,
       })
+      console.log(options.status)
   },
 
   /**

@@ -85,6 +85,9 @@ Page({
 
       clock:"",  //倒计时的时间
 
+      status:'', //1是从订单的去支付跳转到支付页面，2是从续酒跳转到支付页面
+      order_id:''
+
   },
 
   /**
@@ -100,6 +103,7 @@ Page({
       wx.setNavigationBarTitle({
           title:"确认订单"
       });
+
       this.setData({
           merchant_id:options.merchant_id,
           order_no:options.order_no,
@@ -126,12 +130,22 @@ Page({
       if(options.status != undefined){
           console.log(options.pay_price)
           this.setData({
-              flag:2,
-              pay_price:this.returnFloat(options.pay_price),
-              date:options.date,
-              begin_time_time:options.begin_time_time,
-
+              status:options.status
           })
+          if(options.status == 1){
+              this.setData({
+                  flag:2,
+                  pay_price:this.returnFloat(options.pay_price),
+                  date:options.date,
+                  begin_time_time:options.begin_time_time,
+              })
+          }else {
+              this.setData({
+                  flag:2,
+                  pay_price:this.returnFloat(options.pay_price),
+                  order_id:options.order_id
+              })
+          }
 
           // 拿当前时间戳
           http(`${baseUrl}/v1/merchant/serverTime`,{client: 'xcx',sign:str_md5,timestamp:timestamp},(res)=>{
@@ -688,9 +702,16 @@ Page({
                 if(res.data.pay_status == 1){
                     console.log('订单状态已改变')
                     clearInterval(http_paymentResult)
-                    wx.redirectTo({
-                        url: `../../order/order_details/order_details?order_no=${this.data.order_no}`
-                    })
+                    if(this.data.status == 2){ // 如果是续酒，则跳到续酒详情
+                        wx.redirectTo({
+                            url: `../../order/order_details/order_details?order_no=${this.data.order_no}`
+                        })
+                    }else {  //你是续酒跳到订单详情
+                        wx.redirectTo({
+                            url: `../../wine/wine_details/wine_details?order_id=${this.data.order_id}`
+                        })
+                    }
+
                 }
             }
         })
@@ -743,7 +764,7 @@ Page({
                             if(res.code == 200){
                                 wx.hideLoading()
                                 wx.redirectTo({
-                                    url: `../../payment/pay_success/pay_success?pay_price=${this.data.pay_price}&date=${this.data.date} ${this.data.begin_time_time}`
+                                    url: `../../payment/pay_success/pay_success?pay_price=${this.data.pay_price}&date=${this.data.date} ${this.data.begin_time_time}&status=${this.data.status}`
                                 })
                             }else {
                                 wx.hideLoading()

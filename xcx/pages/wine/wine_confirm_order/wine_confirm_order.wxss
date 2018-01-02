@@ -72,3 +72,19 @@
     margin-right: 20rpx;
     color: #fff;
 }
+.input_wrap{
+    padding: 24rpx;
+    height:222rpx;
+    display: flex;
+    flex-direction: column;
+
+}
+.input_beizhu{
+    width:702rpx;
+    height:212rpx;
+    color: #fff;
+    font-size: 28rpx;
+}
+.item1{
+    align-self:flex-end;
+}

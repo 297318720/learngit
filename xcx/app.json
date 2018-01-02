@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/wine/wine_details/wine_details",
     "pages/wine/wine_confirm_order/wine_confirm_order",
+
     "pages/wine/wine_list/wine_list",
     "pages/payment/pay_success/pay_success", 
     "pages/mine/mine",
