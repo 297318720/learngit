@@ -1,0 +1,14 @@
+<web-view wx:if="{{show}}" src="{{baseUrl}}/html/about.html"></web-view>
+
+
+        <!-- 自定义Toast -->
+<import src="/component/toast/toast.wxml"/>
+<template is="toast" data="{{ ..._toast_ }}"/>
+
+        <!-- 自定义showModal -->
+<import src="/component/showModal/showModal.wxml"/>
+<template is="showModal" data="{{ ..._showModal_ }}"/>
+
+        <!-- loading -->
+<import src="/component/loading/loading.wxml"/>
+<template is="loading" data="{{ ..._loading_ }}"/>

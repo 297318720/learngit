@@ -111,8 +111,10 @@ Page({
 
         // toast组件实例
         var app = getApp();
+        // toast/showModal组件实例
         new app.ToastPannel();
         new app.ShowModalPannel();
+        new app.LoadingPannel();
 
         wx.setNavigationBarTitle({
             title: "选择卡座"
@@ -825,6 +827,11 @@ Page({
         //     console.log(res)
         //
         // })
+    },
+    onHide:function () {
+        setTimeout(()=>{
+            wx.hideLoading()
+        },500)
     }
 
 

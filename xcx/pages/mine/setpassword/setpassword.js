@@ -26,7 +26,7 @@ Page({
         var app = getApp();
         new app.ToastPannel();
         new app.ShowModalPannel();
-
+        new app.LoadingPannel();
         wx.setNavigationBarTitle({
             title:'设置支付密码'
         });
@@ -83,6 +83,7 @@ Page({
                 if(this.data.wallets_password2 === this.data.wallets_password1){
                     wx.showLoading({
                         title: '密码提交中',
+                        mask:true
                     })
                     var MD5 = md5()
                     var timestamp = MD5.timestamp
@@ -227,6 +228,11 @@ Page({
             wallets_password_flag: false,
         })
     },
+    onHide:function () {
+        setTimeout(()=>{
+            wx.hideLoading()
+        },500)
+    }
     // pay() {//去支付
     //     pay(this)
     // }

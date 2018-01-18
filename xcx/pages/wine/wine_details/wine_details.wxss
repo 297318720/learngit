@@ -49,3 +49,27 @@
    width:530rpx;
     line-height: 34rpx;
 }
+.pay_mode{
+    justify-content: space-between;
+
+}
+.pay_btn{
+    padding: 14rpx 20rpx;
+    border-radius: 0;
+}
+.quzhifu{
+    background-color: #ff9933;
+    color: #fff;
+}
+.pay_mode .quxiao{
+    /*background-color: #333;*/
+    color: #c5c5c5;
+}
+.pay_mode .jiedan{
+    /*background-color: #fff;*/
+    color: #ff9933;
+}
+.pay_mode .wancheng{
+    /*background-color: #fff;*/
+    color: #46d680;
+}

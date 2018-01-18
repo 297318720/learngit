@@ -9,13 +9,12 @@ let _compData = {
     '_showModal_.confirmText': undefined,// 确定按钮的文字，默认为"确定"，最多 4 个字符
     '_showModal_.cancelText': undefined,// 取消按钮的文字，默认为"取消"，最多 4 个字符
     '_showModal_.confirmColor': undefined,// 确定按钮的文字的颜色,默认是“#ff8027”
-
-
 }
 let showModalPannel = {
     // toast显示的方法
     modal: function(data) {
         wx.hideLoading()
+        this.hideload()
         let self = this;
         this.setData({
             '_showModal_.isHide': true,
@@ -52,7 +51,9 @@ let showModalPannel = {
             this.setData({
                 '_showModal_.isHide':false
             })
-            data.confirm()
+            if(data.confirm){
+                data.confirm()
+            }
         }
 
     }

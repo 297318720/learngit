@@ -13,19 +13,32 @@
               </view>
           </view>
       </view>
+      <!--<view class="common_message1 bgc bb">-->
+          <!--<view><text class="fs30 mr20">座位编号：</text><view class="fs28 beizhu_view fff">{{item.desk_number}}</view></view>-->
+      <!--</view>-->
       <view class="common_message1 bgc bb">
           <view><text class="fs30 mr20">备注信息：</text><view class="fs28 beizhu_view fff">{{item.description}}</view></view>
       </view>
       <view class="price bgc bb">
           <view>
-              <text class="fs30 mr20">总计：￥{{item.total_price}}</text>
-              <!--<text class="fs30">优惠：￥{{discount_money}}</text>-->
+              <text class="fs26 mr20">总计：￥{{item.market_price}}</text>
+              <text class="fs26" wx:if="{{item.discount_money != 0}}">优惠：￥{{item.discount_money}}</text>
           </view>
-          <view><text class="fs30">实付金额</text><text class="fs28 ff9933">￥{{item.pay_price}}</text></view>
+          <view><text class="fs28">实付金额</text><text class="fs28 ff9933">￥{{item.pay_price}}</text></view>
       </view>
       <view class="common_message bgc">
-          <view ><text class="fs30 mr20">续酒时间：</text><text class="fs28">{{item.created_time}}</text></view>
-          <view ><text class="fs30 mr20">支付方式：</text><text class="fs28">{{item.payment == 1?'余额支付':'微信支付'}}</text></view>
+          <view ><text class="fs30 mr20">续酒时间：</text><text class="fs28">{{item.created_time_format}}</text></view>
+          <view class="pay_mode">
+              <view>
+                  <text class="fs30 mr20">支付方式：</text>
+                  <text class="fs28">{{item.payment}}</text>
+              </view>
+              <button bindtap="pay" wx:if="{{item.status == 1}}" data-order_id="{{item.order_id}}" data-order_no="{{item.order_no}}" data-pay_price="{{item.pay_price}}"
+                      data-created_time="{{item.created_time}}" class="pay_btn quzhifu fs26 fff">去支付</button>
+              <text  wx:elif="{{item.status == 0}}"  class="pay_btn quxiao fs26 fff">已取消</text>
+              <text  wx:elif="{{item.status == 7}}"  class="pay_btn jiedan fs26 fff">已接单</text>
+              <text  wx:elif="{{item.status == 4}}"  class="pay_btn wancheng fs26 fff">已完成</text>
+          </view>
       </view>
   </view>
 </block>

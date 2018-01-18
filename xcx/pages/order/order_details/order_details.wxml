@@ -1,3 +1,4 @@
+
 <view class="top bgc">
     <text class="top_1 {{title_color}}">{{status_message_title}}</text>
     <view class="flex mb30">
@@ -5,8 +6,15 @@
         <text class="fs24 c5c5c5 mt12" wx:if="{{cur_message.status == 1}}">订单倒计时：{{clock}} </text>
     </view>
 </view>
+
+<view class="erweima bgc mt20" wx:if="{{cur_message.order_qrcode != ''}}">
+    <text class="fs24">将二维码出示给酒吧工作人员扫描</text>
+    <image bindtap="previewImage" src="{{cur_message.order_qrcode}}"></image>
+</view>
+
 <view>
   <view class="common_title"><text class="fs24 c5c5c5">商品信息</text></view>
+
   <view class="bar_details justify bgc bb" >
       <view class="common_item" bindtap="into_business_details">
           <text class="fs30 mr20">{{cur_message.merchant_title}}</text><image src="/assets/order_image/order_arrow@2x.png" class="arrow_image"></image>
@@ -16,6 +24,7 @@
            <image src="/assets/index_image/bar_phone@2x.png" class="call" data-tel="{{cur_message.merchant_tel}}" bindtap="call"></image>
       </view>
   </view>
+
   <!--卡座信息-->
    <view class="" wx:if="{{cur_message.order_type == 1}}">
        <view class="bb card_message bgc">
@@ -25,7 +34,7 @@
                <text class="fs24">1-{{card_data.max_people}}人</text>
            </view>
            <view class="card_message_right">
-              <view class="flex_col">
+              <view class="flex_col2">
                   <text class="fs24 c5c5c5 mb30">最低消费{{card_data.floor_price}}元</text> <text class="fs24 c5c5c5">预定金{{card_data.set_price}}元</text>
               </view>
            </view>
@@ -48,20 +57,20 @@
                <text class="fs30 mr30">人　　数：</text>
                <text class="fs28">{{card_data.total_people}}</text>
            </view>
-           <view class="common_item ">
+           <view class="common_item1">
                <text class="fs30 mr30">备　　注：</text>
-               <text class="fs28">{{card_data.description}}</text>
+               <text class="fs28 fix_width">{{card_data.description}}</text>
            </view>
        </view>
        <view class="price bgc">
-           <view><text class="fs30 mr20">总计：￥{{card_data.total_price}}</text><text class="fs30">优惠：￥{{card_data.discount_money}}</text></view>
+           <view><text class="fs30 mr20">总计：￥{{card_data.total_price}}</text><text class="fs30" wx:if="{{card_data.discount_money != 0}}">优惠：￥{{card_data.discount_money}}</text></view>
            <view><text class="fs30">实付金额</text><text class="fs28 ff9933">￥{{card_data.pay_price}}</text></view>
        </view>
        <!--卡套信息-->
        <view class="katao bgc mt20" wx:if="{{card_data.overdue_order}}">
            <view class="flex_row">
                <image class="katao_image mr20 no_img" src="{{card_data.overdue_order.pack_image}}"></image>
-               <view class="flex_col">
+               <view class="flex_col1">
                    <text class="fs30 mb50">{{card_data.overdue_order.pack_title}}</text>
                    <text class="fs24 ff9933">￥{{card_data.overdue_order.pack_price}}</text>
                </view>
@@ -72,16 +81,24 @@
     <!--卡套或者优惠套餐的页面-->
    <view class="bgc" wx:if="{{cur_message.order_type != 1}}">
        <view class="packages bb">
-           <image class="katao_image mr20 no_img" src="{{packages.logo}}"></image>
+           <image class="katao_image mr20 no_img" mode="aspectFill" src="{{packages.image}}"></image>
            <view class="flex_col">
-               <text class="fs30 mb20">{{packages.title}}</text>
-               <text class="fs24 c5c5c5 mb54">{{packages.description}}</text>
-               <text class="fs24 ff9933">￥{{packages.goods_price}}</text>
+               <view class="col">
+                   <text class="fs30 mb20">{{packages.title}}</text>
+                   <text class="fs24 c5c5c5 lh30">{{packages.pack_description}}</text>
+               </view>
+               <view>
+                   <text class="fs20 c5c5c5 mr10 del_line">￥{{packages.total_price}}</text>
+                   <text class="fs28 ff9933">￥{{packages.goods_price}}</text>
+               </view>
+               <!--<text class="fs30 mb20">{{packages.title}}</text>-->
+               <!--<text class="fs24 c5c5c5 mb54">{{packages.pack_description}}</text>-->
+               <!--<text class="fs24 ff9933">￥{{packages.goods_price}}</text>-->
            </view>
        </view>
        <view class="price bgc">
-           <view><text class="fs30 mr20">总计￥{{packages.total_price}}</text><text class="fs30">优惠￥{{packages.discount_money}}</text></view>
-           <view><text class="fs30">实付金额</text><text class="fs28 ff9933">￥{{packages.pay_price}}</text></view>
+           <view><text class="fs26 mr20">总计￥{{packages.total_price}}</text><text class="fs26" wx:if="{{packages.discount_money != 0}}">优惠￥{{packages.discount_money}}</text></view>
+           <view><text class="fs28">实付金额</text><text class="fs28 ff9933">￥{{packages.pay_price}}</text></view>
        </view>
        <view wx:if="{{packages.seat_number != underfined}}">
            <view class="katao_card" wx:if="{{packages.seat_number !=''}}">
@@ -99,21 +116,24 @@
    </view>
 </view>
 
-
 <!--客人信息-->
 <view>
   <view class="common_title"><text class="fs24 c5c5c5">客人信息</text></view>
   <view class="common_message bgc ">
       <view ><text class="fs30 mr55">姓</text><text class="fs30 mr30">名：</text><text class="fs28">{{order_message.contacts_realname}}</text></view>
-      <view><text class="fs30 mr55">性</text><text class="fs30 mr30">别：</text><text class="fs28">{{order_message.contacts_sex ==1?'先生':'女士'}}</text></view>
+      <view><text class="fs30 mr55">性</text><text class="fs30 mr30">别：</text><text class="fs28">{{order_message.contacts_sex ==1?'男':'女'}}</text></view>
       <view><text class="fs30 mr55">电</text><text class="fs30 mr30">话：</text><text class="fs28">{{order_message.contacts_tel}}</text></view>
   </view>
   <view class="date bgc" wx:if="{{cur_message.order_type !== 1}}">
-      <text class="fs30 mr20">到店日期：</text>
+      <text class="fs30 mr30">到店日期：</text>
       <text class="fs28">{{order_message.arrives_time}} {{order_message.begin_time}}</text>
   </view>
   <view class="bar_details bgc bt" wx:if="{{cur_message.is_comment == 1}}" bindtap="into_evaluated">
       <text class="fs30">我的评价</text><image src="/assets/order_image/order_arrow@2x.png" class="arrow_image"></image>
+  </view>
+  <view class="kpz_wrap bgc bt" bindtap="kpz_call">
+      <image src="/assets/index_image/bar_phone@2x.png"  class="call mr10" ></image>
+      <text class="fs28">空瓶子客服</text>
   </view>
 </view>
 

@@ -37,6 +37,7 @@ Page({
       var app = getApp();
       new app.ToastPannel();
       new app.ShowModalPannel();
+      new app.LoadingPannel();
       // 要判断登录状态是否过期，如果过期了，就把whether_login设置为0。没过期的话就请求用户数据，把whether_login设置为1
 
       wx.setNavigationBarTitle({
@@ -181,7 +182,7 @@ Page({
             wx.hideLoading()
             this.setData({
                 asset:{
-                    money:res.data.money,
+                    money:this.returnFloat(res.data.money),
                     member_coin:res.data.member_coin,
                     overdue_card:res.data.overdue_card,
                     level:res.data.level,
@@ -200,6 +201,10 @@ Page({
             });
           return
         }
+        wx.showLoading({
+            title: '加载中',
+            mask:true
+        })
         wx.navigateTo({
             url: './my_purse/my_purse'
         })
@@ -213,6 +218,10 @@ Page({
             });
             return
         }
+        wx.showLoading({
+            title: '加载中',
+            mask:true
+        })
         wx.navigateTo({
             url: './card_coupons/card_coupons'
         })
@@ -233,6 +242,23 @@ Page({
         });
 
     },
+    into_about_kpz:function () {
+        if(this.data.whether_login == 0){
+            wx.hideLoading()
+            this.show({
+                content:'请先登录',
+                // duration:3000
+            });
+            return
+        }
+        wx.showLoading({
+            title: '加载中',
+            mask:true
+        })
+        wx.navigateTo({
+            url: `./about_kpz/about_kpz`
+        })
+    },
     into_member_center:function () {
         if(this.data.whether_login == 0){
             wx.hideLoading()
@@ -242,6 +268,10 @@ Page({
             });
             return
         }
+        wx.showLoading({
+            title: '加载中',
+            mask:true
+        })
         wx.navigateTo({
             url: `./member_center/member_center?level=${this.data.asset.level}`
         })
@@ -255,6 +285,11 @@ Page({
             });
             return
         }
+        wx.showLoading({
+            title: '加载中',
+            mask:true
+        })
+
         wx.navigateTo({
             url: './recharge/recharge?type=1'
         })
@@ -278,6 +313,10 @@ Page({
           });
           return
       }
+      wx.showLoading({
+          title: '加载中',
+          mask:true
+      })
       wx.navigateTo({
           url: '../index/contacts_message/contacts_message?type=1'
       })
@@ -291,10 +330,57 @@ Page({
             this.onLoad()
     },
     into_operating_guide:function () {
+        wx.showLoading({
+            title: '加载中',
+            mask:true
+        })
         wx.navigateTo({
             url: './userguide/userguide'
         })
         // wx.miniProgram.navigateTo({url: 'https://member.app.sc-csj.com/html/manual/index.html'})
+    },
+    onHide:function () {
+        setTimeout(()=>{
+            wx.hideLoading()
+        },500)
+    },
+    into_bind_phone:function () {
+        wx.showLoading({
+            title: '加载中',
+            mask:true
+        })
+        var member = storage()
+        var MD5 = md5()
+        var timestamp = MD5.timestamp
+        var str_md5 = MD5.str_md5
+        http(`${baseUrl}/v1/member/verifyBindPhoneNumber`,{token:member.token,client: 'xcx',unionid:member.unionid,sign:str_md5,timestamp:timestamp},(res)=> {
+            console.log(res)
+            if(res.code == 200){
+                wx.navigateTo({
+                    url: `../index/change_phone/change_phone?tel=${res.data.tel}`
+                })
+            }else {
+                wx.navigateTo({
+                    url: `../index/bind_phone/bind_phone`
+                })
+            }
+        })
+
+    },
+    // 给数字精确到小数后两位
+    returnFloat:function(value){
+        var value = Math.round(parseFloat(value)*100)/100;
+        var xsd=value.toString().split(".");
+        if(xsd.length==1){
+            value=value.toString()+".00";
+            return value;
+        }
+        if(xsd.length>1){
+            if(xsd[1].length<2){
+                value=value.toString()+"0";
+            }
+            return value;
+        }
     },
 
     //

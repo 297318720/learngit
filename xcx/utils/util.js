@@ -28,9 +28,10 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 function http(url,data,callback){
+    // 统一加版本号
     var version = {version:1}
     var obj = Object.assign(data, version);
-    console.log(data)
+    // console.log(data)
     wx.request({
         url,
         data,
@@ -41,7 +42,7 @@ function http(url,data,callback){
         success: (res) => {
             callback(res.data)
         },
-        fail:(res)=>{q
+        fail:(res)=>{
             wx.hideLoading()
             // callback_fail(res)
             wx.showModal({

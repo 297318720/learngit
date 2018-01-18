@@ -33,8 +33,10 @@ Page({
    */
   onLoad: function (options) {
       var app = getApp();
+      // toast/showModal组件实例
+      new app.ToastPannel();
       new app.ShowModalPannel();
-
+      new app.LoadingPannel();
       wx.setNavigationBarTitle({
           title:"搜索"
       });
@@ -195,6 +197,11 @@ Page({
             }
         })
 
+    },
+    onHide:function () {
+        setTimeout(()=>{
+            wx.hideLoading()
+        },500)
     }
 
 

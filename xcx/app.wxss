@@ -1,6 +1,7 @@
 /* 引用toast的样式 */
 @import "./component/toast/toast.wxss";
 @import "./component/showModal/showModal.wxss";
+@import "./component/loading/loading.wxss";
 /**app.wxss**/
 .container {
   height: 100%;

@@ -126,8 +126,8 @@
             <view>
                 <text class="fs30 mr60">联系人</text>
                 <text class="fs28 mr30">{{contact.realname}}</text>
-                <text class="fs28 mr30" wx:if="{{contact.sex == 1}}">男</text>
-                <text class="fs28 mr30" wx:elif="{{contact.sex == 2}}">女</text>
+                <text class="fs28 mr30" wx:if="{{contact.sex == 1}}">先生</text>
+                <text class="fs28 mr30" wx:elif="{{contact.sex == 2}}">女士</text>
                 <text class="fs28 mr30" wx:else></text>
                 <text class="fs28">{{contact.tel}}</text>
             </view>

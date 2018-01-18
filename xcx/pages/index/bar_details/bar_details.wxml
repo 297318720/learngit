@@ -120,7 +120,7 @@
 <view hidden="{{!show[1].flag}}" >
 <view class="attention_wrap bb" bindtap="open2">
     <image src="/assets/index_image/bar_note@2x.png" class="pr14 zhuyi_icon"></image>
-    <text class="c5c5c5 fs20">1.成功购买卡座套餐后，套餐内包含指定酒水和卡座，您可以直接到店消费；2、成功购买卡座套餐后因个人原因未到店消费，自付款日起，套餐内酒水我们将根据您的会员等级为您保留30/40/50/60日，请重新订座后到店消费。</text>
+    <text class="c5c5c5 fs20">1.成功购买卡座套餐后，套餐内包含指定酒水和卡座，您可以直接到店消费；2、成功购买卡座套餐后因个人原因未到店消费，自付款日起，套餐内酒水我们将根据您的会员等级为您保留相对应的天数，请重新订座后到店消费。</text>
     <image src="/assets/index_image/bar_arrow@2x.png"  class="bar_arrow posi_img "></image>
 </view>
 <!--到店日期-->
@@ -192,7 +192,7 @@
              <image src="/assets/index_image/bar_note@2x.png" class="zhu_icon pr14"></image>
              <view class="big_attention_right">
                  <text class="zhu_ziti">1、成功购买卡座套餐后，套餐内包含指定酒水和卡座，您可以直接到店消费；</text>
-                 <text class="zhu_ziti">2、成功购买卡座套餐后因个人原因未到店消费，自付款日起，套餐内酒水我们将根据您的会员等级为您保留30/40/50/60日，请重新订座后到店消费。</text>
+                 <text class="zhu_ziti">2、成功购买卡座套餐后因个人原因未到店消费，自付款日起，套餐内酒水我们将根据您的会员等级为您保留相对应的天数，请重新订座后到店消费。</text>
              </view>
          </view>
          <image src="/assets/index_image/bar_shutdow@2x.png" class="del" bindtap="close2"></image>

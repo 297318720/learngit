@@ -57,6 +57,7 @@ Page({
       longitude:"",  //经度
       type:1,  //排序的类型 1：距离，2：人气，3：评分，4：人均消费
       sort:1,  //排序的方式 1：升序，2：降序,
+      banner_show:false
 
   },
 
@@ -66,10 +67,12 @@ Page({
 
   onLoad: function (options) {
 
+
       var app = getApp();
       // toast/showModal组件实例
       new app.ToastPannel();
       new app.ShowModalPannel();
+      new app.LoadingPannel();
 
       // wx.getSystemInfo({
       //     success: function(res) {
@@ -133,7 +136,7 @@ Page({
                                 console.log(res)
                                 var jsondata = JSON.stringify(res.data)
                                 wx.setStorageSync('member', jsondata)
-
+                                this.show_tankuang()
                             })
                         }else {
                             console.log("code不存在")
@@ -166,6 +169,23 @@ Page({
                 });
             }
         });
+
+    },
+    show_tankuang:function () {
+        var member = storage()
+        var MD5 = md5()
+        var timestamp = MD5.timestamp
+        var str_md5 = MD5.str_md5
+        http(`${baseUrl}/v1/member/verifyBindPhoneNumber`,{token:member.token,client: 'xcx',unionid:member.unionid,sign:str_md5,timestamp:timestamp},(res)=> {
+            console.log(res)
+            if(res.code == 200){
+
+            }else {
+                this.setData({
+                    banner_show:true
+                })
+            }
+        })
 
     },
     openSetting:function () {
@@ -386,12 +406,19 @@ chooseLocation:function () {
     },
 
     chooseAdress:function () {
+        wx.showLoading({
+            title: '加载中',
+            mask:true
+        })
         wx.navigateTo({
             url: `./search/search?longitude=${this.data.longitude}&latitude=${this.data.latitude}`
         })
     },
     in_bar_detail:function (e) {
-
+        wx.showLoading({
+            title: '加载中',
+            mask:true
+        })
 
         var merchant_id =e.currentTarget.dataset.id
 
@@ -438,7 +465,74 @@ chooseLocation:function () {
         this.again_data()
         index = 1
     },
+    onHide:function () {
+        setTimeout(()=>{
+            wx.hideLoading()
+        },500)
+    },
+    // kai:function () {
+    //     this.showload({
+    //         content:'加载中'
+    //     })
+    //     setTimeout(()=>{
+    //         this.modal({
+    //             content:'测试'
+    //         })
+    //     },2000)
+    // },
 
+    onShareAppMessage: function (res) {
+        if (res.from === 'button') {
+            // 来自页面内转发按钮
+            console.log(res.target)
+            return {
+                title: '来自于按钮转发',
+                success: function(res) {
+                    // 转发成功
+                    console.log('转发成功')
+                },
+                fail: function(res) {
+                    // 转发失败
+                }
+            }
+        }
+        return {
+            title: '来自于菜单转发',
+            success: (res)=> {
+                // 转发成功
+               this.show({
+                   content:'您已经转发成功了哦'
+               })
+            },
+            fail: function(res) {
+                // 转发失败
+            }
+        }
+    },
+
+    close_banner:function () {
+        this.setData({
+            banner_show:false
+        })
+    },
+    into_collar_wine:function () {
+        wx.showLoading({
+            title: '加载中',
+            mask:true
+        })
+        wx.navigateTo({
+            url: `./collar_wine/collar_wine`
+        })
+    },
+    into_collar:function (e) {
+        var id = e.currentTarget.dataset.id
+        console.log(id)
+        if(id == 1){
+            wx.navigateTo({
+                url: `./collar_wine/collar_wine`
+            })
+        }
+    }
 
   })
 

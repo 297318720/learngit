@@ -47,7 +47,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+      var app = getApp();
+      // toast/showModal组件实例
+      new app.ToastPannel();
+      new app.ShowModalPannel();
+      new app.LoadingPannel();
 
       // 头上的简略信息
       var MD5 = md5()
@@ -89,14 +93,27 @@ Page({
         })
     },
     into_album:function () {
+        wx.showLoading({
+            title: '加载中',
+            mask:true
+        })
         wx.navigateTo({
             url: `./business_album_details/business_album_details?merchant_id=${this.data.simpleInfo.merchant_id}`
         })
     },
     into_user_evaluation:function () {
+        wx.showLoading({
+            title: '加载中',
+            mask:true
+        })
         wx.navigateTo({
             url: `./user_evaluation/user_evaluation?merchant_id=${this.data.simpleInfo.merchant_id}`
         })
+    },
+    onHide:function () {
+        setTimeout(()=>{
+            wx.hideLoading()
+        },500)
     }
 
 

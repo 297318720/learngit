@@ -42,7 +42,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+      var app = getApp();
+      // toast/showModal组件实例
+      new app.ToastPannel();
+      new app.ShowModalPannel();
+      new app.LoadingPannel();
 
       if(options.type){
           this.data.employee_id = options.employee_id;
@@ -120,6 +124,11 @@ Page({
       }
 
         wx.navigateBack();
+    },
+    onHide:function () {
+        setTimeout(()=>{
+            wx.hideLoading()
+        },500)
     }
 
 

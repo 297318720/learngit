@@ -2,9 +2,11 @@
 var mta= require('./helper/mta_analysis')
 import { ToastPannel } from './component/toast/toast'
 import { ShowModalPannel } from './component/showModal/showModal'
+import { LoadingPannel } from './component/loading/loading'
 App({
     ToastPannel,
     ShowModalPannel,
+    LoadingPannel,
   onLaunch: function () {
     // 小程序用户行为分析设置
       mta.App.init({

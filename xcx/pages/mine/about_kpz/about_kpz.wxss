@@ -1,0 +1,48 @@
+
+.logo_img{
+    width:130rpx;
+    height:130rpx;
+}
+.title{
+    margin: 14rpx 0 16rpx;
+}
+.version{
+    color: #656565;
+}
+.top{
+    background-color: #f5f8fa;
+}
+.top_wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 48rpx;
+    padding-bottom: 30rpx;
+
+}
+.describe_wrap{
+    padding: 0 24rpx 30rpx;
+}
+.describe_wrap > text{
+    line-height: 38rpx; /*px*/
+    color: #8f949a;
+}
+.common_wrap{
+    height:88rpx;
+    padding: 0 24rpx 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.right{
+    display: flex;
+    align-items: center;
+}
+.right_bar{
+    width:18rpx;
+    height:30rpx;
+}
+body{
+    height:100%;
+    background-color: #f5f8fa;
+}

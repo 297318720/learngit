@@ -37,6 +37,13 @@
     display: flex;
     align-items: center;
 }
+.call{
+    width:38rpx;
+    height:48rpx;
+}
+.justify{
+    justify-content: space-between;
+}
 .arrow_image{
     width:14rpx;
     height:25rpx;
@@ -113,6 +120,8 @@
     align-items: center;
     padding: 0 24rpx;
 }
+
+
 .flex_col1{
     display: flex;
     flex-direction: column;
@@ -361,4 +370,17 @@ page .wallets-password .input-content.active {
 }
 .shuoming text{
     line-height: 32rpx;
+}
+.del_line{
+    text-decoration:line-through;
+}
+.call{
+    width:38rpx;
+    height:48rpx;
+}
+.kpz_wrap{
+    height:88rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

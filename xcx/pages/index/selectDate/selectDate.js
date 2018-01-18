@@ -58,10 +58,11 @@ var baseUrl = globalData.baseUrl;
         },
 
         onLoad: function(options) {
-            // toast组件实例
             var app = getApp();
+            // toast/showModal组件实例
             new app.ToastPannel();
-
+            new app.ShowModalPannel();
+            new app.LoadingPannel();
               this.setData({
                   merchant_id:options.merchant_id
               })
@@ -293,6 +294,11 @@ var baseUrl = globalData.baseUrl;
             }
             return returnValue;
         },
+        onHide:function () {
+            setTimeout(()=>{
+                wx.hideLoading()
+            },500)
+        }
 
     });
 

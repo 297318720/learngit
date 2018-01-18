@@ -32,14 +32,17 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        var app = getApp();
+        // toast/showModal组件实例
+        new app.ToastPannel();
+        new app.ShowModalPannel();
+        new app.LoadingPannel();
 
         wx.setNavigationBarTitle({
             title: "会员中心"
         });
         this.setData({
             level: options.level,
-
         })
 
         var member = storage()
@@ -119,15 +122,28 @@ Page({
         }
     },
     into_vip_rules: function () {
+        wx.showLoading({
+            title: '加载中',
+            mask:true
+        })
         wx.navigateTo({
             url: '../vip_rules/vip_rules'
         })
 
     },
     into_member_level: function () {
+        wx.showLoading({
+            title: '加载中',
+            mask:true
+        })
         wx.navigateTo({
             url: `../members_level/members_level?level=${this.data.level}`
         })
     },
+    onHide:function () {
+        setTimeout(()=>{
+            wx.hideLoading()
+        },500)
+    }
 
 })

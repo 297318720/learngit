@@ -27,10 +27,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      // toast组件实例
       var app = getApp();
+      // toast/showModal组件实例
       new app.ToastPannel();
       new app.ShowModalPannel();
+      new app.LoadingPannel();
 
       wx.setNavigationBarTitle({
           title:'充值'
@@ -263,8 +264,10 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-  
+  onHide:function () {
+      setTimeout(()=>{
+          wx.hideLoading()
+      },500)
   },
 
   /**

@@ -24,23 +24,23 @@
             </view>
         </view>
 
-        <view class="list_item_bottom" wx:if="{{item.status == 1}}">
-            <text class="fs26 btn" bindtap="pay" data-date="{{item.arrives_time}}" data-begin_time_time="{{item.begin_time}}" data-order_no="{{item.order_no}}" data-pay_price="{{item.pay_price}}" data-created_time="{{item.created_time}}">去支付</text>
-        </view>
-        <view class="list_item_bottom" wx:elif="{{item.status == 3}}">
-            <text class="fs26 btn" data-merchant_id="{{item.merchant_id}}" bindtap="reserve_card">去预定卡座</text>
-        </view>
-        <view class="list_item_bottom1" wx:elif="{{item.seat_number != undefined}}">
-            <text class="fs26">您的卡座</text><text class="fs22 f5912c">{{item.seat_number}}</text>
-        </view>
-        <!--<view class="list_item_bottom1" wx:elif="{{item.employee_id}}">-->
-            <!--<text class="fs26 mr30">客户经理</text><image data-employee_id="{{item.employee_id}}" bindtap="into_waiter_details" src="{{item.employee_avatar}}" class="avatar_img"></image>-->
+        <!--<view class="list_item_bottom" wx:if="{{item.status == 1}}">-->
+            <!--<text class="fs26 btn" bindtap="pay" data-date="{{item.arrives_time}}" data-begin_time_time="{{item.begin_time}}" data-order_no="{{item.order_no}}" data-pay_price="{{item.pay_price}}" data-created_time="{{item.created_time}}">去支付</text>-->
         <!--</view>-->
-        <view class="list_item_bottom" wx:elif="{{item.is_comment == 0}}">
-            <text wx:if="{{item.winecount > 0}}" class="fs26 btn mr20" >查看续酒</text>
-            <text bindtap="into_wine_list" wx:if="{{item.order_type == 3?item.status ==4?true:false:false}}"  data-order_no="{{item.order_no}}"
+        <!--<view class="list_item_bottom" wx:elif="{{item.status == 3}}">-->
+            <!--<text class="fs26 btn" data-merchant_id="{{item.merchant_id}}" bindtap="reserve_card">去预定卡座</text>-->
+        <!--</view>-->
+        <!--<view class="list_item_bottom1" wx:elif="{{item.seat_number != undefined}}">-->
+            <!--<text class="fs26">您的卡座</text><text class="fs22 f5912c">{{item.seat_number}}</text>-->
+        <!--</view>-->
+
+        <view class="list_item_bottom">
+            <text class="fs26 btn" wx:if="{{item.status == 1}}" bindtap="pay" data-date="{{item.arrives_time}}" data-begin_time_time="{{item.begin_time}}" data-order_no="{{item.order_no}}" data-pay_price="{{item.pay_price}}" data-created_time="{{item.created_time}}">去支付</text>
+            <text class="fs26 btn" wx:elif="{{item.status == 3}}" data-merchant_id="{{item.merchant_id}}" bindtap="reserve_card">去预定卡座</text>
+            <text bindtap="into_wine_details" wx:if="{{item.winecount > 0}}" data-order_id="{{item.id}}" class="fs26 btn mr20" >查看续酒</text>
+            <text bindtap="into_wine_list" wx:if="{{item.button_display == 1}}"  data-order_no="{{item.order_no}}"
                data-order_id="{{item.id}}" data-merchant_id="{{item.merchant_id}}" data-order_type="{{item.order_type}}" class="fs26 btn_xujiu mr20">续酒</text>
-            <text class="fs26 btn" bindtap="evaluated"  data-order_no="{{item.order_no}}" data-type="1" data-index="{{index}}">去评价</text>
+            <text class="fs26 btn" wx:if="{{item.is_comment == 0}}" bindtap="evaluated"  data-order_no="{{item.order_no}}" data-type="1" data-index="{{index}}">去评价</text>
         </view>
     </view>
 </block>
@@ -60,6 +60,10 @@
 <view  class="bottom_loading" hidden="{{isHiddenBottom_loading}}">
 <text class="fs24">加载中...</text>
 </view>
+
+        <!-- 自定义Toast -->
+<import src="/component/toast/toast.wxml"/>
+<template is="toast" data="{{ ..._toast_ }}"/>
 
         <!-- 自定义showModal -->
 <import src="/component/showModal/showModal.wxml"/>

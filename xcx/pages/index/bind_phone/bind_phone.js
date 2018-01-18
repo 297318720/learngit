@@ -26,10 +26,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+      nowdate = 60;
       var app = getApp();
-      // toast组件实例
+      // toast/showModal组件实例
       new app.ToastPannel();
-
+      new app.ShowModalPannel();
+      new app.LoadingPannel();
       wx.setNavigationBarTitle({
           title:'绑定手机号'
       });
@@ -63,16 +65,17 @@ Page({
                         send_tel:this.data.input_tel,
                         submit_show:false
                     })
+                    this.count_down()
                 }else {
                     wx.hideLoading()
                     this.show({
-                        content:'获取验证码失败',
+                        content:res.msg,
                         // duration:3000
                     });
                 }
             })
 
-            this.count_down()
+
         }else {
             this.setData({
                 show:true
@@ -96,12 +99,14 @@ Page({
             this.setData({
                 show:true
             })
+
             // timeout则跳出递归
             return;
         }
         Timeout = setTimeout( ()=> {
             // 放在最后--
             nowdate -= 1;
+            console.log(nowdate)
             this.count_down();
         }, 1000)
 
@@ -128,7 +133,7 @@ Page({
                 if(res.code != 200){
                     wx.hideLoading()
                     this.show({
-                        content:'验证码输入有误',
+                        content:res.msg,
                         // duration:3000
                     });
                 }else {
@@ -171,6 +176,12 @@ Page({
                 // duration:3000
             });
         }
+    },
+
+    onHide:function () {
+        setTimeout(()=>{
+            wx.hideLoading()
+        },500)
     }
 
 

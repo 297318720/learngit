@@ -86,7 +86,9 @@ Page({
       clock:"",  //倒计时的时间
 
       status:'', //1是从订单的去支付跳转到支付页面，2是从续酒跳转到支付页面
-      order_id:''
+      order_id:'',   //续酒儿子的ID
+      top_order_id:'', //父亲的id，用于跳转续酒详情
+      buy_type:1, //	购买类型 1正常商品购买 2续酒
 
   },
 
@@ -96,9 +98,10 @@ Page({
   onLoad: function (options) {
 
       var app = getApp();
-      // toast组件实例
+      // toast/showModal组件实例
       new app.ToastPannel();
       new app.ShowModalPannel();
+      new app.LoadingPannel();
 
       wx.setNavigationBarTitle({
           title:"确认订单"
@@ -125,6 +128,12 @@ Page({
               })
           }
       })
+      // 如果有传buy_type，就改buy_type，默认是1正常商品支付
+      if(options.buy_type){
+          this.setData({
+              buy_type:options.buy_type
+          })
+      }
 
      // 点去支付转到的该支付页面的逻辑
       if(options.status != undefined){
@@ -143,7 +152,8 @@ Page({
               this.setData({
                   flag:2,
                   pay_price:this.returnFloat(options.pay_price),
-                  order_id:options.order_id
+                  order_id:options.order_id,
+                  top_order_id:options.top_order_id,
               })
           }
 
@@ -177,9 +187,10 @@ Page({
                  discount_money:data.discount_money,
 
              })
-             //获取客户经理头像
-             this.get_avatar()
+             this.get_avatar()    //获取客户经理头像
+             this.get_merchantDetail()    //商户电话
          }else {
+             this.get_merchantDetail()
              console.log(options.date)
              this.setData({
                  date:options.date,
@@ -188,7 +199,10 @@ Page({
                  goodspack:JSON.parse(options.item)
              })
              this.setData({
-                 pay_price:this.returnFloat(this.data.goodspack.price - this.data.discount_money)
+                 discount_money:this.returnFloat(this.data.goodspack.market_price - this.data.goodspack.price)
+             })
+             this.setData({
+                 pay_price:this.returnFloat(this.data.goodspack.market_price - this.data.discount_money)
              })
              this.do_santao()
          }
@@ -231,8 +245,7 @@ Page({
             begin_time_date:this.getDateString(new Date(this.data.begin_time)),
             begin_time_time:this.getDateTimeString(new Date(this.data.begin_time))
         })
-        console.log(this.data.begin_time_date)
-        console.log(this.data.begin_time_time)
+
     },
     //获取客户经理头像
     get_avatar:function () {
@@ -252,7 +265,10 @@ Page({
                     http(`${baseUrl}/v1/Employee/employeeInfo`,{client: 'xcx',employee_id:this.data.employee_id,sign:str_md5,timestamp:timestamp},(res)=>{
                         console.log(res)
                         this.setData({
-                            avatar:res.data.avatar
+                            avatar:res.data.avatar,
+                            employee_tel:res.data.tel,
+                            employee_id:res.data.employee_id,
+                            employee_realname:res.data.realname,
                         })
                     })
                 }
@@ -260,6 +276,19 @@ Page({
 
         })
 
+    },
+    get_merchantDetail:function(){
+        var MD5 = md5()
+        var timestamp = MD5.timestamp
+        var str_md5 = MD5.str_md5
+        http(`${baseUrl}/v1/Merchant/merchantDetail`, {client: 'xcx',merchant_id:this.data.merchant_id,sign:str_md5,timestamp:timestamp}, (res) => {
+            console.log(res)
+            if(res.code == 200){
+                this.setData({
+                    merchant_tel:res.data.tel
+                })
+            }
+        })
     },
     // 处理散套信息
     do_santao:function () {
@@ -338,6 +367,10 @@ Page({
                           confirmText:"确认提交",
                           content:"1、本套餐必须在"+this.data.date+" "+this.data.begin_time_time+"到店消费，逾期作废将不退还费用\r\n2、套餐内包含指定酒水和一张小圆桌。",
                           confirm:()=>{
+                              wx.showLoading({
+                                  title: '加载中',
+                                  mask:true
+                              })
                               this.http_buyPackGoods()
                           }
                       })
@@ -362,6 +395,10 @@ Page({
                                   confirmText:"确认提交",
                                   content:res.data.tips_msg,
                                   confirm:()=>{
+                                      wx.showLoading({
+                                          title: '加载中',
+                                          mask:true
+                                      })
                                       this.http_buyPackGoods()
                                   }
                               })
@@ -404,6 +441,10 @@ Page({
               confirmText:"确认提交",
               content:"1、本套餐必须在"+this.data.date+" "+this.data.begin_time_time+"到店消费，逾期作废将不退还费用\r\n2、您可在消费前联系酒吧或者客户经理做进一步的沟通。",
               confirm:()=>{
+                  wx.showLoading({
+                      title: '加载中',
+                      mask:true
+                  })
                   this.http_buySeatGoods()
               }
           })
@@ -411,6 +452,8 @@ Page({
     },
     // 提交卡套或者优惠套餐订单
     http_buyPackGoods:function () {
+        console.log(this.data.goodspack.price)
+        console.log(this.data.discount_money)
         var member = storage()
         var MD5 = md5()
         var timestamp = MD5.timestamp
@@ -427,8 +470,8 @@ Page({
                 contacts_realname:this.data.contact.realname,
                 contacts_tel:this.data.contact.tel,
                 contacts_sex:this.data.contact.sex,
-                total_price:this.data.goodspack.price,
-                pay_price:this.data.goodspack.price - this.data.discount_money,
+                total_price:this.data.goodspack.market_price,
+                pay_price:this.data.pay_price,
                 discount_money:this.data.discount_money,
                 order_type:this.data.order_type,
                 description:"",
@@ -643,6 +686,7 @@ Page({
             })
 
             http(`${baseUrl}/v1/order/payment`,{
+                buy_type:this.data.buy_type,
                 uid:member.uid,
                 token:member.token,
                 client: 'xcx',
@@ -655,7 +699,6 @@ Page({
                 timestamp:timestamp,
                 pay_type:1
             },(res)=>{
-
                 console.log(res)
                if(res.code == 200){
                    wx.hideLoading()
@@ -672,7 +715,7 @@ Page({
                            this.paymentResult();
                            http_paymentResult = setInterval(()=>{
                                this.paymentResult()
-                           },3000)
+                           },1000)
 
                        },
                        'fail':(res)=>{
@@ -700,18 +743,18 @@ Page({
             console.log(res)
             if(res.code == 200){
                 if(res.data.pay_status == 1){
-                    console.log('订单状态已改变')
                     clearInterval(http_paymentResult)
+                    console.log('订单状态已改变')
                     if(this.data.status == 2){ // 如果是续酒，则跳到续酒详情
+                        console.log('续酒')
                         wx.redirectTo({
-                            url: `../../order/order_details/order_details?order_no=${this.data.order_no}`
+                            url: `../../wine/wine_details/wine_details?order_id=${this.data.top_order_id}`
                         })
                     }else {  //你是续酒跳到订单详情
                         wx.redirectTo({
-                            url: `../../wine/wine_details/wine_details?order_id=${this.data.order_id}`
+                            url: `../../order/order_details/order_details?order_no=${this.data.order_no}`
                         })
                     }
-
                 }
             }
         })
@@ -728,13 +771,15 @@ Page({
         if (this.data.wallets_password.length == 6) {//密码长度6位时，自动验证钱包支付结果
             // 发送HTTP支付
             // 如果支持成功
+            wx.hideLoading()
+            this.showload({
+                content:'余额支付中'
+            })
             this.setData({
                 wallets_password_flag:false,
                 isFocus: false,
             })
-            wx.showLoading({
-                title: '余额支付中',
-            })
+
             var member = storage()
             var MD5 = md5()
             var timestamp = MD5.timestamp
@@ -749,6 +794,7 @@ Page({
                     if(res.data.is_success == 1){
                          // 密码输入正确后请求服务器提交支付
                         http(`${baseUrl}/v1/order/payment`,{
+                            buy_type:this.data.buy_type,
                             uid:member.uid,
                             token:member.token,
                             client: 'xcx',
@@ -761,7 +807,9 @@ Page({
                             timestamp:timestamp,
                             pay_type:1
                         },(res)=>{
+                            console.log(res)
                             if(res.code == 200){
+                                this.hideload()
                                 wx.hideLoading()
                                 wx.redirectTo({
                                     url: `../../payment/pay_success/pay_success?pay_price=${this.data.pay_price}&date=${this.data.date} ${this.data.begin_time_time}&status=${this.data.status}`
@@ -861,6 +909,7 @@ Page({
 
         }
     },
+
     close_wallets_password () {//关闭钱包输入密码遮罩
         this.setData({
             isFocus: false,//失去焦点
@@ -877,23 +926,29 @@ Page({
         //         }
         //     }
         // })
-        this.modal({
-            content:"您已取消支付",
-            confirmText:"确定",
-            showCancel:false,
-            confirm:()=>{
-                wx.redirectTo({
-                    url: `../../order/order_details/order_details?order_no=${this.data.order_no}`
-                })
-            },
-        })
+        if(this.data.status == 1){
+            this.modal({
+                content:"您已取消支付",
+                confirmText:"确定",
+                showCancel:false,
+                confirm:()=>{
+                    wx.redirectTo({
+                        url: `../../order/order_details/order_details?order_no=${this.data.order_no}`
+                    })
+                },
+            })
+        }
+
     },
     onUnload:function(){
         clearTimeout(Timeout)
     },
-    // onHide:function () {
-    //     clearTimeout(Timeout)
-    // },
+    onHide:function () {
+        setTimeout(()=>{
+            wx.hideLoading()
+            this.hideload()
+        },500)
+    },
     // onShow:function () {
     //     olddate = 1504857664338
     //     total_micro_second = 30 * 60;
@@ -958,5 +1013,24 @@ Page({
     formatNumber:function(n) {
         n = n.toString()
         return n[1] ? n : '0' + n
+    },
+    call:function (e) {
+        wx.makePhoneCall({
+            phoneNumber: e.currentTarget.dataset.tel
+        })
+    },
+    into_waiter_details:function (e) {
+        wx.showLoading({
+            title: '加载中',
+            mask:true
+        })
+        wx.navigateTo({
+            url: `../../index/waiter_details/waiter_details?employee_id=${e.currentTarget.dataset.employee_id}&type=1`
+        })
+    },
+    kpz_call:function () {
+        wx.makePhoneCall({
+            phoneNumber: '4008885186'
+        })
     },
 })

@@ -48,11 +48,15 @@
 .list_item_bottom{
     background-color: #475a6a;
     padding: 0 24rpx;
-    height:68rpx;
+    /*height:68rpx;*/
     display: flex;
     align-items: center;
     justify-content: flex-end;
 
+}
+.list_item_bottom > text{
+    margin-top:12rpx ;
+    margin-bottom:12rpx ;
 }
 .list_item_bottom1{
     background-color: #475a6a;
@@ -60,7 +64,9 @@
     height:68rpx;
     display: flex;
     align-items: center;
-
+}
+.list_item_bottom > text:last-child{
+    margin-right: 0rpx;
 }
 .order_image{
     width:252rpx;

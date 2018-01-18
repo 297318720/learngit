@@ -114,6 +114,7 @@ Page({
       // toast组件实例
       new app.ToastPannel();
       new app.ShowModalPannel();
+      new app.LoadingPannel();
       // 传递过来的商户ID
       console.log(this)
       this.setData({
@@ -288,6 +289,10 @@ Page({
 
     },
     into_business_details:function () {
+        wx.showLoading({
+            title: '加载中',
+            mask:true
+        })
         wx.navigateTo({
             url: `../business_details/business_details?merchant_id=${this.data.merchant_id}`
         })
@@ -362,6 +367,10 @@ Page({
         var nth = e.currentTarget.dataset.index;
         var employee_id=this.data.manager_list[nth].employee_id
        console.log(employee_id)
+        wx.showLoading({
+            title: '加载中',
+            mask:true
+        })
         wx.navigateTo({
             url: `../waiter_details/waiter_details?index=${nth}&curchoose=${this.data.cur_choose_manager}&employee_id=${employee_id}`
         })
@@ -372,11 +381,19 @@ Page({
         // })
     },
     into_waiter_details:function () {
+        wx.showLoading({
+            title: '加载中',
+            mask:true
+        })
         wx.navigateTo({
             url: `../business_details/business_details?merchant_id=${this.data.merchant_id}`
         })
     },
     into_selectDate:function () {
+        wx.showLoading({
+            title: '加载中',
+            mask:true
+        })
           wx.navigateTo({
               url: `../selectDate/selectDate?merchant_id=${this.data.merchant_id}`
           })
@@ -513,6 +530,10 @@ Page({
                                 confirmText:'去绑定',
                                 showCancel:false,
                                 confirm:()=>{
+                                    wx.showLoading({
+                                        title: '加载中',
+                                        mask:true
+                                    })
                                     wx.navigateTo({
                                         url: `../bind_phone/bind_phone`
                                     })
@@ -522,6 +543,7 @@ Page({
                         }else {
                             var member = storage()
                             var type = e.currentTarget.dataset.type;
+                            console.log(e.currentTarget.dataset.item)
                             var item = JSON.stringify(e.currentTarget.dataset.item);
                             if(type == 2){
                                 //判断之前订过这个卡套餐没
@@ -529,6 +551,10 @@ Page({
                                     console.log(res)
                                     if(res.code == 200){
                                         wx.hideLoading()
+                                        wx.showLoading({
+                                            title: '加载中',
+                                            mask:true
+                                        })
                                         wx.navigateTo({
                                             url: `../confirm_order/confirm_order?type=${type}&merchant_id=${this.data.merchant_id}&item=${item}&order_no=${res.data.order_no}&date=${this.data.date1}&begin_time=${this.data.begin_time}`
                                         })
@@ -546,6 +572,10 @@ Page({
                                     console.log(res)
                                     if(res.code == 200){
                                         wx.hideLoading()
+                                        wx.showLoading({
+                                            title: '加载中',
+                                            mask:true
+                                        })
                                         wx.navigateTo({
                                             url: `../confirm_order/confirm_order?type=${type}&merchant_id=${this.data.merchant_id}&item=${item}&order_no=${res.data.order_no}&date=${this.data.date}&begin_time=${this.data.begin_time}`
                                         })
@@ -664,6 +694,11 @@ Page({
 
         }
 
+    },
+    onHide:function () {
+        setTimeout(()=>{
+            wx.hideLoading()
+        },500)
     }
 
 

@@ -11,8 +11,8 @@
                 <view>
                     <text class="fs30 mr60">联系人</text>
                     <text class="fs28 mr30">{{contact.realname}}</text>
-                    <text class="fs28 mr30" wx:if="{{contact.sex == 1}}">男</text>
-                    <text class="fs28 mr30" wx:elif="{{contact.sex == 2}}">女</text>
+                    <text class="fs28 mr30" wx:if="{{contact.sex == 1}}">先生</text>
+                    <text class="fs28 mr30" wx:elif="{{contact.sex == 2}}">女士</text>
                     <text class="fs28 mr30" wx:else></text>
                     <text class="fs28 ">{{contact.tel}}</text>
                 </view>
@@ -20,9 +20,19 @@
             </view>
         </view>
  <view class="common_title"><text class="fs24 c5c5c5">商品信息</text></view>
- <view class="bar_details bgc bb">
-     <text class="fs30">{{title}}</text>
- </view>
+
+
+    <view class="bar_details justify bgc bb" >
+        <view class="common_item" bindtap="into_business_details">
+            <text class="fs30 mr20">{{title}}</text>
+            <!--<image src="/assets/order_image/order_arrow@2x.png" class="arrow_image"></image>-->
+        </view>
+        <view class="common_item">
+            <text class="fs26 mr30">联系商家</text>
+            <image src="/assets/index_image/bar_phone@2x.png" class="call" data-tel="{{merchant_tel}}" bindtap="call"></image>
+        </view>
+    </view>
+
  <view class="" >
      <view class="bb card_message bgc">
          <view class="card_message_left  mr20">
@@ -37,10 +47,20 @@
          </view>
      </view>
      <view class="card_bottom bb bgc">
-         <view class="common_item " wx:if="{{is_offer == 1}}">
-             <text class="fs30 mr55">客户经理</text>
-             <image src="{{avatar}}" class="yuan"></image>
+
+         <!--<view class="common_item " wx:if="{{is_offer == 1}}">-->
+             <!--<text class="fs30 mr55">客户经理</text>-->
+             <!--<image src="{{avatar}}" class="yuan"></image>-->
+         <!--</view>-->
+         <view class="common_item justify " wx:if="{{is_offer == 1}}">
+             <view class="common_item">
+                 <text class="fs30 mr55">客户经理</text>
+                 <image src="{{avatar}}" data-employee_id="{{employee_id}}" bindtap="into_waiter_details" class="yuan mr10 no_avatarimg"></image>
+                 <text class="fs28">{{employee_realname}}</text>
+             </view>
+             <image src="/assets/index_image/bar_phone@2x.png" data-tel="{{employee_tel}}" class="call" bindtap="call"></image>
          </view>
+
          <view class="common_item ">
              <text class="fs30 mr30">到店日期：</text>
              <text class="fs28">{{date}} {{begin_time_time}}</text>
@@ -61,14 +81,19 @@
          <!--<text class="fs28">￥0</text>-->
      <!--</view>-->
      <view class="price bgc">
-         <view><text class="fs30 mr20">总计：￥{{message.set_price}}</text><text class="fs30">优惠：￥{{discount_money}}</text></view>
-         <view><text class="fs30">实付金额</text><text class="fs28 ff9933">￥{{pay_price}}</text></view>
+         <view><text class="fs26 mr20">总计：￥{{message.set_price}}</text><text class="fs26" wx:if="{{discount_money != 0}}">优惠：￥{{discount_money}}</text></view>
+         <view><text class="fs28">实付金额</text><text class="fs28 ff9933">￥{{pay_price}}</text></view>
+     </view>
+     <view class="kpz_wrap bgc bt" bindtap="kpz_call">
+         <image src="/assets/index_image/bar_phone@2x.png"  class="call mr10" ></image>
+         <text class="fs28">空瓶子客服</text>
      </view>
      <view class="shuoming" >
          <text class="fs30 ff9933 mb20">说明</text>
          <text class="fs24 c5c5c5 ">1、须在{{begin_time_time}}到店消费，逾期作废将不退还预定金。</text>
          <text class="fs24 c5c5c5 ">2、如果该商家有显示客户经理，您可以选择一位为您服务；如果该商家没有显示，提交订单后商家会分配一位客户经理为您服务。</text>
-         <text class="fs24 c5c5c5 ">2、成功预定卡座后因个人原因未到店消费，定金不予退还。</text>
+         <text class="fs24 c5c5c5 ">3、成功预定卡座后因个人原因未到店消费，定金不予退还。</text>
+         <text class="fs24 c5c5c5 ">4、预定金会抵扣在酒吧的消费金额。</text>
      </view>
  </view>
 </view>
@@ -80,8 +105,8 @@
         <view>
             <text class="fs30 mr60">{{contact.realname?'联系人':'添加姓名'}}</text>
             <text class="fs28 mr30">{{contact.realname}}</text>
-            <text class="fs28 mr30" wx:if="{{contact.sex == 1}}">男</text>
-            <text class="fs28 mr30" wx:elif="{{contact.sex == 2}}">女</text>
+            <text class="fs28 mr30" wx:if="{{contact.sex == 1}}">先生</text>
+            <text class="fs28 mr30" wx:elif="{{contact.sex == 2}}">女士</text>
             <text class="fs28 mr30" wx:else></text>
             <text class="fs28 ">{{contact.tel}}</text>
         </view>
@@ -89,8 +114,16 @@
     </view>
      <!--商品信息-->
     <view class="common_title"><text class="fs30 c5c5c5">商品信息</text></view>
-    <view class="bar_details bgc bb">
-        <text class="fs30">{{title}}</text>
+
+    <view class="bar_details justify bgc bb" >
+        <view class="common_item">
+            <text class="fs30 mr20">{{title}}</text>
+            <!--<image src="/assets/order_image/order_arrow@2x.png" class="arrow_image"></image>-->
+        </view>
+        <view class="common_item">
+            <text class="fs26 mr30">联系商家</text>
+            <image src="/assets/index_image/bar_phone@2x.png" class="call" data-tel="{{merchant_tel}}" bindtap="call"></image>
+        </view>
     </view>
 
     <view class="packages bb">
@@ -100,7 +133,10 @@
                 <text class="fs30 mb20">{{goodspack.title}}</text>
                 <text class="fs24 c5c5c5 lh30">{{goodspack.description}}</text>
             </view>
-            <text class="fs24 ff9933">￥{{goodspack.price}}</text>
+            <view>
+                <text class="fs20 c5c5c5 mr10 del_line">￥{{goodspack.market_price}}</text>
+                <text class="fs28 ff9933">￥{{goodspack.price}}</text>
+            </view>
         </view>
     </view>
     <view class="price bgc bb">
@@ -111,8 +147,12 @@
         <!--<text class="fs28">￥0</text>-->
     <!--</view>-->
     <view class="price bgc">
-        <view><text class="fs30 mr20">总计：￥{{goodspack.price}}</text><text class="fs30">优惠：￥{{discount_money}}</text></view>
-        <view><text class="fs30">实付金额</text><text class="fs28 ff9933">￥{{pay_price}}</text></view>
+        <view><text class="fs26 mr20">总计：￥{{goodspack.market_price}}</text><text wx:if="{{discount_money != 0}}" class="fs26">优惠：￥{{discount_money}}</text></view>
+        <view><text class="fs28">实付金额</text><text class="fs28 ff9933">￥{{pay_price}}</text></view>
+    </view>
+    <view class="kpz_wrap bgc bt" bindtap="kpz_call">
+        <image src="/assets/index_image/bar_phone@2x.png"  class="call mr10" ></image>
+        <text class="fs28">空瓶子客服</text>
     </view>
 </view>
     <!--说明文字-->
@@ -224,3 +264,7 @@
         <!-- 自定义showModal -->
 <import src="/component/showModal/showModal.wxml"/>
 <template is="showModal" data="{{ ..._showModal_ }}"/>
+
+        <!-- loading -->
+<import src="/component/loading/loading.wxml"/>
+<template is="loading" data="{{ ..._loading_ }}"/>

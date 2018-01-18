@@ -1,9 +1,12 @@
     {
   "pages":[
     "pages/index/index",
+    "pages/index/change_phone/change_phone",
+    "pages/index/collar_wine/collar_wine",
+    "pages/index/change_phone/submit_phone/submit_phone",
+    "pages/mine/about_kpz/about_kpz",
     "pages/wine/wine_details/wine_details",
     "pages/wine/wine_confirm_order/wine_confirm_order",
-
     "pages/wine/wine_list/wine_list",
     "pages/payment/pay_success/pay_success", 
     "pages/mine/mine",

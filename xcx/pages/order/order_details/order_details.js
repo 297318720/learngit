@@ -92,11 +92,14 @@ Page({
    */
   onLoad: function (options) {
       console.log(new Date().getTime())
-
+      var app = getApp();
+      // toast/showModal组件实例
+      new app.ToastPannel();
+      new app.ShowModalPannel();
+      new app.LoadingPannel();
       wx.setNavigationBarTitle({
           title:"订单详情"
       });
-      console.log(options.order_no)
       this.data.cur_message.order_no = options.order_no
       var member = storage()
       var MD5 = md5()
@@ -145,6 +148,10 @@ Page({
         })
     },
     into_business_details:function () {
+        wx.showLoading({
+            title: '加载中',
+            mask:true
+        })
         wx.navigateTo({
             url: `../../index/business_details/business_details?merchant_id=${this.data.cur_message.merchant_id}`
         })
@@ -166,6 +173,9 @@ Page({
                     break;
                 case 4:
                     card.payment = '银联支付';
+                    break;
+                case 0:
+                    card.payment = '未支付';
                     break;
             }
             card.contacts_realname = res.data.contacts_realname
@@ -189,6 +199,8 @@ Page({
             this.data.cur_message.incr_time = res.data.incr_time
             this.data.cur_message.is_comment = res.data.is_comment
             this.data.cur_message.merchant_tel = res.data.merchant_tel
+            this.data.cur_message.order_qrcode = res.data.order_qrcode
+            this.data.cur_message.cancel_reason = res.data.cancel_reason
             this.setData(this.data)
         }
         if(this.data.cur_message.order_type == 1){
@@ -319,17 +331,17 @@ Page({
                 switch (this.data.cur_message.order_type) {
                     case 1:
                         this.setData({
-                            status_message: "抱歉，您预定的卡座因特殊原因已被商家拒绝，系统将自动退还您的预订金，欢迎下次预定~"
+                            status_message: `${this.data.cur_message.cancel_reason}。系统将自动退还您的预订金，欢迎下次预定~`
                         })
                         break;
                     case 2:
                         this.setData({
-                            status_message: "抱歉，您购买的卡座套餐因特殊原因已被商家拒绝，系统将自动退还您的金额，您可以尝试购买其他套餐~"
+                            status_message: `${this.data.cur_message.cancel_reason}。系统将自动退还您的预订金，欢迎下次预定~`
                         })
                         break;
                     case 3:
                         this.setData({
-                            status_message: "抱歉，您购买的优惠套餐因特殊原因已被商家拒绝，系统将自动退还您的金额，您可以尝试购买其他套餐~"
+                            status_message: `${this.data.cur_message.cancel_reason}。系统将自动退还您的预订金，欢迎下次预定~`
                         })
                         break;
                 }
@@ -365,7 +377,6 @@ Page({
                     this.setData({
                         status_message:`已为您预定的卡座延时${this.data.cur_message.incr_time}分钟，请您在${this.data.cur_message.incr_time}分钟内到店消费，过时订单自动作废并不退还套餐费用。`
                     })
-
                 }
                 break;
             default:
@@ -423,6 +434,7 @@ Page({
                   disabled:true
               });
           }
+
             // timeout则跳出递归
             return;
         }
@@ -454,12 +466,20 @@ Page({
     },
     // 去评价
     evaluated:function (e) {
+        wx.showLoading({
+            title: '加载中',
+            mask:true
+        })
         wx.navigateTo({
             url: `../no_evaluated/no_evaluated?type=${e.currentTarget.dataset.type}&order_no=${this.data.cur_message.order_no}`
         })
     },
     //进入已评价页面
     into_evaluated:function () {
+        wx.showLoading({
+            title: '加载中',
+            mask:true
+        })
         wx.navigateTo({
             url: `../is_evaluated/is_evaluated?order_no=${this.data.cur_message.order_no}`
         })
@@ -476,6 +496,10 @@ Page({
         })
     },
     into_waiter_details:function (e) {
+        wx.showLoading({
+            title: '加载中',
+            mask:true
+        })
         wx.navigateTo({
             url: `../../index/waiter_details/waiter_details?employee_id=${e.currentTarget.dataset.employee_id}&type=1`
         })
@@ -485,6 +509,22 @@ Page({
             phoneNumber: e.currentTarget.dataset.tel
         })
     },
+    kpz_call:function () {
+        wx.makePhoneCall({
+            phoneNumber: '4008885186'
+        })
+    },
+    previewImage:function (e) {
+         wx.previewImage({
+             // current:curimage, // 当前显示图片的http链接
+             urls:[this.data.cur_message.order_qrcode] // 需要预览的图片http链接列表
+         })
+    },
+    onHide:function () {
+        setTimeout(()=>{
+            wx.hideLoading()
+        },500)
+    }
 
 
 })

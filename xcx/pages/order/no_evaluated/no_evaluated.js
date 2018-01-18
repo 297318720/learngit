@@ -47,7 +47,7 @@ Page({
       var app = getApp();
       new app.ToastPannel();
       new app.ShowModalPannel();
-
+      new app.LoadingPannel();
       wx.setNavigationBarTitle({
           title:"我的评价"
       });
@@ -112,14 +112,22 @@ Page({
 
     },
     submit:function () {
-       if(this.data.key1 == 0 || this.data.key2 == 0 || this.data.key3 == 0 || (this.data.data_evaluated.employee_realname == undefined?false:this.data.key4 == 0) || this.data.sum <6){
+       if(this.data.key1 == 0 || this.data.key2 == 0 || this.data.key3 == 0 || (this.data.data_evaluated.employee_realname == undefined?false:this.data.key4 == 0)){
            wx.hideLoading()
            this.show({
-               content:'星级打分和评论文字必须填噢',
+               content:'星级打分请填噢',
+               // duration:3000
+           });
+           return
+       }else if(this.data.sum <6){
+           wx.hideLoading()
+           this.show({
+               content:'评论文字须达到6个噢~',
                // duration:3000
            });
            return
        }
+
         wx.showLoading({
             title: '提交中',
         })
@@ -173,12 +181,11 @@ Page({
                     //         }
                     //     }
                     // })
+
                     this.modal({
                         content:res.msg,
                         showCancel:false,
-                        confirm:()=>{
 
-                        }
                     })
                 }
             })
@@ -222,6 +229,10 @@ Page({
 
 
     },
-
+    onHide:function () {
+        setTimeout(()=>{
+            wx.hideLoading()
+        },500)
+    }
 
 })

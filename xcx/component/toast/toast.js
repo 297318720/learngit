@@ -5,9 +5,11 @@ let _compData = {
     '_toast_.isHide': false,// 控制组件显示隐藏
     '_toast_.content': ''// 显示的内容
 }
+
 let toastPannel = {
     // toast显示的方法
     show: function(data) {
+        this.hideload()
         wx.hideLoading()
         let self = this;
         this.setData({ '_toast_.isHide': true, '_toast_.content': data.content});
@@ -16,6 +18,7 @@ let toastPannel = {
         },data.duration || 1300)
     }
 }
+
 function ToastPannel() {
     // 拿到当前页面对象
     let pages = getCurrentPages();

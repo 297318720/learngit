@@ -6,8 +6,8 @@ var {
     globalData
 } = getApp()
 var baseUrl = globalData.baseUrl;
-
 var index= 1;
+var is_shuaxin;
 Page({
 
   /**
@@ -38,9 +38,12 @@ Page({
    */
 
   onLoad: function (options) {
+      is_shuaxin =false
       var app = getApp();
       // toast/showModal组件实例
+      new app.ToastPannel();
       new app.ShowModalPannel();
+      new app.LoadingPannel();
 
       wx.setNavigationBarTitle({
           title:"订单"
@@ -167,12 +170,14 @@ Page({
         var timestamp = MD5.timestamp
         var str_md5 = MD5.str_md5
 
-
             //主动修改订单状态
         http(`${baseUrl}/v1/order/updateStatus`,{client:'xcx',sign:str_md5,timestamp:timestamp},(res)=>{
             console.log(res)
             http(`${baseUrl}/v1/order/myOrderList`,{token:get_member.token,client:'xcx',member_id:get_member.member_id,page:1,page_size:8,sign:str_md5,timestamp:timestamp},(res)=>{
                 console.log(res)
+                is_shuaxin = true
+                wx.hideLoading()
+                wx.stopPullDownRefresh()
                 this.setData({
                     list:res.data.list
                 })
@@ -190,7 +195,6 @@ Page({
                 wx.hideNavigationBarLoading()
             })
         })
-
     },
 
     into_business_details:function (e) {
@@ -225,6 +229,12 @@ Page({
       this.onLoad()
       index = 1
   },
+    onShow:function () {
+        if(is_shuaxin){
+            wx.startPullDownRefresh()
+        }
+
+    },
 
     // 上拉触底
     onReachBottom:function () {
@@ -243,9 +253,6 @@ Page({
                     this.data.isHiddenBottom_loading = true
                     this.setData(this.data)
                 }
-
-
-
             })
         }
 
@@ -263,9 +270,36 @@ Page({
     },
 
     into_wine_list:function (e) {
-        wx.navigateTo({
-            url: `../wine/wine_list/wine_list?order_id=${e.currentTarget.dataset.order_id}&merchant_id=${e.currentTarget.dataset.merchant_id}&order_type=${e.currentTarget.dataset.order_type}&order_no=${e.currentTarget.dataset.order_no}`
+        var MD5 = md5()
+        var timestamp = MD5.timestamp
+        var str_md5 = MD5.str_md5
+        var member = storage()
+        http(`${baseUrl}/v1/renew/checkWineTime`, {token:member.token,client:'xcx',order_id:e.currentTarget.dataset.order_id,merchant_id:e.currentTarget.dataset.merchant_id,sign:str_md5,timestamp:timestamp}, (res) => {
+            console.log(res)
+          if(res.code == 200){
+              wx.navigateTo({
+                  url: `../wine/wine_list/wine_list?order_id=${e.currentTarget.dataset.order_id}&merchant_id=${e.currentTarget.dataset.merchant_id}&order_type=${e.currentTarget.dataset.order_type}&order_no=${e.currentTarget.dataset.order_no}`
+              })
+          }else {
+              this.show({
+                  content:res.msg,
+                  // duration:3000
+              })
+          }
         })
+
+
+    },
+
+    into_wine_details:function (e) {
+        wx.navigateTo({
+            url: `../wine/wine_details/wine_details?order_id=${e.currentTarget.dataset.order_id}`
+        })
+    },
+    onHide:function () {
+        setTimeout(()=>{
+            wx.hideLoading()
+        },500)
     }
 
 

@@ -15,7 +15,7 @@
         interval="3000" style="height:206rpx">
 <block wx:for="{{imgUrls}}" wx:key="{{imgUrls}}">
     <swiper-item>
-        <image src="{{item.img}}" class="slide-image" width="355" height="150"/>
+        <image src="{{item.img}}" class="slide-image" width="355" height="150" data-id="{{item.id}}" bindtap="into_collar" />
     </swiper-item>
 </block>
 </swiper>
@@ -79,13 +79,27 @@
    </block>
 </view>
 
+<view class="tankuang_wrap" wx:if="{{banner_show}}">
+    <view class="tan_content_wrap" catchtap="into_collar_wine">
+        <image src="/assets/index_image/text.png"></image>
+        <view class="banner_text">
+            <text class="banner_text_1">初次见面，现在立即绑定手机号码即送酒水</text>
+            <text class="banner_text_2">(现场出示给服务员看就能立即领取酒水了，记得领取哦)</text>
+        </view>
+        <view class="close_img_wrap" catchtap="close_banner">
+            <image src="/assets/index_image/shutdown.png"></image>
+            <view class="col_line"></view>
+        </view>
+    </view>
+</view>
+
+
+
 
 <!--上拉加载列表过渡效果-->
 <view  class="bottom_loading" hidden="{{isHiddenBottom_loading}}">
    <text class="fs24">加载中...</text>
 </view>
-
-
         <!-- 自定义Toast -->
 <import src="/component/toast/toast.wxml"/>
 <template is="toast" data="{{ ..._toast_ }}"/>
@@ -93,6 +107,10 @@
         <!-- 自定义showModal -->
 <import src="/component/showModal/showModal.wxml"/>
 <template is="showModal" data="{{ ..._showModal_ }}"/>
+
+        <!-- loading -->
+<import src="/component/loading/loading.wxml"/>
+<template is="loading" data="{{ ..._loading_ }}"/>
 
 <!--<view class="test" style="bottom:{{bottom}}rpx">-->
     <!--<view>-->

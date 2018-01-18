@@ -54,7 +54,7 @@
 <view class="miaosu bgc">
     <textarea placeholder="描述您在酒吧的具体感受..." cursor-spacing="90" class="miaosu_message" maxlength="80"
               placeholder-style="color:#c5c5c5;font-size:28rpx;"  bindinput="input"/>
-    <text class="item fs24 c5c5c5" wx:if="{{num1 > 0}}">至少输入{{num1}}个字</text>
+    <text class="item fs24 c5c5c5" wx:if="{{num1 > 0}}">{{sum == 0?'至少':'还需'}}输入{{num1}}个字</text>
     <text class="item fs24 c5c5c5" wx:else>{{sum}}/80</text>
 </view>
 <!--提交-->

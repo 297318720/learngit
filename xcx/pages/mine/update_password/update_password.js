@@ -35,10 +35,11 @@ Page({
     },
     //事件处理函数
     onLoad: function (options) {
-        // toast组件实例
         var app = getApp();
+        // toast/showModal组件实例
         new app.ToastPannel();
         new app.ShowModalPannel();
+        new app.LoadingPannel();
 
         wx.setNavigationBarTitle({
             title:'修改支付密码'
@@ -365,4 +366,9 @@ Page({
         })
 
     },
+    onHide:function () {
+        setTimeout(()=>{
+            wx.hideLoading()
+        },500)
+    }
 })

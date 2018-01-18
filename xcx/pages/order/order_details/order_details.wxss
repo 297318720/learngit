@@ -86,7 +86,11 @@
     height:64rpx;
     display: flex;
     align-items: center;
-
+}
+.common_item1{
+    padding: 18rpx 0;
+    display: flex;
+    align-items: center;
 }
 .justify{
     justify-content: space-between;
@@ -104,11 +108,27 @@
     align-items: center;
     padding: 0 24rpx;
 }
+
 .flex_col{
     display: flex;
+    width:534rpx;
     flex-direction: column;
+    justify-content: space-between;
+    height:156rpx;
 }
-
+.flex_col1{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height:156rpx;
+}
+.flex_col2{
+    display: flex;
+    width:534rpx;
+    flex-direction: column;
+    justify-content: center;
+    height:156rpx;
+}
 .katao_image{
     width:148rpx;
     height:148rpx;
@@ -182,4 +202,35 @@
 .call{
     width:38rpx;
     height:48rpx;
+}
+.kpz_wrap{
+    height:88rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.del_line{
+    text-decoration:line-through;
+}
+.col{
+    display: flex;
+    flex-direction: column;
+}
+.fix_width{
+    width:500rpx;
+    line-height: 40rpx;
+}
+
+
+.erweima{
+    padding: 20rpx;
+    height:274rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.erweima > image{
+    width:226rpx;
+    height:226rpx;
 }

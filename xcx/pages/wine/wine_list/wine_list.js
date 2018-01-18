@@ -15,22 +15,22 @@ var baseUrl = globalData.baseUrl;
 Page({
     data:{
        list:[
-           {
-               pack_image: "/assets/forthemoment/picture@2x.png",
-           pack_title: "2-4人进口洋酒套餐",
-           market_price:5000,
-           price: 3000 ,
-           pack_description: "青岛特醇一打、果盘一份、小吃一份、虎牌啤酒一打、喜力一打",
-           pack_stock:20
-           },
-           {
-               pack_image: "/assets/forthemoment/picture@2x.png",
-           pack_title: "2-4人进口洋酒套餐",
-           market_price:5000,
-           price: 3000 ,
-           pack_description: "青岛特醇一打、果盘一份、小吃一份、虎牌啤酒一打、喜力一打",
-           pack_stock:0
-           }
+           // {
+           //     pack_image: "/assets/forthemoment/picture@2x.png",
+           // pack_title: "2-4人进口洋酒套餐",
+           // market_price:5000,
+           // price: 3000 ,
+           // pack_description: "青岛特醇一打、果盘一份、小吃一份、虎牌啤酒一打、喜力一打",
+           // pack_stock:20
+           // },
+           // {
+           //     pack_image: "/assets/forthemoment/picture@2x.png",
+           // pack_title: "2-4人进口洋酒套餐",
+           // market_price:5000,
+           // price: 3000 ,
+           // pack_description: "青岛特醇一打、果盘一份、小吃一份、虎牌啤酒一打、喜力一打",
+           // pack_stock:0
+           // }
        ],
         merchant_id:'',
         order_id:'',
@@ -43,7 +43,7 @@ Page({
         // toast组件实例
         new app.ToastPannel();
         new app.ShowModalPannel();
-
+        new app.LoadingPannel();
         wx.setNavigationBarTitle({
             title:"续酒"
         });
@@ -80,6 +80,10 @@ Page({
             if(res.code == 200){
                 wx.hideLoading()
                 var item =JSON.stringify(e.currentTarget.dataset.item)
+                wx.showLoading({
+                    title: '加载中',
+                    mask:true
+                })
                 wx.navigateTo({
                     url: `../wine_confirm_order/wine_confirm_order?item=${item}&order_no=${this.data.order_no}&order_id=${this.data.order_id}&goods_pack_id=${e.currentTarget.dataset.goods_pack_id}`
                 })
@@ -90,6 +94,11 @@ Page({
                 });
             }
         })
+    },
+    onHide:function () {
+        setTimeout(()=>{
+            wx.hideLoading()
+        },500)
     }
 
 

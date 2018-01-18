@@ -31,6 +31,7 @@
 </view>
 
 <view class="money bgc">
+
    <view class="common_money br" bindtap="into_my_purse">
        <text class="fs24">￥{{asset.money}}</text>
        <text class="fs28 c5c5c5">余额</text>
@@ -45,7 +46,15 @@
    </view>
 </view>
 
-<view class="common_list bb bgc mt20" bindtap="into_recharge">
+<view class="common_list bb bgc mt20" bindtap="into_bind_phone">
+<view class="common_list_left">
+    <image src="/assets/mine_image/my_phone@2x.png" class="common_image mr20"></image>
+    <text class="fs30">绑定手机号</text>
+</view>
+<image src="/assets/index_image/bar_arrow@2x.png" class="bar_arrow"></image>
+</view>
+
+<view class="common_list bb bgc" bindtap="into_recharge">
     <view class="common_list_left">
         <image src="/assets/mine_image/my_topup@2x.png" class="common_image mr20"></image>
         <text class="fs30">在线充值</text>
@@ -61,10 +70,10 @@
 <image src="/assets/index_image/bar_arrow@2x.png" class="bar_arrow"></image>
 </view>
 
-<view class="common_list bgc bb" bindtap="into_member_center">
+<view class="common_list bgc bb" bindtap="into_about_kpz">
     <view class="common_list_left">
         <image src="/assets/mine_image/my_members@2x.png" class="common_image mr20"></image>
-        <text class="fs30">会员中心</text>
+        <text class="fs30">关于空瓶子</text>
     </view>
     <image src="/assets/index_image/bar_arrow@2x.png" class="bar_arrow"></image>
 </view>

@@ -1,0 +1,47 @@
+<!--<web-view wx:if="{{show}}" src="{{baseUrl}}/html/about.html"></web-view>-->
+
+<view class="top_wrap">
+    <image src="/assets/images/logo.png" alt="" class="logo_img"></image>
+    <text class="title fs36">空瓶子</text>
+    <text class="version fs24 c5c5c5">v1.0</text>
+</view>
+<view class="describe_wrap">
+<text class="fs28 co656565">空瓶子是一个集酒吧预定、移动单点、社交娱乐为一体的互联网服务平台，是既专业又好玩的夜猫集聚地。在越来越便捷高效的互联网时代，空瓶子应运而生，为都市娱乐提供一站式服务，满足您对都市娱乐的一切愿景！</text>
+</view>
+
+<view class="common_wrap bb bgc">
+<text class="fs30">客户电话</text>
+<view class="right" bindtap="call">
+    <text class="fs28 c5c5c5 mr20" >400-888-5186</text>
+    <image src="/assets/index_image/bar_arrow@2x.png"  class="bar_arrow posi_img"></image>
+</view>
+</view>
+
+<view class="common_wrap bb bgc">
+<text class="fs30">官方微博</text>
+<text class="fs28 c5c5c5">@空瓶子官方微博</text>
+</view>
+
+<view class="common_wrap bb bgc">
+<text class="fs30">合作邮箱</text>
+<text class="fs28 c5c5c5">diren@sc-csj.com</text>
+</view>
+
+<view class="common_wrap bgc">
+<text class="fs30">官方网址</text>
+<text class="fs28 c5c5c5">https://www.cs-csj.com</text>
+</view>
+
+
+
+        <!-- 自定义Toast -->
+<import src="/component/toast/toast.wxml"/>
+<template is="toast" data="{{ ..._toast_ }}"/>
+
+        <!-- 自定义showModal -->
+<import src="/component/showModal/showModal.wxml"/>
+<template is="showModal" data="{{ ..._showModal_ }}"/>
+
+        <!-- loading -->
+<import src="/component/loading/loading.wxml"/>
+<template is="loading" data="{{ ..._loading_ }}"/>

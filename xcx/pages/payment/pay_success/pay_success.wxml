@@ -7,4 +7,4 @@
 <view class="bottom_wrap mt20 bgc">
   <text class="fs30">支付信息：<text class="fs28">空瓶子余额</text></text>
   <text class="fs28 ff9933">-￥{{pay_price}}</text>
-</view>+[
+</view>

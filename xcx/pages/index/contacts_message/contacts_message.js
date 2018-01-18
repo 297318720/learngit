@@ -78,6 +78,7 @@ Page({
       // toast组件实例
       new app.ToastPannel();
       new app.ShowModalPannel();
+      new app.LoadingPannel();
       console.log(this.data)
 
 
@@ -447,7 +448,12 @@ Page({
         }
     }
     return len;
-}
+},
+    onHide:function () {
+        setTimeout(()=>{
+            wx.hideLoading()
+        },500)
+    }
 
 
 

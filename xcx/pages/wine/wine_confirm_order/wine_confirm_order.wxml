@@ -7,8 +7,8 @@
         <view>
             <text class="fs30 mr60">联系人</text>
             <text class="fs28 mr30">{{contact.realname}}</text>
-            <text class="fs28 mr30" wx:if="{{contact.sex == 1}}">男</text>
-            <text class="fs28 mr30" wx:elif="{{contact.sex == 2}}">女</text>
+            <text class="fs28 mr30" wx:if="{{contact.sex == 1}}">先生</text>
+            <text class="fs28 mr30" wx:elif="{{contact.sex == 2}}">女士</text>
             <text class="fs28 mr30" wx:else></text>
             <text class="fs28 ">{{contact.tel}}</text>
         </view>
@@ -18,7 +18,7 @@
 
 <view class="list_item bgc bb">
     <view class="list_item_left">
-        <image src="{{item.pack_image}}" class="no_img"></image>
+        <image src="{{goods.pack_image}}" class="no_img"></image>
         <view class="message">
             <text class="fs30">{{goods.pack_title}}</text>
             <text class="fs24 c5c5c5">{{goods.pack_description}}</text>
@@ -32,21 +32,28 @@
 
 <view class="price bgc">
 <view>
-    <text class="fs30 mr20">总计：￥{{goods.price}}</text>
-    <!--<text class="fs30">优惠：￥{{discount_money}}</text>-->
+    <text class="fs26 mr20">总计：￥{{goods.market_price}}</text>
+    <text class="fs26">优惠：￥{{goods.discount_money}}</text>
 </view>
-<view><text class="fs30">实付金额</text><text class="fs28 ff9933">￥{{goods.price}}</text></view>
+<view><text class="fs28">实付金额</text><text class="fs28 ff9933">￥{{goods.price}}</text></view>
 </view>
 
+<!--<view class="common_wrap bgc bb">-->
+    <!--<text class="fs30 mr60">座位号</text>-->
+    <!--<input placeholder="请输入当前的座位号" bindinput="sit_number" value="{{sit_of_number}}"-->
+           <!--style="width:500rpx" placeholder-style="color:#c5c5c5;font-size:28rpx" />-->
+<!--</view>-->
         <!--备注信息-->
 <view>
-<view class="title"><text class="fs24 c5c5c5">备注信息</text></view>
-<view class="input_wrap bgc">
-    <textarea placeholder="备注选填，最多填写60个字符；填写您的额外需求或要求" cursor-spacing="100"  bindinput="input"
-              placeholder-style="color:#c5c5c5;font-size:28rpx" maxlength="60" class="input_beizhu"/>
-    <text class="item1 fs24 c5c5c5">{{sum}}/60</text>
+    <view class="title"><text class="fs24 c5c5c5">备注信息</text></view>
+    <view class="input_wrap bgc">
+        <textarea placeholder="备注选填，最多填写50个字符；填写您的额外需求或要求" cursor-spacing="100"  bindinput="input"
+                  placeholder-style="color:#c5c5c5;font-size:28rpx" maxlength="50" class="input_beizhu"/>
+        <text class="item1 fs24 c5c5c5">{{sum}}/50</text>
+    </view>
 </view>
-</view>
+
+
 
         <!--提交订单-->
 <view class="dingdan bgc">
@@ -59,3 +66,11 @@
 </view>
 
 <view class="tianchong"></view>
+
+        <!-- 自定义Toast -->
+<import src="/component/toast/toast.wxml"/>
+<template is="toast" data="{{ ..._toast_ }}"/>
+
+        <!-- 自定义showModal -->
+<import src="/component/showModal/showModal.wxml"/>
+<template is="showModal" data="{{ ..._showModal_ }}"/>
